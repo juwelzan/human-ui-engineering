@@ -4,6 +4,14 @@ This repository implements the **Human UI Engineering** framework for high-fidel
 
 The authoritative single source of truth is [AGENTS.md](AGENTS.md).
 
+## Chat Slash Command: `/human-ui`
+
+Gemini CLI and Antigravity discover skills in `skills/human-ui/SKILL.md` or `.agent/skills/human-ui/SKILL.md`.
+- **Command Syntax**: `/human-ui [subcommand] [task]`
+- **Subcommands**: `design`, `audit`, `flutter`, `react`, `responsive`, `performance`, `debug`, `recover`, `review`.
+- **Recovery Mode**: `/human-ui recover` restores context from `AI_TASK_STATE.md` and git telemetry.
+- **Skill Engine**: [skills/human-ui/SKILL.md](skills/human-ui/SKILL.md).
+
 ## Operational Rules for Gemini
 
 - **Mandatory Workflow**: Follow the 14-step engineering process in [AGENTS.md](AGENTS.md#2-mandatory-14-step-engineering-workflow).
@@ -14,6 +22,7 @@ The authoritative single source of truth is [AGENTS.md](AGENTS.md).
 
 ## Documentation Index
 
+- **Main Skill Engine**: [skills/human-ui/](skills/human-ui/SKILL.md)
 - **Core Guidelines**: [core/](core/)
 - **Design Specifications**: [design/](design/)
 - **Component Patterns**: [components/](components/)
@@ -25,4 +34,3 @@ The authoritative single source of truth is [AGENTS.md](AGENTS.md).
 
 > [!NOTE]
 > Automatic rule loading varies depending on the Gemini harness (CLI, Antigravity, or API integration). Always verify that [AGENTS.md](AGENTS.md) is active in context.
-

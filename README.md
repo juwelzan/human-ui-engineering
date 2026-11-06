@@ -5,6 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Framework Agnostic](https://img.shields.io/badge/Framework-Agnostic-green.svg)](frameworks/framework-selection.md)
 [![A11y: WCAG 2.1 AA](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA-purple.svg)](design/accessibility.md)
+[![Chat Slash Command: /human-ui](https://img.shields.io/badge/Slash%20Command-%2Fhuman--ui-orange.svg)](docs/slash-command-guide.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ---
@@ -23,16 +24,48 @@ The single source of truth for all agent operations is [`AGENTS.md`](AGENTS.md).
 
 ---
 
-## 2. Why It Exists
+## 2. Direct Chat Slash Command: `/human-ui`
 
-Modern AI coding agents (Claude Code, Google Antigravity, Cursor, Gemini, Copilot, Windsurf) are exceptionally capable at generating code syntax, but frequently stumble on user interface engineering:
+Developers can invoke Human UI Engineering directly from their AI agent's chat input:
 
-1. **The Synthetic AI Cliché**: Defaulting to dark-mode cyber themes, gratuitous gradients, and card wrappers around every single element.
-2. **Architectural Amnesia**: Forgetting existing design tokens, ignoring pre-installed UI libraries, and creating duplicate components.
-3. **The State & Lifecycle Blindspot**: Forgetting to clean up event listeners, unregister timers, dispose of controllers, or virtualize long lists.
-4. **False Quality Reporting**: Hallucinating that "All tests passed and performance is optimal" without executing a single command.
+```text
+/human-ui [subcommand?] [task_description]
+```
 
-This repository eliminates these failure modes through systematic, machine-readable instructions, rubrics, and checklists.
+### Example Invocations
+```text
+# General feature implementation (auto-detects framework)
+/human-ui Create a modern, accessible customer profile screen.
+
+# UI/UX design and design tokens
+/human-ui design Establish an 8pt spatial grid and semantic status colors.
+
+# Full UI & performance audit
+/human-ui audit src/features/checkout
+
+# Flutter-specific clean architecture & const optimization
+/human-ui flutter Build an adaptive dashboard with BLoC state management.
+
+# React & Next.js virtualization
+/human-ui react Implement a virtualized data table with debounced search.
+
+# Responsive mobile adaptation
+/human-ui responsive Refactor navigation to collapse gracefully on 375px mobile screens.
+
+# Performance optimization & frame drops
+/human-ui performance Eliminate jank and memory leaks during infinite list scrolling.
+
+# Debugging layout and state issues
+/human-ui debug The mobile keyboard is obscuring our form submit button.
+
+# Recovery Mode: resume interrupted work without restarting
+/human-ui recover
+
+# Code review against pre-flight release checklist
+/human-ui review Audit our recent PR changes.
+```
+
+👉 Read the full [Chat Slash Command Guide](docs/slash-command-guide.md) and [Compatibility Matrix](docs/compatibility-matrix.md).
 
 ---
 
@@ -40,17 +73,18 @@ This repository eliminates these failure modes through systematic, machine-reada
 
 This repository provides standardized, lightweight entry points for all major AI coding environments:
 
-| Agent / Tool | Entry File | Loading Mechanism | Notes |
-|---|---|---|---|
-| **Google Antigravity** | [`.agent/rules/human-ui.md`](.agent/rules/human-ui.md) | Automatic via `.agent/rules/` | References [`AGENTS.md`](AGENTS.md) |
-| **Cursor** | [`.cursor/rules/human-ui.mdc`](.cursor/rules/human-ui.mdc) | Automatic via `.cursor/rules/` | Global glob matching |
-| **Claude Code** | [`CLAUDE.md`](CLAUDE.md) | Automatic at workspace root | Direct context reference |
-| **Gemini Coding Agents** | [`GEMINI.md`](GEMINI.md) | Context prompt / workspace | Authoritative guidelines |
-| **GitHub Copilot** | [`.github/copilot-instructions.md`](.github/copilot-instructions.md) | Automatic via `.github/` | Repository-wide instructions |
-| **Windsurf** | [`.windsurf/rules/human-ui.md`](.windsurf/rules/human-ui.md) | Automatic via `.windsurf/rules/` | Cascade context |
+| Agent / Tool | Entry File | Chat Invocation Syntax | Autocomplete | Auto-Activation | Notes |
+|---|---|---|---|---|---|
+| **Google Antigravity** | [`.agent/skills/human-ui/`](.agent/skills/human-ui/SKILL.md) | `/human-ui [task]` | **YES** | **YES** | Native skill integration |
+| **Claude Code** | [`.claude/commands/human-ui.md`](.claude/commands/human-ui.md) | `/human-ui [task]` | **YES** | **YES** | CLI slash command |
+| **VS Code GitHub Copilot** | [`.github/prompts/human-ui.prompt.md`](.github/prompts/human-ui.prompt.md) | `/human-ui [task]` | **YES** | **YES** | Reusable prompt file |
+| **Cursor** | [`.cursor/rules/human-ui.mdc`](.cursor/rules/human-ui.mdc) | `/human-ui [task]` or `@human-ui` | **YES** | **YES** | Rules & symbol picker |
+| **Windsurf** | [`.windsurf/workflows/human-ui.md`](.windsurf/workflows/human-ui.md) | `/human-ui [task]` | **YES** | **YES** | Cascade workflow |
+| **Gemini CLI** | [`skills/human-ui/SKILL.md`](skills/human-ui/SKILL.md) | `/human-ui [task]` | **YES** | **YES** | Agent Skills standard |
+| **Android Studio Gemini** | [`.agent/rules/human-ui.md`](.agent/rules/human-ui.md) | `/human-ui [task]` | Limited | **YES** | Workspace context |
+| **Codex / Assistants** | Prompt injection | `/human-ui [task]` | N/A | Manual | System prompt instructions |
 
-> [!NOTE]
-> Tool-specific configuration support varies by version and environment. In any environment where auto-discovery is unsupported, explicitly point the agent to [`AGENTS.md`](AGENTS.md).
+👉 Read the complete [Compatibility Matrix](docs/compatibility-matrix.md) and [Installation Guide](docs/installation-guide.md).
 
 ---
 
@@ -72,21 +106,41 @@ Universal principles apply across all technologies, with specialized implementat
 
 ```text
 human-ui-engineering/
-├── README.md               # Overview and setup guide
+├── README.md               # Overview, slash commands, and setup guide
 ├── AGENTS.md               # Master instructions (Single Source of Truth)
 ├── CLAUDE.md               # Claude Code entry point
 ├── GEMINI.md               # Gemini agent entry point
 ├── CONTRIBUTING.md         # Contribution standards
 ├── LICENSE                 # MIT License
 │
-├── .github/                # GitHub Copilot instructions
-│   └── copilot-instructions.md
-├── .cursor/rules/          # Cursor IDE rules
-│   └── human-ui.mdc
-├── .agent/rules/           # Google Antigravity & Agent rules
-│   └── human-ui.md
-├── .windsurf/rules/        # Windsurf Cascade rules
-│   └── human-ui.md
+├── skills/human-ui/        # Canonical Agent Skill Engine
+│   ├── SKILL.md            # Main skill with YAML frontmatter
+│   └── references/         # Progressive disclosure references (flutter, react, recovery, etc.)
+│
+├── docs/                   # User guides & matrices
+│   ├── compatibility-matrix.md # Verified agent support matrix
+│   ├── slash-command-guide.md  # Detailed /human-ui command manual
+│   └── installation-guide.md   # Step-by-step installation instructions
+│
+├── .github/                # GitHub-specific instructions
+│   ├── copilot-instructions.md
+│   ├── prompts/human-ui.prompt.md # Reusable Copilot prompt
+│   └── workflows/validate.yml  # GitHub Actions CI validator
+│
+├── .cursor/                # Cursor IDE configuration
+│   ├── rules/human-ui.mdc  # Cursor rules
+│   └── skills/human-ui/    # Cursor skill adapter
+│
+├── .agent/                 # Google Antigravity & Agent configuration
+│   ├── rules/human-ui.md   # Agent workspace rules
+│   └── skills/human-ui/    # Agent skill adapter
+│
+├── .claude/commands/       # Claude Code slash commands
+│   └── human-ui.md         # /human-ui command definition
+│
+├── .windsurf/              # Windsurf Cascade configuration
+│   ├── rules/human-ui.md   # Cascade rules
+│   └── workflows/human-ui.md# Cascade workflow
 │
 ├── core/                   # Foundational engineering mindset & architecture
 │   ├── agent-behavior.md   # Eliminating AI tropes; human engineer mindset
@@ -148,40 +202,28 @@ human-ui-engineering/
 │   ├── redesign.md         # Safe modernization without regressions
 │   └── performance-fix.md  # Profiling, isolating, and fixing jank
 │
-└── templates/              # Standardized fillable markdown templates
-    ├── project-brief.md    # Discovery summary
-    ├── architecture-plan.md# Technical proposal
-    ├── design-system.md    # Design token spec
-    └── quality-report.md   # QA & verification audit
+├── templates/              # Standardized fillable markdown templates
+│   ├── project-brief.md    # Discovery summary
+│   ├── architecture-plan.md# Technical proposal
+│   ├── design-system.md    # Design token spec
+│   └── quality-report.md   # QA & verification audit
+│
+└── scripts/
+    └── validate.py         # Automated repository integrity & link validator
 ```
 
 ---
 
-## 6. How to Use in Your Projects
+## 6. How to Install & Use in Your Projects
 
-You can incorporate Human UI Engineering into any existing or new project using one of three methods:
-
-### Method A: Git Submodule (Recommended for Multi-Project Teams)
-Add this repository as a submodule in your project root:
+### Method A: Git Submodule (Recommended for Teams)
 ```bash
 git submodule add https://github.com/juwelzan/human-ui-engineering.git .human-ui
 ```
-Configure your agent rules to reference `.human-ui/AGENTS.md`.
+Then copy adapters from `.human-ui` to your agent directories. See [Installation Guide](docs/installation-guide.md).
 
-### Method B: Direct Rule Copy
-Copy the appropriate agent rule into your project:
-- For **Cursor**: Copy `.cursor/rules/human-ui.mdc`
-- For **Antigravity / Agent**: Copy `.agent/rules/human-ui.md`
-- For **Claude Code**: Copy `CLAUDE.md`
-- For **GitHub Copilot**: Copy `.github/copilot-instructions.md`
-
-### Method C: Prompt / Context Injection
-In any AI chat interface, provide the link to [`AGENTS.md`](https://github.com/juwelzan/human-ui-engineering/blob/main/AGENTS.md) or paste the [Mandatory 14-Step Workflow](AGENTS.md#2-mandatory-14-step-engineering-workflow) into your initial project prompt:
-
-```text
-Follow the Human UI Engineering standards defined in AGENTS.md.
-Execute Phase 1 Discovery before proposing code. Build shared primitives first.
-```
+### Method B: Global Installation (All Projects)
+Clone into `~/.gemini/skills/` or `.claude/commands/` for machine-wide availability.
 
 ---
 
@@ -211,11 +253,13 @@ See [`AGENTS.md`](AGENTS.md) for full phase details.
 
 ---
 
-## 8. Limitations & Compatibility Notes
+## 8. Automated Validation
 
-1. **Agent Tool Variability**: Automatic file loading depends on your specific IDE or agent version. When in doubt, explicitly reference `AGENTS.md`.
-2. **Framework Freedom**: This repository does not force a specific styling tool (Tailwind, CSS Modules, Styled Components, ThemeData) or state library (Redux, Zustand, Riverpod, BLoC). It provides structural discipline while adapting to what your codebase already uses.
-3. **No Executable Code**: This repository contains pure, battle-tested markdown architectural standards, design specs, checklists, and templates. It does not introduce runtime npm or pub dependencies.
+Validate repository integrity and verify that all relative internal links resolve cleanly:
+
+```bash
+python3 scripts/validate.py
+```
 
 ---
 

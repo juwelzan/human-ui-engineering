@@ -10,6 +10,13 @@ This project adheres to the **Human UI Engineering** framework.
 
 The single source of truth for all architectural, design, engineering, and quality workflows is [AGENTS.md](../../AGENTS.md).
 
+## Chat Slash Command: `/human-ui`
+
+When the user types `/human-ui [subcommand] [task]`:
+- Recognize the command mode: `design`, `audit`, `flutter`, `react`, `responsive`, `performance`, `debug`, `recover`, `review`.
+- Follow the progressive disclosure protocol in [skills/human-ui/SKILL.md](../../skills/human-ui/SKILL.md).
+- If invoked with `/human-ui recover`, execute [skills/human-ui/references/recovery.md](../../skills/human-ui/references/recovery.md).
+
 ## Operational Instructions for Cursor
 
 1. **Strict 14-Step Workflow**: Always follow the sequence defined in [AGENTS.md](../../AGENTS.md#2-mandatory-14-step-engineering-workflow).
@@ -20,6 +27,7 @@ The single source of truth for all architectural, design, engineering, and quali
 
 ## Modular Documentation Index
 
+- **Main Skill & References**: [skills/human-ui/](../../skills/human-ui/SKILL.md)
 - **Core Architecture & Workflow**: [core/](../../core/)
 - **Design System & Tokens**: [design/](../../design/)
 - **Shared Components**: [components/](../../components/)
@@ -30,5 +38,4 @@ The single source of truth for all architectural, design, engineering, and quali
 - **Templates**: [templates/](../../templates/)
 
 > [!NOTE]
-> Cursor automatically loads `.mdc` rules from `.cursor/rules/`. If context window limitations occur, inspect specific sub-guides in `core/` or `design/`.
-
+> Cursor automatically loads `.mdc` rules from `.cursor/rules/`. For chat invocation, use `/human-ui [task]` or `@human-ui`.

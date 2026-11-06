@@ -4,6 +4,14 @@ This repository uses the **Human UI Engineering** standard.
 
 All AI-assisted development must conform to the master instructions in [AGENTS.md](../AGENTS.md).
 
+## Copilot Prompt & Command: `/human-ui`
+
+GitHub Copilot in VS Code supports reusable prompts via `.github/prompts/human-ui.prompt.md`.
+- **Chat Invocation**: Type `/human-ui [subcommand] [task]` or reference `#prompt:human-ui`.
+- **Subcommands**: `design`, `audit`, `flutter`, `react`, `responsive`, `performance`, `debug`, `recover`, `review`.
+- **Recovery Mode**: `/human-ui recover` restores context from `AI_TASK_STATE.md` and git telemetry.
+- **Skill Engine**: [skills/human-ui/SKILL.md](../skills/human-ui/SKILL.md).
+
 ## Core Directives for GitHub Copilot
 
 1. **Follow the Master Workflow**: Refer to the 14-step engineering process in [AGENTS.md](../AGENTS.md#2-mandatory-14-step-engineering-workflow).
@@ -14,6 +22,7 @@ All AI-assisted development must conform to the master instructions in [AGENTS.m
 
 ## Quick Reference Links
 
+- Main Skill Engine: [skills/human-ui/](../skills/human-ui/SKILL.md)
 - Core Methodology: [core/](../core/)
 - Design Tokens & Systems: [design/](../design/)
 - Shared Component Specs: [components/](../components/)
@@ -22,5 +31,4 @@ All AI-assisted development must conform to the master instructions in [AGENTS.m
 - Quality Audits: [quality/](../quality/)
 
 > [!NOTE]
-> Copilot auto-loads repository instructions located at `.github/copilot-instructions.md`. For extensive architectural changes, refer directly to [AGENTS.md](../AGENTS.md).
-
+> Copilot auto-loads repository instructions located at `.github/copilot-instructions.md`.

@@ -4,6 +4,13 @@ This workspace implements the **Human UI Engineering** standard.
 
 The single authoritative source of truth is [AGENTS.md](../../AGENTS.md).
 
+## Chat Slash Command: `/human-ui`
+
+When the user types `/human-ui [subcommand] [task]`:
+- Recognize the command mode: `design`, `audit`, `flutter`, `react`, `responsive`, `performance`, `debug`, `recover`, `review`.
+- Load the canonical skill engine in [skills/human-ui/SKILL.md](../../skills/human-ui/SKILL.md) and appropriate reference.
+- If invoked with `/human-ui recover`, execute [skills/human-ui/references/recovery.md](../../skills/human-ui/references/recovery.md).
+
 ## Core Directives for Autonomous Agents
 
 1. **Mandatory 14-Step Workflow**: Always follow the sequence defined in [AGENTS.md](../../AGENTS.md#2-mandatory-14-step-engineering-workflow).
@@ -14,6 +21,7 @@ The single authoritative source of truth is [AGENTS.md](../../AGENTS.md).
 
 ## Document Directory
 
+- [Main Skill Engine](../../skills/human-ui/SKILL.md)
 - [Core Principles & Workflow](../../core/)
 - [Design Tokens & Rules](../../design/)
 - [Component Engineering](../../components/)
@@ -24,5 +32,4 @@ The single authoritative source of truth is [AGENTS.md](../../AGENTS.md).
 - [Project Templates](../../templates/)
 
 > [!NOTE]
-> Agent environments load workspace rules from `.agent/rules/`. For deep-dive tasks, reference the specific guide within the corresponding category directory.
-
+> Agent environments load workspace rules from `.agent/rules/`. For chat invocation, use `/human-ui [task]`.

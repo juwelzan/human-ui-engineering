@@ -23,10 +23,13 @@ human-ui-engineering/
 ├── AGENTS.md               # Master instructions (Single Source of Truth)
 ├── CLAUDE.md               # Claude Code entry point
 ├── GEMINI.md               # Gemini / Antigravity entry point
-├── .github/                # GitHub-specific instructions (Copilot)
-├── .cursor/rules/          # Cursor rule definitions
-├── .agent/rules/           # Antigravity / Agent rule definitions
-├── .windsurf/rules/        # Windsurf rule definitions
+├── skills/human-ui/        # Canonical Agent Skill Engine (/human-ui)
+├── docs/                   # Guides, matrices, and manuals
+├── .github/                # GitHub-specific instructions & prompts
+├── .cursor/                # Cursor rule definitions & skills
+├── .agent/                 # Antigravity / Agent rule definitions & skills
+├── .claude/commands/       # Claude Code custom commands
+├── .windsurf/              # Windsurf rules & workflows
 ├── core/                   # Agent behavior, discovery, architecture, workflow
 ├── design/                 # Design philosophy, tokens, typography, colors, a11y
 ├── components/             # Reusable UI component specifications
@@ -34,7 +37,8 @@ human-ui-engineering/
 ├── frameworks/             # Practical guides (Flutter, React, Next.js, Android, iOS, Web)
 ├── quality/                # Testing, UI reviews, performance audits, release checklists
 ├── workflows/              # Step-by-step action workflows
-└── templates/              # Reusable project, design, architecture, QA templates
+├── templates/              # Reusable project, design, architecture, QA templates
+└── scripts/validate.py     # Automated repository integrity & link validator
 ```
 
 ---
@@ -42,10 +46,12 @@ human-ui-engineering/
 ## 3. How to Submit Changes
 
 1. **Fork and Branch**: Create a descriptive feature branch from `main` (e.g., `git checkout -b docs/add-svelte-guide` or `fix/improve-contrast-rules`).
-2. **Validate Links & Consistency**:
-   - Ensure all relative links resolve correctly.
-   - Verify that new files are cross-referenced in `AGENTS.md`, `README.md`, and the relevant category indexes.
-   - Check spelling, grammar, and markdown formatting.
+2. **Run Local Validation**:
+   Before committing, run the repository integrity and link validator:
+   ```bash
+   python3 scripts/validate.py
+   ```
+   Ensure all checks pass with zero errors.
 3. **Commit Guidelines**:
    - Use conventional commit messages:
      - `feat: ...` for new guides, templates, or agent configurations.
@@ -58,4 +64,3 @@ human-ui-engineering/
 ## 4. Code of Conduct
 
 Maintain an inclusive, welcoming, and professional environment. Treat all contributors and reviewers with respect and constructive feedback.
-

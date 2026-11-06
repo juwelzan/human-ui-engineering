@@ -4,6 +4,13 @@ This repository uses the **Human UI Engineering** framework for all user interfa
 
 The authoritative source of truth for guidelines, workflows, and standards is [AGENTS.md](../../AGENTS.md).
 
+## Chat Slash Command: `/human-ui`
+
+When the user types `/human-ui [subcommand] [task]`:
+- Recognize the command mode: `design`, `audit`, `flutter`, `react`, `responsive`, `performance`, `debug`, `recover`, `review`.
+- Load the canonical skill engine in [skills/human-ui/SKILL.md](../../skills/human-ui/SKILL.md) and appropriate reference.
+- If invoked with `/human-ui recover`, execute [skills/human-ui/references/recovery.md](../../skills/human-ui/references/recovery.md).
+
 ## Instructions for Windsurf Cascade
 
 1. **Follow the Master Workflow**: Execute tasks according to the 14-step sequence in [AGENTS.md](../../AGENTS.md#2-mandatory-14-step-engineering-workflow).
@@ -15,6 +22,7 @@ The authoritative source of truth for guidelines, workflows, and standards is [A
 ## Quick Reference Index
 
 - Master Instructions: [AGENTS.md](../../AGENTS.md)
+- Main Skill Engine: [skills/human-ui/](../../skills/human-ui/SKILL.md)
 - Core Architecture: [core/](../../core/)
 - Design Tokens: [design/](../../design/)
 - Shared Components: [components/](../../components/)
@@ -25,5 +33,4 @@ The authoritative source of truth for guidelines, workflows, and standards is [A
 - Templates: [templates/](../../templates/)
 
 > [!NOTE]
-> Windsurf loads rules from `.windsurf/rules/`. For targeted domain instructions, read the corresponding chapter directly.
-
+> Windsurf loads rules from `.windsurf/rules/`. For chat invocation, use `/human-ui [task]`.

@@ -6,7 +6,33 @@ This repository provides an institutional, human-centered UI engineering system.
 
 ---
 
-## 1. Core Operating Principles
+## 1. Chat-Box Slash Command: `/human-ui`
+
+Developers can invoke this entire knowledge system directly from any supported AI coding agent's chat interface:
+
+```text
+/human-ui [subcommand?] [task_description]
+```
+
+### Supported Command Modes
+- `/human-ui [task]` — General engineering task (auto-detects framework).
+- `/human-ui design [task]` — UI/UX design, visual hierarchy, spacing, and color systems.
+- `/human-ui audit [scope]` — Comprehensive UI review, contrast, and performance audit.
+- `/human-ui flutter [task]` — Flutter-specific development (`const` optimization, BLoC/Riverpod).
+- `/human-ui react [task]` — React & Next.js development (custom hooks, virtualization).
+- `/human-ui responsive [task]` — Multi-breakpoint layout, reflow, and touch target optimization.
+- `/human-ui performance [task]` — Frame budget (60/120fps), memory leak elimination, and CLS.
+- `/human-ui debug [issue]` — Diagnosing and repairing layout overflows, nulls, or sticky hovers.
+- `/human-ui recover` — Restores context from `AI_TASK_STATE.md` and git telemetry; resumes work.
+- `/human-ui review [scope]` — Evaluates pull request changes against the release checklist.
+
+👉 **Canonical Skill Engine**: [`skills/human-ui/SKILL.md`](skills/human-ui/SKILL.md)  
+👉 **Command Guide**: [`docs/slash-command-guide.md`](docs/slash-command-guide.md)  
+👉 **Compatibility Matrix**: [`docs/compatibility-matrix.md`](docs/compatibility-matrix.md)
+
+---
+
+## 2. Core Operating Principles
 
 1. **Human Utility Over AI Decoration**: Never generate boilerplate "AI aesthetics" (unwarranted purple/teal neon glows, gratuitous gradients, uniform cards, arbitrary frosted glass). Every visual element must serve content hierarchy and user task completion.
 2. **Context Discovery Before Code**: Never write UI code without understanding the target audience, existing repository conventions, technical constraints, and design tokens.
@@ -16,7 +42,7 @@ This repository provides an institutional, human-centered UI engineering system.
 
 ---
 
-## 2. Mandatory 14-Step Engineering Workflow
+## 3. Mandatory 14-Step Engineering Workflow
 
 Every AI agent working on a user interface task MUST follow this sequential 14-step workflow:
 
@@ -110,12 +136,13 @@ flowchart TD
 
 ---
 
-## 3. Repository Map & Navigation
+## 4. Repository Map & Navigation
 
 When executing specific tasks, refer to the authoritative documentation within this repository:
 
 | Domain | Directory / File | Key Focus |
 |---|---|---|
+| **Skill & Commands** | [`skills/human-ui/`](skills/human-ui/SKILL.md) | [Slash Command Guide](docs/slash-command-guide.md), [Compatibility Matrix](docs/compatibility-matrix.md), [Installation Guide](docs/installation-guide.md) |
 | **Core Architecture** | [`core/`](core/) | [Agent Mindset](core/agent-behavior.md), [Discovery](core/project-discovery.md), [Architecture](core/architecture.md), [Folders](core/folder-structure.md), [Workflow](core/development-workflow.md) |
 | **Design System** | [`design/`](design/) | [Philosophy](design/design-philosophy.md), [Human Rules](design/human-design-rules.md), [Colors](design/color-system.md), [Typography](design/typography.md), [Spacing](design/spacing.md), [Responsive](design/responsive-design.md), [A11y](design/accessibility.md), [Motion](design/animation.md) |
 | **Component Library** | [`components/`](components/) | [Component Rubric](components/shared-component-rules.md), [Buttons](components/buttons.md), [Text Fields](components/text-fields.md), [Typography](components/typography.md), [Cards](components/cards.md), [Navigation](components/navigation.md), [Dialogs](components/dialogs.md), [Loading States](components/loading-states.md), [Reusable Widgets](components/reusable-widgets.md) |
@@ -127,15 +154,14 @@ When executing specific tasks, refer to the authoritative documentation within t
 
 ---
 
-## 4. Agent Compatibility Notice
+## 5. Agent Compatibility Notice
 
 This repository defines instructions consumable by modern AI development environments. Tool-specific entry files provide bridge configurations:
-- **Claude Code**: [`CLAUDE.md`](CLAUDE.md)
-- **Google Gemini / Antigravity**: [`GEMINI.md`](GEMINI.md) and [`.agent/rules/human-ui.md`](.agent/rules/human-ui.md)
-- **Cursor**: [`.cursor/rules/human-ui.mdc`](.cursor/rules/human-ui.mdc)
-- **GitHub Copilot**: [`.github/copilot-instructions.md`](.github/copilot-instructions.md)
-- **Windsurf**: [`.windsurf/rules/human-ui.md`](.windsurf/rules/human-ui.md)
+- **Claude Code**: [`CLAUDE.md`](CLAUDE.md) & [`.claude/commands/human-ui.md`](.claude/commands/human-ui.md)
+- **Google Gemini / Antigravity**: [`GEMINI.md`](GEMINI.md) & [`.agent/skills/human-ui/SKILL.md`](.agent/skills/human-ui/SKILL.md)
+- **Cursor**: [`.cursor/rules/human-ui.mdc`](.cursor/rules/human-ui.mdc) & [`.cursor/skills/human-ui/SKILL.md`](.cursor/skills/human-ui/SKILL.md)
+- **GitHub Copilot**: [`.github/copilot-instructions.md`](.github/copilot-instructions.md) & [`.github/prompts/human-ui.prompt.md`](.github/prompts/human-ui.prompt.md)
+- **Windsurf**: [`.windsurf/rules/human-ui.md`](.windsurf/rules/human-ui.md) & [`.windsurf/workflows/human-ui.md`](.windsurf/workflows/human-ui.md)
 
 > [!NOTE]
 > Automatic discovery and loading behavior depends on the exact version and configuration of each IDE/agent harness. In environments that do not automatically load sub-folder rules, agents should be explicitly directed to read `AGENTS.md`.
-
