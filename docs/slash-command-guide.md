@@ -1,6 +1,6 @@
 # Chat Slash Command Guide: `/human-ui`
 
-> Practical user manual for invoking Human UI Engineering directly from your AI coding agent's chat input.
+> **Comprehensive Command Manual for Invoking Human UI Engineering Across AI Coding Agents**
 
 ---
 
@@ -13,91 +13,70 @@ The `/human-ui` slash command provides direct access to the entire Human UI Engi
 ```
 
 When invoked, the skill:
-1. Identifies the requested mode (`design`, `audit`, `flutter`, `react`, etc.).
-2. Inspects your project to identify the framework, design tokens, and existing components.
+1. Identifies the requested mode (`plan`, `build`, `design`, `architect`, `debug`, etc.).
+2. Inspects your project to identify the framework, design tokens, architecture, and dependencies.
 3. Loads only the relevant modular reference documents.
-4. Executes the task using human-centered engineering standards.
-5. Verifies the result and reports the exact status.
+4. Executes the task using professional software engineering standards.
+5. Verifies the result against the 13 quality gates and reports exact telemetry.
 
 ---
 
-## 2. Command Catalog & Concrete Examples
+## 2. Complete 16-Command Mode Catalog
 
-### 1. General Task Mode
-Used for end-to-end screen or feature implementation.
-```text
-/human-ui Build a clean, accessible account profile screen with avatar upload.
-```
-- **What Happens**: Discovers project framework, checks for existing `Button` and `TextField` components in `components/`, constructs missing primitives, wires unidirectional data flow, handles all 4 states (Loading, Empty, Error, Success), and audits contrast.
+| Mode | Invocation Syntax | Purpose & Action Taken |
+|---|---|---|
+| **General** | `/human-ui [task]` | Full 14-step workflow: discovery, design tokens, shared primitives, view assembly, verification. |
+| **Plan** | `/human-ui plan [task]` | Read-only task decomposition, dependency resolution, risk analysis, and ordered milestones. |
+| **Build** | `/human-ui build [task]` | End-to-end full-stack feature assembly, models/schemas, business logic, views, and testing. |
+| **Design** | `/human-ui design [task]` | UI/UX visual hierarchy, 8pt spatial grid, typography scales, semantic status tokens, WCAG AA contrast. |
+| **Architect** | `/human-ui architect [task]` | System architecture evaluation, boundary isolation, and Architecture Decision Record (ADR) drafting. |
+| **Audit** | `/human-ui audit [scope]` | Comprehensive UI review, visual polish, layout overflow, accessibility, and performance audit. |
+| **Debug** | `/human-ui debug [issue]` | Scientific 10-step root-cause diagnosis, execution path tracing, and smallest safe fix with tests. |
+| **Refactor** | `/human-ui refactor [scope]` | Safe, behavior-preserving code extraction, decomposing giant files, zero functional regression. |
+| **Test** | `/human-ui test [scope]` | Multi-tier test authoring (Unit, Component, Integration, API, E2E) with honest status reporting. |
+| **Review** | `/human-ui review [scope]` | Code review against the 13 pre-flight quality gates, security vulnerabilities, and git cleanliness. |
+| **Security** | `/human-ui security [scope]` | Threat modeling, injection/XSS audits, parameterized query verification, and auth token hygiene. |
+| **Performance** | `/human-ui performance [scope]`| 16.6ms frame budget profiling, list virtualization, query optimization, and memory leak disposal. |
+| **Docs** | `/human-ui docs [scope]` | API documentation, docstrings, OpenAPI contracts, and `PROJECT_CONTEXT.md` updates. |
+| **Release** | `/human-ui release [ver?]` | Pre-flight release verification, semantic versioning, zero-downtime DB migrations, and changelog. |
+| **Recovery** | `/human-ui recover` | Inspects `AI_TASK_STATE.md` and git telemetry to resume interrupted workflows without restarting. |
+| **Status** | `/human-ui status` | Displays active task checkpoint, progress, milestone checklist, and known blockers. |
 
-### 2. Design Mode (`design`)
-Used when visual hierarchy, spacing, or color system requires dedicated focus.
-```text
-/human-ui design Establish a 4pt/8pt grid and accessible color palette for our SaaS dashboard.
-```
-- **What Happens**: Loads [design.md](../skills/human-ui/references/design.md), audits surface elevations and text contrast, and outputs semantic tokens.
+---
 
-### 3. Audit Mode (`audit`)
-Used to evaluate existing code for visual defects, layout overflow, contrast failures, and performance bottlenecks.
-```text
-/human-ui audit src/features/billing
-```
-- **What Happens**: Runs the [UI Review Checklist](../quality/ui-review.md) and [Performance Audit](../quality/performance-audit.md), outputting an objective [Quality Report](../templates/quality-report.md).
+## 3. Concrete Command Examples
 
-### 4. Flutter Mode (`flutter`)
-Used for Flutter-specific development.
 ```text
-/human-ui flutter Implement an adaptive sliver app bar with pull-to-refresh.
-```
-- **What Happens**: Loads [flutter.md](../skills/human-ui/references/flutter.md), enforces `const` constructors, separates presentation from BLoC/Riverpod, and adds TalkBack semantics.
+# 1. Plan a multi-screen checkout flow without modifying code
+/human-ui plan Architect a 3-step payment wizard with Stripe integration.
 
-### 5. React / Next.js Mode (`react`)
-Used for React SPA or Next.js implementations.
-```text
-/human-ui react Create a virtualized transaction table with debounced search.
-```
-- **What Happens**: Loads [react.md](../skills/human-ui/references/react.md), uses `@tanstack/react-virtual`, isolates volatile typing state, and adds proper `useEffect` cleanup.
+# 2. Build full-stack feature with database models and UI
+/human-ui build Create tenant invite management with Prisma schema and React modal.
 
-### 6. Responsive Mode (`responsive`)
-Used to fix mobile clipping, table overflow, or breakpoint layout shifts.
-```text
-/human-ui responsive Refactor our checkout summary to collapse gracefully on 375px mobile screens.
-```
-- **What Happens**: Loads [responsive.md](../skills/human-ui/references/responsive.md), adds `min-w-0` to flex containers, reflows multi-column grids, and verifies 44x44pt touch targets.
+# 3. Design accessible tokens and spacing
+/human-ui design Establish an 8pt spatial grid and semantic status colors for dark mode.
 
-### 7. Performance Mode (`performance`)
-Used to eliminate jank, frame drops, or high memory consumption.
-```text
-/human-ui performance Fix dropped frames and memory leaks during infinite feed scrolling.
-```
-- **What Happens**: Follows the 5-stage diagnostic loop in [performance-fix.md](../workflows/performance-fix.md): Measure -> Isolate -> Fix -> Re-measure -> Report.
+# 4. Draft an Architecture Decision Record (ADR)
+/human-ui architect Evaluate PostgreSQL vs MongoDB for user activity telemetry.
 
-### 8. Debug Mode (`debug`)
-Used to resolve tricky UI glitches.
-```text
-/human-ui debug The virtual keyboard covers the password field on mobile devices.
-```
-- **What Happens**: References [debug.md](../skills/human-ui/references/debug.md) and applies defensive viewport/insets wrapping.
+# 5. Scientific Root-Cause Debugging
+/human-ui debug The mobile keyboard is obscuring the form submit button in iOS Safari.
 
-### 9. Recovery Mode (`recover`)
-Used to resume interrupted or broken workflows without restarting.
-```text
+# 6. Security Vulnerability Audit
+/human-ui security Audit our auth session handling and search for IDOR vulnerabilities.
+
+# 7. Frame Drop & Memory Leak Optimization
+/human-ui performance Eliminate scroll jank in our 5,000-item customer data table.
+
+# 8. Resume Interrupted Work
 /human-ui recover
 ```
-- **What Happens**: Loads [recovery.md](../skills/human-ui/references/recovery.md), inspects `AI_TASK_STATE.md`, runs `git status` and `git diff`, identifies the last verified checkpoint, diagnoses the interruption, and resumes work safely.
-
-### 10. Review Mode (`review`)
-Used for pre-flight PR checks.
-```text
-/human-ui review Review recent checkout changes before opening a PR.
-```
-- **What Happens**: Audits code against the [8-Point Release Checklist](../quality/release-checklist.md).
 
 ---
 
-## 3. Related Documentation
+## 4. Related Documentation
 
 - Main Skill: [../skills/human-ui/SKILL.md](../skills/human-ui/SKILL.md)
 - Compatibility Matrix: [compatibility-matrix.md](compatibility-matrix.md)
 - Installation Guide: [installation-guide.md](installation-guide.md)
-
+- Master Instructions: [../AGENTS.md](../AGENTS.md)

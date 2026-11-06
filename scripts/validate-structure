@@ -53,7 +53,8 @@ def main():
         framework_modules = [
             "flutter.md", "react.md", "nextjs.md", "vue.md",
             "angular.md", "react-native.md", "native-android.md",
-            "native-ios.md", "web.md", "desktop.md"
+            "native-ios.md", "web.md", "desktop.md",
+            "backend.md", "api.md", "database.md"
         ]
         for fm in framework_modules:
             p = os.path.join(frameworks_dir, fm)

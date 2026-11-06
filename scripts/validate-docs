@@ -2,7 +2,7 @@
 """
 Human UI Engineering — Documentation Validator
 Verifies:
-1. All core, design, component, engineering, framework, quality, workflow, and template files exist.
+1. All core, design, component, engineering, framework, quality, workflow, template, adr, and skill files exist.
 2. No file is empty or contains placeholder stubs.
 3. Universal core remains strictly framework-independent.
 """
@@ -16,6 +16,7 @@ CORE_FILES = [
     # Root
     "README.md",
     "AGENTS.md",
+    "PROJECT_CONTEXT.md",
     "CLAUDE.md",
     "GEMINI.md",
     "CONTRIBUTING.md",
@@ -24,6 +25,12 @@ CORE_FILES = [
     "AI_TASK_STATE.md",
 
     # Core
+    "core/developer-intelligence.md",
+    "core/task-orchestration.md",
+    "core/operating-modes.md",
+    "core/human-interaction.md",
+    "core/project-knowledge.md",
+    "core/git-change-management.md",
     "core/agent-behavior.md",
     "core/anti-hallucination.md",
     "core/recovery-protocol.md",
@@ -34,6 +41,7 @@ CORE_FILES = [
     "core/change-control.md",
     "core/folder-structure.md",
     "core/development-workflow.md",
+    "core/multi-agent.md",
 
     # Design
     "design/design-philosophy.md",
@@ -45,6 +53,7 @@ CORE_FILES = [
     "design/responsive-design.md",
     "design/accessibility.md",
     "design/animation.md",
+    "design/data-visualization.md",
 
     # Components
     "components/component-principles.md",
@@ -58,18 +67,22 @@ CORE_FILES = [
     "components/dialogs.md",
     "components/loading-states.md",
     "components/component-testing.md",
+    "components/dashboards.md",
     "components/reusable-widgets.md",
 
     # Engineering
     "engineering/clean-code.md",
+    "engineering/code-standards.md",
     "engineering/architecture-patterns.md",
     "engineering/state-management.md",
     "engineering/error-handling.md",
+    "engineering/debugging-engine.md",
     "engineering/security.md",
     "engineering/performance.md",
     "engineering/memory-management.md",
     "engineering/async-operations.md",
     "engineering/cross-platform.md",
+    "engineering/devops-release.md",
 
     # Frameworks
     "frameworks/README.md",
@@ -84,9 +97,14 @@ CORE_FILES = [
     "frameworks/native-ios.md",
     "frameworks/web.md",
     "frameworks/desktop.md",
+    "frameworks/backend.md",
+    "frameworks/api.md",
+    "frameworks/database.md",
 
     # Quality
     "quality/testing.md",
+    "quality/testing-strategy.md",
+    "quality/engineering-quality-gates.md",
     "quality/ui-review.md",
     "quality/performance-audit.md",
     "quality/accessibility-audit.md",
@@ -98,30 +116,71 @@ CORE_FILES = [
     "workflows/project-discovery.md",
     "workflows/new-project.md",
     "workflows/new-feature.md",
+    "workflows/build.md",
     "workflows/new-page.md",
     "workflows/shared-component.md",
     "workflows/redesign.md",
+    "workflows/refactoring.md",
     "workflows/debugging.md",
     "workflows/recovery.md",
-    "workflows/refactoring.md",
     "workflows/performance-optimization.md",
     "workflows/performance-fix.md",
+    "workflows/release.md",
+    "workflows/security-audit.md",
 
     # Templates
     "templates/project-brief.md",
+    "templates/project-context.md",
     "templates/architecture-plan.md",
     "templates/design-system.md",
     "templates/task-state.md",
     "templates/bug-report.md",
     "templates/quality-report.md",
+    "templates/adr.md",
+    "templates/test-plan.md",
 
-    # Docs
+    # Docs & ADRs
     "docs/compatibility-matrix.md",
     "docs/slash-command-guide.md",
     "docs/installation-guide.md",
+    "docs/adr/README.md",
+    "docs/adr/template.md",
+    "docs/adr/0001-record-architecture-decisions.md",
 
     # Skills & Adapters
     "skills/human-ui/SKILL.md",
+    "skills/human-ui/references/plan.md",
+    "skills/human-ui/references/build.md",
+    "skills/human-ui/references/design.md",
+    "skills/human-ui/references/architect.md",
+    "skills/human-ui/references/audit.md",
+    "skills/human-ui/references/debug.md",
+    "skills/human-ui/references/refactor.md",
+    "skills/human-ui/references/test.md",
+    "skills/human-ui/references/review.md",
+    "skills/human-ui/references/security.md",
+    "skills/human-ui/references/performance.md",
+    "skills/human-ui/references/docs.md",
+    "skills/human-ui/references/release.md",
+    "skills/human-ui/references/recovery.md",
+    "skills/human-ui/references/status.md",
+    "skills/human-ui/references/responsive.md",
+    "skills/human-ui/references/routing.md",
+    "skills/human-ui/references/flutter.md",
+    "skills/human-ui/references/react.md",
+    "skills/human-ui/references/nextjs.md",
+    "skills/human-ui/references/vue.md",
+    "skills/human-ui/references/angular.md",
+    "skills/human-ui/references/react-native.md",
+    "skills/human-ui/references/android.md",
+    "skills/human-ui/references/ios.md",
+    "skills/human-ui/references/web.md",
+    "skills/human-ui/references/desktop.md",
+    "skills/human-ui/references/backend.md",
+    "skills/human-ui/references/api.md",
+    "skills/human-ui/references/database.md",
+
+    # Agent Adapters
     ".agent/skills/human-ui/SKILL.md",
     ".agent/rules/human-ui.md",
     ".claude/commands/human-ui.md",
@@ -161,4 +220,3 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
-

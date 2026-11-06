@@ -1,19 +1,22 @@
 ---
 name: human-ui
-description: Execute a production UI engineering task using Human UI Engineering standards.
+description: Human UI Engineering context and execution system for building production-grade, human-centered user interfaces and full-stack software systems. Activate when the user asks to plan, design, implement, build, audit, review, debug, test, secure, optimize, or document software across Flutter, React, Next.js, Vue, Angular, React Native, Android, iOS, Web, Desktop, Backend, or Databases, or explicitly invokes the /human-ui slash command.
 user-invocable: true
-argument-hint: "[task or instruction]"
+argument-hint: "[mode?] [task or instruction]"
+metadata:
+  icon: terminal
+  version: 3.0.0
 ---
 
 # Human UI Engineering (Cursor Skill Adapter)
 
-This adapter enables Cursor Composer and Chat to invoke `/human-ui`.
+This is the Cursor skill entry point. It routes directly to the canonical skill engine:
 
-👉 **Canonical Skill Engine**: [skills/human-ui/SKILL.md](../../../skills/human-ui/SKILL.md)
+👉 **Canonical Skill**: [skills/human-ui/SKILL.md](../../../skills/human-ui/SKILL.md)
 
-## Cursor Execution Directives
+## Execution Instructions for Cursor
 
-1. When the user types `/human-ui` or references `@human-ui`, parse the subcommand (`design`, `audit`, `flutter`, `react`, `responsive`, `performance`, `debug`, `recover`, `review`).
-2. Read the corresponding reference from [skills/human-ui/references/](../../../skills/human-ui/references/).
-3. Execute within existing project conventions following [AGENTS.md](../../../AGENTS.md).
-
+1. Parse any subcommands passed to `/human-ui` or `@human-ui`:
+   - `plan`, `build`, `design`, `architect`, `audit`, `debug`, `refactor`, `test`, `review`, `security`, `performance`, `docs`, `release`, `recover`, `status`.
+2. Follow the 5-step progressive disclosure protocol in [skills/human-ui/SKILL.md](../../../skills/human-ui/SKILL.md).
+3. Anchor all actions to the master engineering instructions in [AGENTS.md](../../../AGENTS.md).

@@ -1,95 +1,109 @@
-# UI Security Fundamentals
+# Comprehensive Security Engineering
 
-> Engineering standards for client-side security, XSS prevention, token hygiene, Content Security Policy (CSP), and secure native bridge communication.
+> **Full-Stack Security: Authentication, Authorization, Input Validation, Secrets, Network & Data Privacy**
 
----
-
-## 1. Purpose
-
-Client-side user interfaces run in untrusted, user-controlled environments (web browsers, mobile operating systems, desktop runtimes). Insecure handling of user input, authentication tokens, external URLs, or native bridge communication exposes users to Cross-Site Scripting (XSS), token theft, clickjacking, and data exfiltration.
-
-This guide defines the universal security standards required across all UI codebases.
+Security is an architectural invariant, not an afterthought. AI coding agents must proactively identify vulnerabilities, prevent data leaks, enforce defensive defaults, and flag security-sensitive changes for human review.
 
 ---
 
-## 2. Core UI Security Threats & Defenses
+## 1. The Core Security Tenets
+
+1. **Zero Trust & Defense in Depth**: Never trust client input, third-party webhooks, or unverified network calls. Validate at every layer.
+2. **Principle of Least Privilege**: Grant users, services, database roles, and cloud credentials only the minimum permissions necessary.
+3. **No Insecure Defaults**: Disable debugging endpoints in production, mandate HTTPS/TLS, enforce strong password policies, and enable CORS whitelists.
+4. **Zero Secrets in Source Code**: Never hardcode API keys, private keys, tokens, or credentials in any file committed to version control.
+5. **Flag Security-Sensitive Modifications**: Explicitly highlight any changes affecting authentication, authorization rules, encryption, or permissions during code review.
+
+---
+
+## 2. Threat Vector & Defense Matrix
 
 ```mermaid
 flowchart TD
-    T1[1. Cross-Site Scripting XSS] --> D1[Auto-escaping & HTML Sanitization]
-    T2[2. Token Theft & Exfiltration] --> D2[HttpOnly Cookies / Secure Enclave]
-    T3[3. Malicious URL Injection] --> D3[Protocol Whitelisting: https / mailto]
-    T4[4. Insecure Native Bridge IPC] --> D4[Strict Schema Validation on Messages]
-    T5[5. Clickjacking & UI Redress] --> D5[CSP frame-ancestors & X-Frame-Options]
+    T1[1. Injection & XSS] --> D1[Parameterized Queries & Contextual Output Encoding]
+    T2[2. Broken Authentication] --> D2[PKCE, HttpOnly Cookies & Session Invalidation]
+    T3[3. Broken Object Level Auth IDOR] --> D3[Tenant/User Ownership Checks on Every Query]
+    T4[4. Sensitive Data Exposure] --> D4[PII Masking, Envelope Encryption & TLS 1.3]
+    T5[5. Insecure File Uploads] --> D5[Magic Byte Validation & S3 Presigned URLs]
 ```
 
 ---
 
-## 3. Cross-Site Scripting (XSS) Prevention
+## 3. Authentication & Authorization (AuthN & AuthZ)
 
-### 1. Escape by Default
-- Modern UI frameworks (React JSX, Flutter Text, Angular templates, Vue templates, Android Compose) escape strings by default.
-- **NEVER** bypass built-in escaping without strict sanitization:
-  - **React**: Avoid `dangerouslySetInnerHTML`. If markdown or rich HTML is mandatory, sanitize using `DOMPurify`.
-  - **Vue**: Avoid `v-html` on untrusted user strings.
-  - **Flutter**: Never inject unescaped HTML strings into WebViews.
-  - **Android**: Disable JavaScript in `WebView` unless explicitly required (`settings.javaScriptEnabled = false`).
+1. **Authentication Best Practices**:
+   - Modern mobile & SPA apps: Use OAuth 2.0 with Proof Key for Code Exchange (PKCE).
+   - Session tokens: Store in `HttpOnly`, `Secure`, `SameSite=Strict` cookies. Rotate session IDs upon privilege elevation or login.
+   - Multi-Factor Authentication (MFA): Support TOTP (Time-based One-Time Password) or WebAuthn/Passkeys.
+2. **Broken Object Level Authorization (BOLA / IDOR) Defense**:
+   - **Never trust client-supplied entity IDs without verifying ownership**:
+   ```typescript
+   // VULNERABLE TO IDOR:
+   app.get('/api/documents/:id', async (req, res) => {
+     const doc = await db.documents.findUnique({ where: { id: req.params.id } });
+     res.json(doc);
+   });
 
-### 2. URL Protocol Validation
-When rendering user-supplied links (`<a href={userLink}>` or `url_launcher`):
-```typescript
-// Anti-Pattern: Vulnerable to javascript: pseudo-protocol XSS
-<a href={profile.websiteUrl}>Website</a>
-
-// Best Practice: Protocol Whitelisting
-function isSafeUrl(url: string): boolean {
-  try {
-    const parsed = new URL(url);
-    return ['https:', 'http:', 'mailto:', 'tel:'].includes(parsed.protocol);
-  } catch {
-    return false;
-  }
-}
-```
+   // SAFE: Enforce tenant / user ownership boundary
+   app.get('/api/documents/:id', async (req, res) => {
+     const doc = await db.documents.findFirst({
+       where: {
+         id: req.params.id,
+         tenantId: req.user.tenantId, // Ownership bound to auth session
+       },
+     });
+     if (!doc) throw new NotFoundException('Document not found');
+     res.json(doc);
+   });
+   ```
 
 ---
 
-## 4. Authentication Token & Session Hygiene
+## 4. Input Validation & Output Encoding
 
-| Environment | Recommended Storage | Discouraged Storage |
+1. **Input Validation (Perimeter Defense)**:
+   - Validate every inbound payload against strict type schemas (Zod, Pydantic, Joi).
+   - Reject unrecognised fields (`strip` or `strict` mode) to prevent mass-assignment vulnerabilities.
+2. **Output Encoding (XSS Defense)**:
+   - Rely on automatic template escaping (React JSX, Flutter Text, Angular templates).
+   - Sanitize rich markdown/HTML with `DOMPurify` before rendering.
+   - Whitelist protocols on hyperlinks (`https:`, `http:`, `mailto:`); reject `javascript:` pseudo-protocols.
+
+---
+
+## 5. Secrets Management & Storage
+
+| Layer | Recommended Storage | Prohibited Storage |
 |---|---|---|
-| **Web Browser** | `HttpOnly`, `Secure`, `SameSite=Strict` cookies | `localStorage` / `sessionStorage` (vulnerable to XSS theft) |
+| **Web Browser** | `HttpOnly` Cookies | `localStorage` / `sessionStorage` (Accessible via XSS) |
 | **Mobile (Android)** | Android Keystore / `EncryptedSharedPreferences` | Unencrypted `SharedPreferences` |
-| **Mobile (iOS)** | Apple Keychain (`kSecClassGenericPassword`) | `UserDefaults` |
-| **Desktop (Electron)** | OS Keychain (`safeStorage` API) | Plaintext JSON files |
+| **Mobile (iOS)** | Apple Keychain (`kSecClassGenericPassword`) | `UserDefaults` or bundle plist |
+| **Backend Service** | AWS Secrets Manager, GCP Secret Manager, Vault | Hardcoded strings, unencrypted `.env` in git |
+
+---
+
+## 6. Network & API Security
+
+1. **Transport Security**: Mandate TLS 1.3. Enforce HTTP Strict Transport Security (`HSTS`) with `max-age=31536000; includeSubDomains; preload`.
+2. **Cross-Origin Resource Sharing (CORS)**: Never set `Access-Control-Allow-Origin: *` on authenticated endpoints. Explicitly whitelist trusted origin domains.
+3. **Rate Limiting & Abuse Prevention**: Enforce rate limits by IP and authenticated user account to mitigate brute force attacks and denial of service.
+
+---
+
+## 7. Logging Safety & Data Privacy (PII)
 
 > [!CAUTION]
-> Never store sensitive API secrets, OAuth client secrets, or database master keys inside client-side UI codebases. Anything in client code can be decompiled or inspected via browser DevTools.
+> **Never Log Sensitive Information**:
+> Sanitize logs to ensure the following are NEVER written to disk or third-party log providers:
+> - Passwords, PINs, or recovery codes.
+> - Full credit card numbers (PAN) or CVVs.
+> - Authentication tokens (Bearer tokens, session cookies, API secrets).
+> - Personally Identifiable Information (PII) such as Social Security numbers or national ID cards.
 
 ---
 
-## 5. Secure Native Bridge & IPC Communication
+## 8. File Upload & Permission Safety
 
-In hybrid, cross-platform, or desktop applications (React Native, Flutter Platform Channels, Electron IPC, Tauri):
-1. **Validate All IPC Messages**: Treat every message coming from a WebView or UI renderer as untrusted. Validate payload schemas using Zod, TypeBox, or protobuf.
-2. **Context Isolation**:
-   - In Electron: Always set `contextIsolation: true` and `nodeIntegration: false`.
-   - In Tauri: Restrict allowlist capabilities in `tauri.conf.json`.
-
----
-
-## 6. Dependency Supply Chain Hygiene
-
-- Regularly scan for known vulnerabilities: `npm audit`, `dart pub audit`.
-- Pin dependency versions or commit lockfiles (`package-lock.json`, `pubspec.lock`, `yarn.lock`).
-- Never introduce obscure third-party libraries for trivial tasks that native APIs solve.
-
----
-
-## 7. Related Documentation
-
-- Master Instructions: [../AGENTS.md](../AGENTS.md)
-- Clean Code Standards: [clean-code.md](clean-code.md)
-- Error Handling: [error-handling.md](error-handling.md)
-- Release Checklist: [../quality/release-checklist.md](../quality/release-checklist.md)
-
+1. **Never store user uploads on local server filesystems**: Upload directly to object storage (S3, GCS) via time-limited presigned URLs.
+2. **Validate File Magic Bytes**: Do not rely on client-supplied `Content-Type` headers or file extensions. Validate file signatures (magic bytes) on the server.
+3. **Restrict File Execution**: Ensure storage buckets are configured with private ACLs and serve user content with `Content-Disposition: attachment` or strict `Content-Security-Policy`.

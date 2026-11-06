@@ -75,3 +75,6 @@ flowchart TD
 - [Native iOS Guide](native-ios.md)
 - [General Web Guide](web.md)
 - [Desktop Development Guide](desktop.md)
+- [Backend Development Guide](backend.md)
+- [API Development Guide](api.md)
+- [Database Engineering Guide](database.md)

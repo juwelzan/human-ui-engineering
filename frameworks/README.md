@@ -19,6 +19,9 @@ In multi-platform software engineering, mixing framework paradigms leads to brok
 - **Native iOS** uses Swift, SwiftUI, Observation (`@Observable`), and Apple Human Interface Guidelines.
 - **Modern Web** uses Semantic HTML5, CSS Custom Properties, Container Queries, and Web Components.
 - **Desktop Development** uses Electron, Tauri, or native windowing runtimes.
+- **Backend Development** uses Node.js, Python, Go, Java, or Rust with layered 3-tier architecture and asynchronous worker queues.
+- **API Development** uses REST, GraphQL, gRPC, WebSockets, OpenAPI schemas, and cursor-based pagination.
+- **Database Engineering** uses PostgreSQL, MySQL, SQLite, MongoDB, or Redis with zero-downtime expand/contract migrations.
 
 Never recommend Flutter-specific solutions (e.g. `const` constructors or BLoC) for React projects. Never recommend React-specific solutions (e.g. `useEffect` or JSX) for Flutter or Android projects.
 
@@ -38,6 +41,9 @@ Never recommend Flutter-specific solutions (e.g. `const` constructors or BLoC) f
 | **Native iOS** | iOS, iPadOS, macOS, watchOS | Swift / SwiftUI / Observation | [native-ios.md](native-ios.md) |
 | **Modern Web** | Standard Browsers | HTML5 / CSS3 / Vanilla JS / Web Components | [web.md](web.md) |
 | **Desktop Development** | macOS, Windows, Linux | Electron / Tauri / Native Desktop | [desktop.md](desktop.md) |
+| **Backend Development** | Cloud Services & Microservices | Node.js, Python, Go, Java, Rust | [backend.md](backend.md) |
+| **API Development** | Distributed Systems & Clients | REST, GraphQL, gRPC, WebSockets | [api.md](api.md) |
+| **Database Engineering** | Persistence & Data Caching | PostgreSQL, MySQL, SQLite, MongoDB, Redis | [database.md](database.md) |
 
 ---
 

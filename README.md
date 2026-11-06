@@ -34,35 +34,53 @@ Developers can invoke Human UI Engineering directly from their AI agent's chat i
 
 ### Example Invocations
 ```text
-# General feature implementation (auto-detects framework)
+# 1. General feature implementation (auto-detects framework)
 /human-ui Create a modern, accessible customer profile screen.
 
-# UI/UX design and design tokens
+# 2. Plan mode: structured decomposition & risk analysis (read-only)
+/human-ui plan Architect a 3-step checkout flow with Stripe payment integration.
+
+# 3. Build mode: full-stack feature assembly (models, APIs, UI)
+/human-ui build Create tenant invite management with Prisma schema and React modal.
+
+# 4. Design mode: design tokens, spatial grid, typography
 /human-ui design Establish an 8pt spatial grid and semantic status colors.
 
-# Full UI & performance audit
+# 5. Architect mode: system architecture & ADR drafting
+/human-ui architect Evaluate PostgreSQL vs MongoDB for user activity telemetry.
+
+# 6. Audit mode: full UI polish & performance audit
 /human-ui audit src/features/checkout
 
-# Flutter-specific clean architecture & const optimization
-/human-ui flutter Build an adaptive dashboard with BLoC state management.
-
-# React & Next.js virtualization
-/human-ui react Implement a virtualized data table with debounced search.
-
-# Responsive mobile adaptation
-/human-ui responsive Refactor navigation to collapse gracefully on 375px mobile screens.
-
-# Performance optimization & frame drops
-/human-ui performance Eliminate jank and memory leaks during infinite list scrolling.
-
-# Debugging layout and state issues
+# 7. Debug mode: scientific 10-step root-cause diagnosis & smallest safe fix
 /human-ui debug The mobile keyboard is obscuring our form submit button.
 
-# Recovery Mode: resume interrupted work without restarting
+# 8. Refactor mode: safe behavior-preserving code extraction
+/human-ui refactor Decompose giant 600-line OrderDashboard into focused primitives.
+
+# 9. Test mode: multi-tier test authoring & honest reporting
+/human-ui test Add unit and component tests for BillingSummary with 100% path coverage.
+
+# 10. Review mode: pre-flight PR review against the 13 quality gates
+/human-ui review Audit our recent PR changes before merging.
+
+# 11. Security mode: vulnerability audit & auth hardening
+/human-ui security Audit our auth session handling and search for IDOR vulnerabilities.
+
+# 12. Performance mode: 16.6ms frame budget & memory disposal
+/human-ui performance Eliminate jank and memory leaks during infinite list scrolling.
+
+# 13. Docs mode: technical docs, docstrings & context maintenance
+/human-ui docs Update OpenAPI schemas and PROJECT_CONTEXT.md.
+
+# 14. Release mode: semantic versioning, zero-downtime migrations & changelog
+/human-ui release Prepare v3.0.0 release candidate and verify database migrations.
+
+# 15. Recovery Mode: resume interrupted work without restarting
 /human-ui recover
 
-# Code review against pre-flight release checklist
-/human-ui review Audit our recent PR changes.
+# 16. Status Mode: inspect active task state and blockers
+/human-ui status
 ```
 
 👉 Read the full [Chat Slash Command Guide](docs/slash-command-guide.md) and [Compatibility Matrix](docs/compatibility-matrix.md).
@@ -102,6 +120,9 @@ Universal principles apply across all technologies, with specialized, strictly i
 - **[Modern Web](frameworks/web.md)**: Semantic HTML5, CSS Container Queries, native `<dialog>` and Popovers, Web Components.
 - **[React Native](frameworks/react-native.md)**: Expo, New Architecture (Fabric/TurboModules), FlashList, Safe Areas.
 - **[Desktop Development](frameworks/desktop.md)**: Electron, Tauri, Flutter Desktop, Frameless window dragging, system shortcuts, secure IPC.
+- **[Backend Development](frameworks/backend.md)**: Node.js, Python, Go, Java, Rust; 3-tier architecture, concurrency, worker queues.
+- **[API Development](frameworks/api.md)**: REST, GraphQL, gRPC, WebSockets; OpenAPI schemas, cursor pagination, idempotency.
+- **[Database Engineering](frameworks/database.md)**: PostgreSQL, MySQL, SQLite, MongoDB, Redis; zero-downtime expand/contract migrations.
 - **[Framework Selection Matrix](frameworks/framework-selection.md)**: Objective criteria and decision heuristics for choosing the right stack.
 - **[Framework Isolation Standards](frameworks/README.md)**: Boundaries ensuring framework rules never cross-contaminate.
 
@@ -113,21 +134,26 @@ Universal principles apply across all technologies, with specialized, strictly i
 human-ui-engineering/
 ├── README.md               # Overview, slash commands, and setup guide
 ├── AGENTS.md               # Master instructions (Single Source of Truth)
+├── PROJECT_CONTEXT.md      # Stable system identity and invariants
+├── AI_TASK_STATE.md        # Active task checkpoint & recovery tracker
+├── CHANGELOG.md            # Version release milestones & roadmap
 ├── CLAUDE.md               # Claude Code entry point
 ├── GEMINI.md               # Gemini agent entry point
 ├── CONTRIBUTING.md         # Contribution standards
 ├── LICENSE                 # MIT License
-├── CHANGELOG.md            # Version release milestones & roadmap
-├── AI_TASK_STATE.md        # Active task checkpoint & recovery tracker
 │
 ├── skills/human-ui/        # Canonical Agent Skill Engine
 │   ├── SKILL.md            # Main skill with YAML frontmatter
-│   └── references/         # Progressive disclosure references (flutter, react, recovery, etc.)
+│   └── references/         # 17 modular reference guides (flutter, react, recovery, backend, api, etc.)
 │
 ├── docs/                   # User guides & matrices
 │   ├── compatibility-matrix.md # Verified agent support matrix
-│   ├── slash-command-guide.md  # Detailed /human-ui command manual
-│   └── installation-guide.md   # Step-by-step installation instructions
+│   ├── slash-command-guide.md  # Detailed 16-mode /human-ui command manual
+│   ├── installation-guide.md   # Step-by-step installation instructions
+│   └── adr/                # Architecture Decision Records (ADRs)
+│       ├── README.md       # ADR catalog and writing guide
+│       ├── template.md     # Standardized ADR template
+│       └── 0001-record-architecture-decisions.md # Foundational ADR
 │
 ├── .github/                # GitHub-specific instructions
 │   ├── copilot-instructions.md
@@ -149,22 +175,30 @@ human-ui-engineering/
 │   ├── rules/human-ui.md   # Cascade rules
 │   └── workflows/human-ui.md# Cascade workflow
 │
-├── core/                   # Universal engineering core (framework-agnostic)
+├── core/                   # Universal engineering intelligence & orchestration
+│   ├── developer-intelligence.md # Evidence-based decision-making & 5 truth tiers
+│   ├── task-orchestration.md # 10-stage task orchestration & proportional planning
+│   ├── operating-modes.md  # Ask, Plan, Developer, Review, Autonomous, Recovery modes
+│   ├── human-interaction.md# Professional communication, honest progress & blockers
+│   ├── project-knowledge.md# Persistent knowledge architecture (PROJECT_CONTEXT, ADRs)
+│   ├── git-change-management.md # Safe change boundaries, diff review & rollback safety
 │   ├── agent-behavior.md   # Eliminating AI tropes; human engineer mindset
-│   ├── project-discovery.md# Evidence-based pre-flight codebase discovery
-│   ├── architecture.md     # 3-tier presentation architecture & UDF
-│   ├── folder-structure.md # Feature-First directory conventions
-│   ├── engineering-workflow.md # 6-stage universal engineering lifecycle
-│   ├── development-workflow.md # Task execution cycle & step transitions
 │   ├── anti-hallucination.md # 5-tier evidence classification & pre-action verification
 │   ├── recovery-protocol.md # 6-step autonomous recovery sequence & blocker reporting
 │   ├── checkpoint-management.md # Checkpoint rules, state tracking & hygiene
-│   └── change-control.md   # Blast radius assessment & backward-compatible changes
+│   ├── project-discovery.md# Evidence-based pre-flight codebase discovery
+│   ├── architecture.md     # 3-tier presentation architecture & UDF
+│   ├── engineering-workflow.md # 6-stage universal engineering lifecycle
+│   ├── change-control.md   # Blast radius assessment & backward-compatible changes
+│   ├── folder-structure.md # Feature-First directory conventions
+│   ├── development-workflow.md # Task execution cycle & step transitions
+│   └── multi-agent.md      # Multi-agent collaboration & single-agent fallback
 │
 ├── design/                 # Human-centered UI design system
 │   ├── design-philosophy.md# Purpose of UI, content-first design
 │   ├── human-design-rules.md# Strict visual Do's and Don'ts
 │   ├── human-interface-design.md # Information architecture, cognitive laws & visual rhythm
+│   ├── data-visualization.md # Chart selection, data-ink ratio & accessible telemetry
 │   ├── color-system.md     # 60-30-10 rule, functional tokens, dark mode
 │   ├── typography.md       # Typographic scale, measure, line-heights
 │   ├── spacing.md          # 8pt/4pt mathematical spatial grid
@@ -173,31 +207,37 @@ human-ui-engineering/
 │   └── animation.md        # Functional motion tokens, reduced motion
 │
 ├── components/             # Reusable shared component engineering
-│   ├── shared-component-rules.md # 6-question qualification rubric
 │   ├── component-principles.md # Component boundaries, composition & 7 interactive states
+│   ├── shared-component-rules.md # 6-question qualification rubric
+│   ├── dashboards.md       # KPI metric cards, grid layouts & anti-card fatigue
 │   ├── buttons.md          # Hierarchy, sizes, 6 interactive states
-│   ├── text-fields.md      # Labels, error states, mobile keyboards
 │   ├── forms.md            # Form control catalog, validation heuristics & multi-step wizards
+│   ├── text-fields.md      # Labels, error states, mobile keyboards
 │   ├── typography.md       # Polymorphic text primitives, line clamping
 │   ├── cards.md            # Compound card patterns; anti-card fatigue
 │   ├── navigation.md       # Headers, sidebars, bottom bars, tabs
 │   ├── dialogs.md          # Focus trapping, escape dismissal, sheets
 │   ├── loading-states.md   # Skeletons, shimmers, spinners, optimistic UI
-│   ├── reusable-widgets.md # Badges, avatars, tooltips, list tiles
-│   └── component-testing.md# 5-stage component test suite & resilient role selectors
+│   ├── component-testing.md# 5-stage component test suite & resilient role selectors
+│   └── reusable-widgets.md # Badges, avatars, tooltips, list tiles
 │
-├── engineering/            # Production engineering standards
+├── engineering/            # Full-stack production engineering standards
+│   ├── code-standards.md   # Readability, maintainability & 11 anti-pattern defenses
+│   ├── debugging-engine.md # Scientific 10-step root-cause diagnosis & repair
 │   ├── clean-code.md       # Modularity, naming rules, 200-line guideline
+│   ├── devops-release.md   # Environments, CI/CD, semantic release & safe DB migrations
 │   ├── architecture-patterns.md # MVVM, MVI/Redux, BLoC, Custom Hooks
 │   ├── state-management.md # 4 state tiers, placement heuristics
 │   ├── error-handling.md   # Error boundaries, actionable user messages
 │   ├── async-operations.md # Async lifecycle safety, AbortController & debouncing
-│   ├── performance.md      # 16.6ms frame budget, virtualization, CLS
+│   ├── performance.md      # 16.6ms frame budget, virtualization, caching & battery
 │   ├── memory-management.md# Disposing listeners, timers, controllers
-│   ├── security.md         # UI security, XSS defenses, token hygiene & native IPC
+│   ├── security.md         # Full-stack security, auth, XSS, IDOR & secrets
 │   └── cross-platform.md   # Platform idioms, safe areas, RTL/i18n
 │
 ├── quality/                # Quality assurance & pre-flight gates
+│   ├── testing-strategy.md # Testing pyramid, proportional selection & honest status
+│   ├── engineering-quality-gates.md # 13-point pre-delivery verification standard
 │   ├── testing.md          # Testing pyramid, resilient selectors, honesty
 │   ├── ui-review.md        # Visual polish & spacing checklist
 │   ├── accessibility-audit.md # Exhaustive WCAG 2.1 AA audit checklist across all modalities
@@ -206,9 +246,9 @@ human-ui-engineering/
 │   ├── regression-prevention.md # 4-dimension regression prevention protocol & gates
 │   └── release-checklist.md# 8-point pre-flight release gate
 │
-├── frameworks/             # Independent, strictly isolated framework modules
+├── frameworks/             # 13 strictly isolated framework modules
 │   ├── README.md           # Framework isolation rules & monorepo boundaries
-│   ├── framework-selection.md # 10-framework decision tree & heuristics
+│   ├── framework-selection.md # 13-framework decision tree & heuristics
 │   ├── flutter.md          # Flutter / Dart: Widget hierarchy, const, BLoC/Riverpod
 │   ├── react.md            # React: Hooks, memoization, virtualization, clean state
 │   ├── nextjs.md           # Next.js: RSC, App Router, Suspense, streaming
@@ -218,26 +258,44 @@ human-ui-engineering/
 │   ├── native-ios.md       # iOS: SwiftUI, Swift 6, Observation, HIG
 │   ├── web.md              # Modern Web: Semantic HTML5, CSS Container Queries
 │   ├── react-native.md     # React Native: Expo, Fabric/TurboModules, FlashList
-│   └── desktop.md          # Desktop: Electron, Tauri, Flutter Desktop, native IPC
+│   ├── desktop.md          # Desktop: Electron, Tauri, Flutter Desktop, native IPC
+│   ├── backend.md          # Backend: Node.js, Python, Go, Java, Rust; 3-tier architecture
+│   ├── api.md              # API: REST, GraphQL, gRPC, WebSockets; OpenAPI, pagination
+│   └── database.md         # Database: PostgreSQL, MySQL, SQLite, Mongo, Redis; migrations
 │
 ├── workflows/              # Actionable step-by-step execution guides
 │   ├── project-discovery.md# Codebase mapping & monorepo package isolation
 │   ├── new-project.md      # Bootstrapping from scratch
 │   ├── new-feature.md      # End-to-end multi-screen feature implementation
+│   ├── build.md            # End-to-end full-stack feature build
 │   ├── new-page.md         # Building a verified screen
 │   ├── shared-component.md # Extracting reusable primitives
 │   ├── redesign.md         # Safe modernization without regressions
 │   ├── refactoring.md      # Safe refactoring sequence & extraction checkpoints
-│   ├── debugging.md        # Scientific 6-stage defect isolation & repair loop
+│   ├── debugging.md        # Scientific 10-stage defect isolation & repair loop
 │   ├── performance-optimization.md # Profiling, bottleneck isolation & metrics
 │   ├── performance-fix.md  # Quick repair of visual jank and frame drops
-│   └── recovery.md         # Autonomous recovery from interrupted tasks
+│   ├── recovery.md         # Autonomous recovery from interrupted tasks
+│   ├── release.md          # Pre-flight release verification & deployment
+│   └── security-audit.md   # Vulnerability scan, auth review & remediation
 │
 ├── templates/              # Standardized fillable markdown templates
 │   ├── project-brief.md    # Discovery summary
+│   ├── project-context.md  # Standard template for PROJECT_CONTEXT.md
 │   ├── architecture-plan.md# Technical proposal
 │   ├── design-system.md    # Design token spec
 │   ├── task-state.md       # Fillable checkpoint state for AI_TASK_STATE.md
+│   ├── bug-report.md       # Fillable UI bug report & root-cause analysis template
+│   ├── quality-report.md   # QA & verification audit
+│   ├── adr.md              # Canonical template for Architecture Decision Records
+│   └── test-plan.md        # Structured test plan template
+│
+└── scripts/                # Automated repository validation suite
+    ├── validate-docs       # Checks required architecture files exist & populated
+    ├── validate-links      # Validates all internal relative markdown links
+    ├── validate-structure  # Validates agent entry points & 13 framework modules
+    └── validate.py         # Master runner coordinating all validators
+```
 │   ├── bug-report.md       # Fillable UI bug report & root-cause analysis template
 │   └── quality-report.md   # QA & verification audit
 │

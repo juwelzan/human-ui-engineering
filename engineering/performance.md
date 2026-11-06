@@ -1,85 +1,84 @@
-# UI Performance & Rendering Optimization
+# Full-Stack Performance & Resource Engineering
 
-> Engineering rules for maintaining 60fps/120fps frame budgets, zero layout shifts, and rapid interaction response.
+> **Rendering Efficiency, Memory Management, Network Caching, DB Query Performance & Battery Life**
 
----
-
-## 1. Purpose
-
-Sluggish interactions, janky scrolling, and delayed renders alienate users. Performance is not a post-launch polish phase; it is an architectural discipline maintained throughout component design and state management. 
-
-This guide defines strict performance standards for user interfaces.
+High performance is an architectural invariant that spans frontend rendering, network latency, database efficiency, and resource utilization. AI coding agents must measure with telemetry before claiming performance improvements and never sacrifice accessibility or correctness for superficial benchmarks.
 
 ---
 
-## 2. The Frame Budget (16.6ms / 8.3ms)
-
-To deliver smooth 60fps (standard displays) or 120fps (ProMotion / high refresh rate displays), the application must compute and paint each frame within a strict time window:
-- **60fps Target**: Total work per frame must stay under **16.6 milliseconds**.
-- **120fps Target**: Total work per frame must stay under **8.3 milliseconds**.
-
-Any long-running computation on the main UI thread freezes animations, drops frames, and causes jank.
-
----
-
-## 3. The 5 Pillars of UI Performance
+## 1. The Core Performance Pillars
 
 ```mermaid
 flowchart TD
-    P1[1. Render Optimization] --> P2[2. List Virtualization]
-    P2 --> P3[3. Asset & Image Discipline]
-    P3 --> P4[4. Layout Stability & CLS]
-    P4 --> P5[5. Offloading Heavy Work]
+    P1[1. UI & Rendering 16.6ms Budget] --> P2[2. Network & Caching Latency]
+    P2 --> P3[3. Memory & Resource Disposal]
+    P3 --> P4[4. Database & Query Optimization]
+    P4 --> P5[5. Startup Time & Battery Life]
 ```
 
-### 1. Render Optimization & Rebuild Containment
-- **Isolate Volatile State**: If a search input updates on every keystroke, do not store that string in a parent component that wraps an expensive 500-item table. Keep the volatile state inside the input or a lightweight search container.
-- **Const / Memoization**:
-  - **Flutter**: Use `const` constructors aggressively. Const widgets are canonicalized at compile-time and skipped entirely during rebuild passes.
-  - **React**: Use `React.memo`, `useMemo`, and `useCallback` strategically on components that re-render frequently with heavy subtrees. Avoid blanket memoization on trivial 5-line primitives.
-  - **Android Compose**: Ensure data models are `@Immutable` or `@Stable` so Compose skips recompositions.
+---
 
-### 2. List Virtualization (Mandatory for Large Data)
-- **NEVER** render hundreds of unconstrained items in a standard scroll container. 
-- Always use virtualized windowing:
-  - **Web / React**: `@tanstack/react-virtual` or `react-window`.
-  - **Flutter**: `ListView.builder()` or `CustomScrollView` with slivers.
-  - **Android Compose**: `LazyColumn` / `LazyRow`.
-  - **iOS SwiftUI**: `LazyVStack` / `LazyHStack` inside `ScrollView`.
-- Virtualization ensures only the visible ~10 items are instantiated in memory, keeping memory flat whether rendering 10 items or 100,000.
+## 2. UI & Rendering Efficiency (The Frame Budget)
 
-### 3. Image & Media Optimization
-- Always serve modern compressed formats (WebP, AVIF) instead of raw 4MB PNGs.
-- Explicitly declare `width` and `height` (or aspect-ratio) on all image tags and placeholders to eliminate layout shifts when images finish loading.
-- Use native lazy loading (`loading="lazy"` on web, cached network image providers on mobile).
-
-### 4. Layout Stability (Cumulative Layout Shift - CLS)
-- Dynamic content (banners, ads, fetched widgets) must never push existing content down abruptly.
-- Reserve container space upfront using min-height or skeleton placeholders.
-
-### 5. Offloading Main Thread Computations
-- Never execute heavy CPU tasks (crypto, image resizing, large JSON parsing, complex regex filtering) on the main UI thread.
-- Offload to background workers:
-  - **Web**: Web Workers.
-  - **Flutter**: `compute()` or Dart Isolates.
-  - **Android**: `Dispatchers.Default` with Kotlin Coroutines.
-  - **iOS**: `Task.detached(priority: .userInitiated)` with Swift Concurrency.
+To maintain 60fps (16.6ms/frame) or 120fps (8.3ms/frame) smooth interactions:
+1. **Rebuild & Re-render Containment**:
+   - Isolate volatile state (e.g., search text inputs) into leaf components to avoid re-rendering entire parent views.
+   - Use compile-time `const` constructors in Flutter.
+   - Use `React.memo`, `useMemo`, and `useCallback` on heavy subtrees in React.
+   - Mark data models `@Immutable` in Jetpack Compose to skip recomposition.
+2. **List Virtualization (Mandatory for Large Data)**:
+   - Always virtualize lists exceeding 50 items (`@tanstack/react-virtual`, `ListView.builder`, `LazyColumn`, `LazyVStack`).
+   - Virtualization keeps memory flat regardless of whether 100 or 100,000 items exist.
+3. **Cumulative Layout Shift (CLS)**:
+   - Explicitly declare aspect ratios or width/height on images and dynamic placeholders to eliminate visual jumps during load.
 
 ---
 
-## 4. Input Throttling & Debouncing
+## 3. Network Performance & Cache Management
 
-When responding to continuous high-frequency user events (search typing, window resizing, scroll offsets):
-- **Search Inputs**: Debounce API queries by 250ms–350ms.
-- **Scroll & Resize**: Throttle handler execution to 16ms (requestAnimationFrame) or use passive listeners.
+1. **HTTP Caching Strategies**:
+   - Static assets: `Cache-Control: public, max-age=31536000, immutable` with content-hashed filenames.
+   - Dynamic API endpoints: Leverage `ETag` and `Stale-While-Revalidate` (SWR) headers to return cached responses while refreshing in the background.
+2. **Payload Minification & Compression**:
+   - Enable Brotli / Gzip compression on all text and JSON responses.
+   - Implement field filtering / GraphQL / sparse fieldsets to avoid transmitting unnecessary columns over mobile networks.
+3. **Connection Multiplexing**:
+   - Enforce HTTP/2 or HTTP/3 to eliminate head-of-line blocking and enable concurrent stream multiplexing over a single connection.
 
 ---
 
-## 5. Related Documentation
+## 4. Memory Lifecycle & Resource Disposal
 
-- Master Instructions: [../AGENTS.md](../AGENTS.md)
-- Memory Management: [memory-management.md](memory-management.md)
-- Animation Performance: [../design/animation.md](../design/animation.md)
-- Loading States: [../components/loading-states.md](../components/loading-states.md)
-- Performance Audit: [../quality/performance-audit.md](../quality/performance-audit.md)
+1. **Dispose Subscriptions, Timers & Listeners**:
+   - Every active stream subscription, event listener, `setInterval`, animation controller, and socket connection MUST be cancelled in unmount/dispose lifecycles.
+   - Memory leaks degrade device performance over time, causing mobile operating systems to kill apps in the background.
+2. **Avoid Global Accumulation**:
+   - Never append telemetry or unbounded event logs to in-memory global arrays without a strict circular buffer (LRU) limit.
 
+---
+
+## 5. Startup Time, Code Splitting & Bundle Size
+
+1. **Route-Level Code Splitting**:
+   - Lazy-load secondary views and administrative dashboards via dynamic imports (`React.lazy()`, dynamic route chunks in Next.js/Nuxt).
+2. **Tree Shaking & Dependency Hygiene**:
+   - Import only necessary submodules (e.g., `import debounce from 'lodash/debounce'` rather than the entire `lodash` library).
+   - Audit bundle sizes via Webpack Bundle Analyzer or Vite Visualizer.
+
+---
+
+## 6. Battery Consumption & Background Execution
+
+- **Mobile & Battery Optimization**:
+  - Stop polling APIs when the application is backgrounded or hidden (`visibilitychange` on web, `AppLifecycleState.paused` in Flutter).
+  - Batch network analytics and telemetry requests rather than firing individual requests on every click.
+  - Avoid high-frequency location tracking or GPS updates when coarse location is sufficient.
+
+---
+
+## 7. Evidence-Based Measurement Protocol
+
+> [!IMPORTANT]
+> **No Optimizations Without Baseline Telemetry**:
+> Never claim "optimized component rendering" or "reduced network lag" without objective measurements:
+> - Measure before/after metrics: Frame render times (ms), bundle size (KB), Lighthouse scores, or database query execution times (`EXPLAIN ANALYZE`).
