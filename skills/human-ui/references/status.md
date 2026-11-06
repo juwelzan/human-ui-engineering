@@ -14,3 +14,4 @@ When invoked with `/human-ui status`:
    - Last verified commit / checkpoint hash.
    - Known blockers or pending user inputs.
    - Next recommended safe action.
+

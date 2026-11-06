@@ -18,3 +18,4 @@ When invoked with `/human-ui build [task]`:
 5. **Quality Gate Verification**:
    - Check against the 13 quality gates in [`../../../quality/engineering-quality-gates.md`](../../../quality/engineering-quality-gates.md).
    - Report honest results with changed files and verification commands.
+

@@ -71,3 +71,4 @@ When asking for clarification, always provide:
 1. The exact ambiguity and why it matters.
 2. The recommended default choice (and rationale).
 3. 1-2 alternatives with clear trade-offs.
+

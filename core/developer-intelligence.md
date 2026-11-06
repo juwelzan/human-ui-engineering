@@ -76,3 +76,4 @@ When proposing non-trivial technical decisions:
 2. **Present Considered Alternatives**: Note 2-3 viable options with their pros and cons.
 3. **State the Recommendation**: Provide a clear technical justification grounded in the project's architecture.
 4. **Identify Consequences**: Document any impact on performance, bundle size, backward compatibility, or future maintenance.
+

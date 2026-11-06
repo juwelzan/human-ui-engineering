@@ -10,3 +10,4 @@
 - **Offline First**: Use local persistence (SQLite, IndexedDB) with background synchronization.
 
 See full guide in [`../../../frameworks/desktop.md`](../../../frameworks/desktop.md).
+

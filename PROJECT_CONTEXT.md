@@ -79,3 +79,4 @@ human-ui-engineering/
 # Run full automated validation suite (docs, links, structure)
 python3 scripts/validate.py
 ```
+

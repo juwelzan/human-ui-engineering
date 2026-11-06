@@ -101,3 +101,4 @@ Return consistent, machine-parseable error payloads adhering to RFC 7807:
   - `RateLimit-Remaining`: Remaining request count in active window.
   - `RateLimit-Reset`: Seconds remaining until quota reset.
 - When quota is exceeded, return `429 Too Many Requests` with a `Retry-After: <seconds>` header.
+

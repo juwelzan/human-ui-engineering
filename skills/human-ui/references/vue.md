@@ -12,3 +12,4 @@
 - **SSR / Nuxt**: Use `useAsyncData()` or `useFetch()` to avoid client-side fetch waterfalls.
 
 See full guide in [`../../../frameworks/vue.md`](../../../frameworks/vue.md).
+

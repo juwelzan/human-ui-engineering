@@ -37,3 +37,4 @@ stateDiagram-v2
    - A command exits with unexpected fatal errors or unhandled exceptions.
    - Deleting non-temporary files or tables.
    - Modifying public interface contracts without explicit specification.
+

@@ -19,3 +19,4 @@ When invoked with `/human-ui plan [task]`:
 5. **Output**: Present the structured implementation plan in chat and request confirmation before transitioning to Developer Mode.
 
 See detailed orchestration rules in [`../../../core/task-orchestration.md`](../../../core/task-orchestration.md).
+

@@ -8,3 +8,4 @@
 - **Graceful Shutdown**: Intercept `SIGTERM` / `SIGINT`, stop accepting new traffic, and complete in-flight requests cleanly within a timeout window.
 
 See full guide in [`../../../frameworks/backend.md`](../../../frameworks/backend.md).
+

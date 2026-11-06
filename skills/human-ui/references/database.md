@@ -9,3 +9,4 @@
 - **Connection Pooling**: Size connection pools to $(2 \times \text{cores}) + \text{spindles}$; use connection proxies (PgBouncer) in serverless runtimes.
 
 See full guide in [`../../../frameworks/database.md`](../../../frameworks/database.md).
+

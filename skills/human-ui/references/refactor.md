@@ -17,3 +17,4 @@ When invoked with `/human-ui refactor [scope]`:
 4. **Validation**:
    - Re-run all existing unit and widget tests after each extraction step.
    - Verify that all tests continue to pass with identical inputs and outputs.
+

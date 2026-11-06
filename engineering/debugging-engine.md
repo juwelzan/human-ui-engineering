@@ -60,3 +60,4 @@ When reporting a resolved bug, present findings using this schema:
 - **Regression Protection**: Added unit test `should permit checkout submission when optional phone is omitted` in `useBillingForm.test.ts`.
 - **Validation Outcome**: All 14 checkout unit tests **PASSED** (0 failures).
 ```
+

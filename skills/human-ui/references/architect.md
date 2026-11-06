@@ -16,3 +16,4 @@ When invoked with `/human-ui architect [task]`:
 4. **Present Architectural Proposal**:
    - Summarize the structural recommendation in chat.
    - Outline migration steps and blast radius before modifying any application code.
+

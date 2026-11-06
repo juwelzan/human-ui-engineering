@@ -81,3 +81,4 @@ Horizontal scroll for dense table rows or convert to card-list items.
 1. **Optimistic Loading**: When changing filters, show an unobtrusive inline loading bar or faint opacity overlay (0.7) rather than destroying the chart and flashing a full-screen spinner.
 2. **Connection Status Indicators**: In streaming dashboards (WebSockets / SSE), provide a small status pill (`Connected`, `Reconnecting...`, `Offline`) in the header.
 3. **Graceful Degraded State**: If a secondary widget fails to load, isolate the error inside that widget's boundary with a "Retry" button; never crash the entire dashboard page.
+

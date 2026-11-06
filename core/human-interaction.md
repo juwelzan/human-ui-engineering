@@ -54,3 +54,4 @@ When blocked by external constraints (e.g., missing API tokens, failing network,
 > - **Diagnosed Cause**: PostgreSQL service is not running locally or `DATABASE_URL` port is inaccessible.
 > - **Action Required from Developer**: Please start your local Docker Postgres container or update the credentials in `.env.local`.
 ```
+

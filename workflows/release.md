@@ -42,3 +42,4 @@ flowchart TD
 2. Document explicit rollback steps in the release summary:
    - Command to revert code commit if needed.
    - Command to roll back database migrations if needed.
+

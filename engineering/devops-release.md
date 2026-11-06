@@ -70,3 +70,4 @@ sequenceDiagram
 3. **Automated Rollback Triggers**:
    - If HTTP 5xx error rate exceeds 1% during a canary rollout, automatically abort and restore the previous stable image.
    - Keep deployment rollback instructions explicitly documented in the release plan.
+

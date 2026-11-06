@@ -63,3 +63,4 @@ Engineering teams and AI coding agents operating across complex repositories mak
 
 - Standardize template at `docs/adr/template.md`.
 - Reference `docs/adr/` in `core/project-knowledge.md` and repository discovery guidelines.
+

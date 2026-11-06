@@ -54,3 +54,4 @@ flowchart TD
 - **Reduce Tick Density**: On screens $< 640\text{px}$, reduce X-axis date labels from daily to weekly or monthly to avoid overlapping text.
 - **Convert Multi-Line Legends**: Stack legends below the chart canvas or collapse into a dropdown selector on narrow screens.
 - **Touch Targets on Scrubbing**: Implement an invisible 32px touch overlay around scrub lines so mobile users can drag easily with thumbs.
+

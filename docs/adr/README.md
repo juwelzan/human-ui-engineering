@@ -24,3 +24,4 @@ Create an ADR whenever a decision:
 - Changes project directory conventions or monorepo isolation boundaries.
 
 To create a new ADR, copy [`template.md`](template.md) to `docs/adr/NNNN-title-in-kebab-case.md` and increment the sequential number.
+

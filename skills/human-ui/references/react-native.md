@@ -9,3 +9,4 @@
 - **Styling**: Use `StyleSheet.create()` or NativeWind for high-performance styling without runtime overhead.
 
 See full guide in [`../../../frameworks/react-native.md`](../../../frameworks/react-native.md).
+

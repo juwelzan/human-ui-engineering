@@ -82,3 +82,4 @@ flowchart LR
    - Stop accepting new inbound connections.
    - Complete active in-flight HTTP requests within a timeout (e.g., 15s).
    - Flush logger buffers and close database connection pools cleanly.
+

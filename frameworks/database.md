@@ -87,3 +87,4 @@ In GraphQL or Node.js services, use `DataLoader` to memoize and batch identifier
 > // SAFE PARAMETERIZED QUERY:
 > db.query('SELECT * FROM users WHERE email = $1', [email]);
 > ```
+

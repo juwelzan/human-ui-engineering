@@ -59,3 +59,4 @@ When undertaking complex architectural refactoring or schema migrations, provide
 > git checkout <modified_file>
 > ```
 ```
+

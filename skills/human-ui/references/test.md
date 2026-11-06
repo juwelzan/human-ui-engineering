@@ -18,3 +18,4 @@ When invoked with `/human-ui test [scope]`:
 4. **Execute & Report Honestly**:
    - Run the targeted test suite.
    - Report exact counts: PASSED, FAILED, SKIPPED, BLOCKED, NOT APPLICABLE.
+

@@ -37,3 +37,4 @@ flowchart TD
 3. **Pragmatic Maintenance**:
    - Update `PROJECT_CONTEXT.md` only when new tech stacks, core directories, or invariants are added.
    - Reset or clean `AI_TASK_STATE.md` when a master task is successfully completed and committed.
+

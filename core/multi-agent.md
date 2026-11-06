@@ -61,3 +61,4 @@ flowchart TD
 > 2. Act as Engineer (Implement primitives & features).
 > 3. Act as Reviewer & Tester (Audit, test, and validate).
 > 4. Act as Integrator (Review diff and report).
+

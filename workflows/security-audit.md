@@ -43,3 +43,4 @@ flowchart TD
 1. Apply the smallest safe fix for verified vulnerabilities.
 2. Add an automated security regression test verifying that malicious inputs are rejected.
 3. Document audit findings and remediations in chat.
+

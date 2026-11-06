@@ -15,3 +15,4 @@ When invoked with `/human-ui docs [scope]`:
    - Maintain documentation integrity: preserve existing comments and docstrings unless explicitly requested.
 3. **Validate All Links**:
    - Ensure all internal relative markdown links resolve to valid files without 404s.
+

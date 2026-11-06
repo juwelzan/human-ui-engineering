@@ -91,3 +91,4 @@ Writing code like a senior human software engineer requires discipline. This gui
      throw new ServiceUnavailableException('Sync service unreachable', { cause: error });
    }
    ```
+

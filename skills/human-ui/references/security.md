@@ -17,3 +17,4 @@ When invoked with `/human-ui security [scope]`:
    - Add security regression tests confirming that malicious input payloads are safely rejected or escaped.
 
 See [`../../../engineering/security.md`](../../../engineering/security.md) for full security rules.
+

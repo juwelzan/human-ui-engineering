@@ -47,3 +47,4 @@ flowchart TD
 1. Execute unit and component tests.
 2. Verify against the 13 quality gates in [`../quality/engineering-quality-gates.md`](../quality/engineering-quality-gates.md).
 3. Report results with changed files and test outputs.
+

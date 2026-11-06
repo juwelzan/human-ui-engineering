@@ -72,3 +72,4 @@ When reporting test outcomes, AI agents MUST use these standardized statuses:
 - Integration Tests: **BLOCKED** (Local Postgres container not running on port 5432)
 - E2E Tests: **SKIPPED** (Proportional scope for minor billing logic patch)
 ```
+
