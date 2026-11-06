@@ -25,3 +25,4 @@ The single source of truth for all UI engineering tasks, architectural patterns,
 
 > [!NOTE]
 > Tool loading behavior may vary across Claude Code versions. If project context is lost, explicitly reference [AGENTS.md](AGENTS.md).
+

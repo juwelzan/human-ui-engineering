@@ -65,3 +65,4 @@ This checklist defines the mandatory performance and memory audit before releasi
 - Performance Engineering: [../engineering/performance.md](../engineering/performance.md)
 - Memory Management: [../engineering/memory-management.md](../engineering/memory-management.md)
 - Quality Report Template: [../templates/quality-report.md](../templates/quality-report.md)
+

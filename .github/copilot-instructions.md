@@ -23,3 +23,4 @@ All AI-assisted development must conform to the master instructions in [AGENTS.m
 
 > [!NOTE]
 > Copilot auto-loads repository instructions located at `.github/copilot-instructions.md`. For extensive architectural changes, refer directly to [AGENTS.md](../AGENTS.md).
+

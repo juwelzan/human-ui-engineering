@@ -31,3 +31,4 @@ The single source of truth for all architectural, design, engineering, and quali
 
 > [!NOTE]
 > Cursor automatically loads `.mdc` rules from `.cursor/rules/`. If context window limitations occur, inspect specific sub-guides in `core/` or `design/`.
+

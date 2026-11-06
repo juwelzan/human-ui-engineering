@@ -138,3 +138,4 @@ This repository defines instructions consumable by modern AI development environ
 
 > [!NOTE]
 > Automatic discovery and loading behavior depends on the exact version and configuration of each IDE/agent harness. In environments that do not automatically load sub-folder rules, agents should be explicitly directed to read `AGENTS.md`.
+

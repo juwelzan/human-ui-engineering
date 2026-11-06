@@ -69,3 +69,4 @@ Ensure the component explicitly supports:
 - Shared Component Rules: [../components/shared-component-rules.md](../components/shared-component-rules.md)
 - Testing: [../quality/testing.md](../quality/testing.md)
 - UI Review Checklist: [../quality/ui-review.md](../quality/ui-review.md)
+

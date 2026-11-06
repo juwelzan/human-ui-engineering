@@ -25,3 +25,4 @@ The single authoritative source of truth is [AGENTS.md](../../AGENTS.md).
 
 > [!NOTE]
 > Agent environments load workspace rules from `.agent/rules/`. For deep-dive tasks, reference the specific guide within the corresponding category directory.
+

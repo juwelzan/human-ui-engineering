@@ -65,3 +65,4 @@ flowchart TD
 - Human Design Rules: [../design/human-design-rules.md](../design/human-design-rules.md)
 - UI Review Checklist: [../quality/ui-review.md](../quality/ui-review.md)
 - Release Checklist: [../quality/release-checklist.md](../quality/release-checklist.md)
+

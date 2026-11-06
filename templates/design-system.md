@@ -74,3 +74,4 @@
   - `motion-fast`: 150ms–200ms (hover, tap)
   - `motion-moderate`: 250ms–350ms (sheet slide, modal fade)
   - `motion-easing`: `cubic-bezier(0, 0, 0.2, 1)` (Decelerate ease-out)
+

@@ -82,3 +82,4 @@ flowchart LR
 - State Management: [state-management.md](state-management.md)
 - Clean Code: [clean-code.md](clean-code.md)
 - Architecture Plan Template: [../templates/architecture-plan.md](../templates/architecture-plan.md)
+

@@ -88,3 +88,4 @@ When reporting test results, use this exact classification:
 - Bug Prevention: [bug-prevention.md](bug-prevention.md)
 - Release Checklist: [release-checklist.md](release-checklist.md)
 - Quality Report Template: [../templates/quality-report.md](../templates/quality-report.md)
+

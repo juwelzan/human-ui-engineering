@@ -78,3 +78,4 @@ Always use **logical properties** rather than physical `left` and `right`:
 - Responsive Design: [../design/responsive-design.md](../design/responsive-design.md)
 - Navigation: [../components/navigation.md](../components/navigation.md)
 - Clean Code: [clean-code.md](clean-code.md)
+

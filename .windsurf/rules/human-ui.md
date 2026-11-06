@@ -26,3 +26,4 @@ The authoritative source of truth for guidelines, workflows, and standards is [A
 
 > [!NOTE]
 > Windsurf loads rules from `.windsurf/rules/`. For targeted domain instructions, read the corresponding chapter directly.
+

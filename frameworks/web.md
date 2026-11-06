@@ -120,3 +120,4 @@ Optimize for the three Google Core Web Vitals:
 - Next.js Guide: [nextjs.md](nextjs.md)
 - Accessibility: [../design/accessibility.md](../design/accessibility.md)
 - Master Instructions: [../AGENTS.md](../AGENTS.md)
+

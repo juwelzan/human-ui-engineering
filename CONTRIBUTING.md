@@ -58,3 +58,4 @@ human-ui-engineering/
 ## 4. Code of Conduct
 
 Maintain an inclusive, welcoming, and professional environment. Treat all contributors and reviewers with respect and constructive feedback.
+

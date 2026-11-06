@@ -94,3 +94,4 @@ Whenever text is truncated, ensure the full string is accessible via a native to
 - Typography Design System: [../design/typography.md](../design/typography.md)
 - Shared Component Rules: [shared-component-rules.md](shared-component-rules.md)
 - Accessibility: [../design/accessibility.md](../design/accessibility.md)
+

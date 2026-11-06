@@ -151,3 +151,4 @@ App/
 - Project Discovery: [project-discovery.md](project-discovery.md)
 - UI Architecture: [architecture.md](architecture.md)
 - Development Workflow: [development-workflow.md](development-workflow.md)
+

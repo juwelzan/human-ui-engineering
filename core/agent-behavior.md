@@ -67,3 +67,4 @@ Unless explicitly mandated by product brand guidelines, agents MUST reject the f
 - Project Discovery: [project-discovery.md](project-discovery.md)
 - Design Philosophy: [../design/design-philosophy.md](../design/design-philosophy.md)
 - Human Design Rules: [../design/human-design-rules.md](../design/human-design-rules.md)
+

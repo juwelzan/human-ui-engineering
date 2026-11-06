@@ -72,3 +72,4 @@ Wide data tables with 6+ columns overflow mobile viewports. On small screens:
 - Spacing System: [spacing.md](spacing.md)
 - Navigation Component: [../components/navigation.md](../components/navigation.md)
 - Dialogs & Sheets: [../components/dialogs.md](../components/dialogs.md)
+

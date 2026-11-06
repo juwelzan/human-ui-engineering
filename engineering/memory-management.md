@@ -123,3 +123,4 @@ Use `[weak self]` in closures and clean up on dismiss:
 - Clean Code: [clean-code.md](clean-code.md)
 - Performance: [performance.md](performance.md)
 - Performance Audit Checklist: [../quality/performance-audit.md](../quality/performance-audit.md)
+

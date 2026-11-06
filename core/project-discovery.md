@@ -87,3 +87,4 @@ For medium-to-large initiatives, summarize discovery findings using the standard
 - Architecture Guidelines: [architecture.md](architecture.md)
 - Folder Structure Standards: [folder-structure.md](folder-structure.md)
 - Project Brief Template: [../templates/project-brief.md](../templates/project-brief.md)
+

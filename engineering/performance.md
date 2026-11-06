@@ -82,3 +82,4 @@ When responding to continuous high-frequency user events (search typing, window 
 - Animation Performance: [../design/animation.md](../design/animation.md)
 - Loading States: [../components/loading-states.md](../components/loading-states.md)
 - Performance Audit: [../quality/performance-audit.md](../quality/performance-audit.md)
+

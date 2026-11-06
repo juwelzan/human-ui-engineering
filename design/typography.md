@@ -68,3 +68,4 @@ Do not render 48px hero headers on 375px mobile screens. Scale typography across
 - Color System: [color-system.md](color-system.md)
 - Spacing System: [spacing.md](spacing.md)
 - Typography Component: [../components/typography.md](../components/typography.md)
+

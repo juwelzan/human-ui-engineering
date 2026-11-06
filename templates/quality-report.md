@@ -76,3 +76,4 @@
 
 1. `[e.g. Offline persistence caching planned for Phase 2]`
 2. `[e.g. Localization currently supports English; Spanish strings pending translation]`
+

@@ -74,3 +74,4 @@ flowchart TD
 - Performance Audit: [performance-audit.md](performance-audit.md)
 - Bug Prevention: [bug-prevention.md](bug-prevention.md)
 - Quality Report Template: [../templates/quality-report.md](../templates/quality-report.md)
+

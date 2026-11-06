@@ -25,3 +25,4 @@ The authoritative single source of truth is [AGENTS.md](AGENTS.md).
 
 > [!NOTE]
 > Automatic rule loading varies depending on the Gemini harness (CLI, Antigravity, or API integration). Always verify that [AGENTS.md](AGENTS.md) is active in context.
+

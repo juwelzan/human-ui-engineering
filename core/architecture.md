@@ -117,3 +117,4 @@ Do not forcefully re-architect a working codebase.
 - State Management: [../engineering/state-management.md](../engineering/state-management.md)
 - Architecture Patterns: [../engineering/architecture-patterns.md](../engineering/architecture-patterns.md)
 - Architecture Plan Template: [../templates/architecture-plan.md](../templates/architecture-plan.md)
+

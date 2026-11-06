@@ -87,3 +87,4 @@ By selecting only the specific primitive or slice needed, components re-render o
 - Architecture Patterns: [architecture-patterns.md](architecture-patterns.md)
 - Error Handling: [error-handling.md](error-handling.md)
 - Performance: [performance.md](performance.md)
+
