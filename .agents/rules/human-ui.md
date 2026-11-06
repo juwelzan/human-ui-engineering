@@ -33,3 +33,4 @@ When the user types `/human-ui [subcommand] [task]`:
 
 > [!NOTE]
 > Agent environments load workspace rules from `.agents/rules/` or `.agent/rules/`. For chat invocation, use `/human-ui [task]`.
+
