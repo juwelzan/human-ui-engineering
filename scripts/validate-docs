@@ -181,6 +181,8 @@ CORE_FILES = [
     "skills/human-ui/references/database.md",
 
     # Agent Adapters
+    ".agents/skills/human-ui/SKILL.md",
+    ".agents/rules/human-ui.md",
     ".agent/skills/human-ui/SKILL.md",
     ".agent/rules/human-ui.md",
     ".claude/commands/human-ui.md",

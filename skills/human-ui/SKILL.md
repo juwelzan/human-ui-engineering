@@ -1,8 +1,6 @@
 ---
 name: human-ui
 description: Human UI Engineering context and execution system for building production-grade, human-centered user interfaces and full-stack software systems. Activate when the user asks to plan, design, implement, build, audit, review, debug, test, secure, optimize, or document software across Flutter, React, Next.js, Vue, Angular, React Native, Android, iOS, Web, Desktop, Backend, or Databases, or explicitly invokes the /human-ui slash command.
-user-invocable: true
-argument-hint: "[mode?] [task or instruction]"
 metadata:
   icon: terminal
   version: 3.0.0

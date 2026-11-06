@@ -25,10 +25,15 @@ Embed Human UI Engineering directly inside your repository so that all developer
 # Add as a submodule in your project root
 git submodule add https://github.com/juwelzan/human-ui-engineering.git .human-ui
 
-# Setup adapters (creates lightweight symlinks or copies)
-mkdir -p .agent/skills .cursor/rules .claude/commands .github/prompts .windsurf/workflows
+# Setup adapters (creates canonical directories and copies adapters)
+mkdir -p .agents/skills .agents/rules .agent/skills .cursor/rules .claude/commands .github/prompts .windsurf/workflows
 
+# Antigravity & Gemini discovery (.agents is canonical for slash command autocomplete)
+ln -s ../../.human-ui/skills/human-ui .agents/skills/human-ui
+cp .human-ui/.agent/rules/human-ui.md .agents/rules/human-ui.md
 cp -r .human-ui/.agent/skills/human-ui .agent/skills/
+
+# Other agent adapters
 cp .human-ui/.cursor/rules/human-ui.mdc .cursor/rules/
 cp .human-ui/.claude/commands/human-ui.md .claude/commands/
 cp .human-ui/.github/prompts/human-ui.prompt.md .github/prompts/
@@ -48,11 +53,15 @@ Install Human UI Engineering in your user home directory so it activates across 
 
 ### For Google Antigravity & Gemini CLI
 ```bash
-mkdir -p ~/.gemini/skills
-git clone https://github.com/juwelzan/human-ui-engineering.git ~/.gemini/skills/human-ui-engineering
-ln -s ~/.gemini/skills/human-ui-engineering/skills/human-ui ~/.gemini/skills/human-ui
+# Create canonical global skill directory
+mkdir -p ~/.gemini/config/skills/human-ui
+
+# Clone or link the canonical skill into global config
+git clone https://github.com/juwelzan/human-ui-engineering.git /tmp/human-ui-engineering
+cp -r /tmp/human-ui-engineering/skills/human-ui/* ~/.gemini/config/skills/human-ui/
+rm -rf /tmp/human-ui-engineering
 ```
-*Antigravity and Gemini CLI will automatically discover `/human-ui` in all workspaces.*
+*Antigravity and Gemini CLI will automatically discover `/human-ui` across all projects and workspaces.*
 
 ### For Claude Code
 ```bash

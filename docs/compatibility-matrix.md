@@ -8,12 +8,12 @@
 
 | Agent / Environment | Skill Discovery Location | Chat Invocation Syntax | Slash Autocomplete | Auto-Activation | Required Configuration | Verified Limitations | Verification Status |
 |---|---|---|---|---|---|---|---|
-| **Google Antigravity** | `.agent/skills/human-ui/` or `skills/human-ui/` | `/human-ui [task]` | **YES** (Native skill dropdown) | **YES** (Via semantic description) | None (Auto-discovered in workspace) | Requires subagent permissions if spawning specialist subagents | **VERIFIED** |
+| **Google Antigravity** | `.agents/skills/human-ui/` or `~/.gemini/config/skills/human-ui/` | `/human-ui [task]` | **YES** (Native skill dropdown) | **YES** (Via semantic description) | None (Auto-discovered in workspace) | Requires subagent permissions if spawning specialist subagents | **VERIFIED** |
 | **Claude Code** | `.claude/commands/human-ui.md` | `/human-ui [task]` | **YES** (Command autocomplete in CLI) | **YES** (When `CLAUDE.md` is present) | Place `.claude/commands/human-ui.md` | Positional arguments passed via `$ARGUMENTS` string | **VERIFIED** |
 | **VS Code GitHub Copilot** | `.github/prompts/human-ui.prompt.md` | `/human-ui [task]` or `#prompt:human-ui` | **YES** (Prompt template menu) | **YES** (Via `.github/copilot-instructions.md`) | VS Code Copilot extension v0.22+ | Reusable prompts require VS Code Chat prompt support | **VERIFIED** |
 | **Cursor** | `.cursor/rules/human-ui.mdc` & `.cursor/skills/` | `/human-ui [task]` or `@human-ui` | **YES** (Rule / symbol picker) | **YES** (Global rule match) | Cursor Composer / Chat | Requires typing `@human-ui` or `/` in Composer input | **VERIFIED** |
 | **Windsurf** | `.windsurf/workflows/human-ui.md` & `.windsurf/rules/` | `/human-ui [task]` | **YES** (Cascade command list) | **YES** (Cascade system instructions) | None (Auto-discovered in workspace) | Cascade workflow triggers must match frontmatter name | **VERIFIED** |
-| **Gemini CLI** | `skills/human-ui/SKILL.md` or `~/.gemini/skills/` | `/human-ui [task]` | **YES** (Agent Skills standard) | **YES** (On UI keywords) | None (Reads workspace `skills/`) | Command line terminal width formatting | **VERIFIED** |
+| **Gemini CLI** | `.agents/skills/human-ui/` or `~/.gemini/config/skills/human-ui/` | `/human-ui [task]` | **YES** (Agent Skills standard) | **YES** (On UI keywords) | None (Reads workspace or global skills) | Command line terminal width formatting | **VERIFIED** |
 | **Android Studio Gemini Agent** | `.agent/rules/human-ui.md` | `/human-ui [task]` or contextual prompt | **LIMITED** (Context menu attachment) | **YES** (Workspace context) | Android Studio Hedgehog+ with Gemini plugin | Native IDE slash autocomplete depends on plugin version | **VERIFIED WITH LIMITATIONS** |
 | **Codex / OpenAI Assistant** | Workspace instructions / system prompt | `/human-ui [task]` | **UNVERIFIED** (No native slash autocomplete) | **YES** (System prompt instruction) | Manual system prompt injection | Generic OpenAI chat lacks custom `/` autocomplete | **UNVERIFIED (MANUAL INJECTION)** |
 
@@ -23,9 +23,9 @@
 
 ### A. Google Antigravity & Gemini CLI
 - **Discovery Paths**:
-  - Workspace: `<workspace>/.agent/skills/human-ui/SKILL.md` or `<workspace>/skills/human-ui/SKILL.md`
-  - Global: `~/.gemini/skills/human-ui/SKILL.md`
-- **How it works**: The agent runtime inspects `name: human-ui` in YAML frontmatter and registers `/human-ui` in the slash autocomplete menu.
+  - Workspace: `<workspace>/.agents/skills/human-ui/SKILL.md` (plural `.agents` is hardcoded in ServerBackend)
+  - Global: `~/.gemini/config/skills/human-ui/SKILL.md`
+- **How it works**: The Antigravity ServerBackend scans `{workspace}/.agents/skills/{skill_name}/SKILL.md` and global config, extracts `name: human-ui`, and registers `/human-ui` in the slash autocomplete menu and agent skills catalog.
 
 ### B. Claude Code
 - **Discovery Paths**:

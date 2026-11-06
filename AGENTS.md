@@ -159,7 +159,7 @@ When executing specific tasks, refer to the authoritative documentation within t
 
 This repository defines instructions consumable by modern AI development environments. Tool-specific entry files provide bridge configurations:
 - **Claude Code**: [`CLAUDE.md`](CLAUDE.md) & [`.claude/commands/human-ui.md`](.claude/commands/human-ui.md)
-- **Google Gemini / Antigravity**: [`GEMINI.md`](GEMINI.md) & [`.agent/skills/human-ui/SKILL.md`](.agent/skills/human-ui/SKILL.md)
+- **Google Gemini / Antigravity**: [`GEMINI.md`](GEMINI.md), [`.agents/skills/human-ui/SKILL.md`](.agents/skills/human-ui/SKILL.md) & [`.agent/skills/human-ui/SKILL.md`](.agent/skills/human-ui/SKILL.md)
 - **Cursor**: [`.cursor/rules/human-ui.mdc`](.cursor/rules/human-ui.mdc) & [`.cursor/skills/human-ui/SKILL.md`](.cursor/skills/human-ui/SKILL.md)
 - **GitHub Copilot**: [`.github/copilot-instructions.md`](.github/copilot-instructions.md) & [`.github/prompts/human-ui.prompt.md`](.github/prompts/human-ui.prompt.md)
 - **Windsurf**: [`.windsurf/rules/human-ui.md`](.windsurf/rules/human-ui.md) & [`.windsurf/workflows/human-ui.md`](.windsurf/workflows/human-ui.md)

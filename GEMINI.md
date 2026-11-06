@@ -6,7 +6,7 @@ The authoritative single source of truth is [AGENTS.md](AGENTS.md).
 
 ## Chat Slash Command: `/human-ui`
 
-Gemini CLI and Antigravity discover skills in `skills/human-ui/SKILL.md` or `.agent/skills/human-ui/SKILL.md`.
+Gemini CLI and Antigravity discover skills in `.agents/skills/human-ui/SKILL.md`, `skills/human-ui/SKILL.md`, or globally in `~/.gemini/config/skills/human-ui/SKILL.md`.
 - **Command Syntax**: `/human-ui [subcommand] [task]`
 - **Subcommands**: `design`, `audit`, `flutter`, `react`, `responsive`, `performance`, `debug`, `recover`, `review`.
 - **Recovery Mode**: `/human-ui recover` restores context from `AI_TASK_STATE.md` and git telemetry.

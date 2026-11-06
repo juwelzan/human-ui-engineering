@@ -93,7 +93,7 @@ This repository provides standardized, lightweight entry points for all major AI
 
 | Agent / Tool | Entry File | Chat Invocation Syntax | Autocomplete | Auto-Activation | Notes |
 |---|---|---|---|---|---|
-| **Google Antigravity** | [`.agent/skills/human-ui/`](.agent/skills/human-ui/SKILL.md) | `/human-ui [task]` | **YES** | **YES** | Native skill integration |
+| **Google Antigravity** | [`.agents/skills/human-ui/`](.agents/skills/human-ui/SKILL.md) | `/human-ui [task]` | **YES** | **YES** | Native skill integration |
 | **Claude Code** | [`.claude/commands/human-ui.md`](.claude/commands/human-ui.md) | `/human-ui [task]` | **YES** | **YES** | CLI slash command |
 | **VS Code GitHub Copilot** | [`.github/prompts/human-ui.prompt.md`](.github/prompts/human-ui.prompt.md) | `/human-ui [task]` | **YES** | **YES** | Reusable prompt file |
 | **Cursor** | [`.cursor/rules/human-ui.mdc`](.cursor/rules/human-ui.mdc) | `/human-ui [task]` or `@human-ui` | **YES** | **YES** | Rules & symbol picker |
@@ -164,7 +164,11 @@ human-ui-engineering/
 │   ├── rules/human-ui.mdc  # Cursor rules
 │   └── skills/human-ui/    # Cursor skill adapter
 │
-├── .agent/                 # Google Antigravity & Agent configuration
+├── .agents/                # Google Antigravity & Agent OS (Canonical)
+│   ├── rules/human-ui.md   # Agent workspace rules
+│   └── skills/human-ui/    # Canonical Antigravity slash command skill
+│
+├── .agent/                 # Agent configuration (Legacy / CLI fallback)
 │   ├── rules/human-ui.md   # Agent workspace rules
 │   └── skills/human-ui/    # Agent skill adapter
 │
@@ -317,7 +321,7 @@ git submodule add https://github.com/juwelzan/human-ui-engineering.git .human-ui
 Then copy adapters from `.human-ui` to your agent directories. See [Installation Guide](docs/installation-guide.md).
 
 ### Method B: Global Installation (All Projects)
-Clone into `~/.gemini/skills/` or `.claude/commands/` for machine-wide availability.
+Clone/copy into `~/.gemini/config/skills/human-ui` or `.claude/commands/` for machine-wide availability.
 
 ---
 
