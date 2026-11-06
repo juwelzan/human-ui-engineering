@@ -102,3 +102,4 @@ If properly installed, the agent will acknowledge the Human UI Engineering frame
 - Main Skill: [../skills/human-ui/SKILL.md](../skills/human-ui/SKILL.md)
 - Compatibility Matrix: [compatibility-matrix.md](compatibility-matrix.md)
 - Chat Slash Command Guide: [slash-command-guide.md](slash-command-guide.md)
+

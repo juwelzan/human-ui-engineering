@@ -70,3 +70,4 @@
 - Chat Slash Command Guide: [slash-command-guide.md](slash-command-guide.md)
 - Installation Guide: [installation-guide.md](installation-guide.md)
 - Master Instructions: [../AGENTS.md](../AGENTS.md)
+

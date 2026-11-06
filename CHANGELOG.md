@@ -75,3 +75,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Master 14-Step Engineering Workflow in `AGENTS.md`.
 - Foundational guidelines in `core/`, `design/`, `components/`, `engineering/`, `frameworks/`, `quality/`, `workflows/`, `templates/`.
 - Lightweight entry points: `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, `.cursor/rules/human-ui.mdc`, `.agent/rules/human-ui.md`, `.windsurf/rules/human-ui.md`.
+

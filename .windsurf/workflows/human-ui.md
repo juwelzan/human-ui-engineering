@@ -21,3 +21,4 @@ This workflow is triggered when `/human-ui` is invoked in Windsurf Cascade.
 3. **Execute & Verify**:
    - Execute the requested task mode following [AGENTS.md](../../AGENTS.md).
    - Validate with automated tests or lint checks before completion.
+

@@ -73,3 +73,4 @@ git log -n 5 --oneline
 - Recovery Protocol: [../core/recovery-protocol.md](../core/recovery-protocol.md)
 - Checkpoint Management: [../core/checkpoint-management.md](../core/checkpoint-management.md)
 - Task State Template: [../templates/task-state.md](../templates/task-state.md)
+

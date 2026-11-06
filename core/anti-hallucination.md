@@ -103,3 +103,4 @@ AI agents must report execution outcomes with strict, unimpeachable honesty:
 - Checkpoint Management: [checkpoint-management.md](checkpoint-management.md)
 - Project Discovery: [project-discovery.md](project-discovery.md)
 - Quality & Testing: [../quality/testing.md](../quality/testing.md)
+

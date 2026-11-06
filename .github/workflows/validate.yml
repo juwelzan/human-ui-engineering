@@ -21,3 +21,4 @@ jobs:
       - name: Run Integrity & Link Validator
         run: |
           python3 scripts/validate.py
+

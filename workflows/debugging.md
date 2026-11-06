@@ -65,3 +65,4 @@ Cross-reference against the Top 10 recurring UI bug categories in [Bug Preventio
 - Regression Prevention: [../quality/regression-prevention.md](../quality/regression-prevention.md)
 - Change Control: [../core/change-control.md](../core/change-control.md)
 - Bug Report Template: [../templates/bug-report.md](../templates/bug-report.md)
+

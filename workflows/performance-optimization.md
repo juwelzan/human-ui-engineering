@@ -74,3 +74,4 @@ Document before-and-after metrics in the PR or task report:
 - Memory Management: [../engineering/memory-management.md](../engineering/memory-management.md)
 - Performance Audit Checklist: [../quality/performance-audit.md](../quality/performance-audit.md)
 - Diagnostic Fix Guide: [performance-fix.md](performance-fix.md)
+

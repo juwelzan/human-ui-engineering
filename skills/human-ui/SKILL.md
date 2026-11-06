@@ -85,3 +85,4 @@ Anchor all execution in the 14-step workflow defined in [`AGENTS.md`](../../AGEN
 - Recovery Protocol: [references/recovery.md](references/recovery.md)
 - Design Philosophy: [references/design.md](references/design.md)
 - Task Routing & Mode Guide: [references/routing.md](references/routing.md)
+

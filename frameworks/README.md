@@ -56,3 +56,4 @@ When multiple frameworks coexist in the same repository (e.g. a Next.js web port
 - Master Instructions: [../AGENTS.md](../AGENTS.md)
 - Framework Selection Matrix: [framework-selection.md](framework-selection.md)
 - Universal Architecture: [../core/architecture.md](../core/architecture.md)
+

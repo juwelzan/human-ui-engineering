@@ -102,3 +102,4 @@ contextBridge.exposeInMainWorld('desktopAPI', {
 - Framework Isolation: [README.md](README.md)
 - Security Fundamentals: [../engineering/security.md](../engineering/security.md)
 - Cross-Platform Standards: [../engineering/cross-platform.md](../engineering/cross-platform.md)
+

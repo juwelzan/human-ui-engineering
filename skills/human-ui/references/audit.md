@@ -29,3 +29,4 @@ When invoked with `/human-ui audit [scope]`:
 - Exhaustive UI Review Checklist: [../../../quality/ui-review.md](../../../quality/ui-review.md)
 - Performance & Memory Audit: [../../../quality/performance-audit.md](../../../quality/performance-audit.md)
 - Standard Quality Report Template: [../../../templates/quality-report.md](../../../templates/quality-report.md)
+

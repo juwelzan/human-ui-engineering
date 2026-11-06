@@ -17,3 +17,4 @@ You have been invoked via the `/human-ui` command with the following arguments:
    - If `$ARGUMENTS` starts with a specific mode (`design`, `audit`, `flutter`, `react`, `responsive`, `performance`, `debug`, `review`), load the corresponding reference in `skills/human-ui/references/`.
    - Otherwise, detect the project framework and execute the general task using the 14-step workflow in [AGENTS.md](../../AGENTS.md).
 3. **Preserve Code Integrity**: Never delete unrelated existing code; validate all changes with automated tests or linters.
+

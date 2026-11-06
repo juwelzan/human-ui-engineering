@@ -91,3 +91,4 @@ For major structural refactorings (e.g. decomposing an 800-line monolithic scree
 - Refactoring Workflow: [../workflows/refactoring.md](../workflows/refactoring.md)
 - Recovery Protocol: [recovery-protocol.md](recovery-protocol.md)
 - Checkpoint Management: [checkpoint-management.md](checkpoint-management.md)
+

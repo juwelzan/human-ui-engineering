@@ -152,3 +152,4 @@ Always use built-in control flow instead of legacy structural directives (`*ngIf
 - Framework Selection: [framework-selection.md](framework-selection.md)
 - Framework Isolation: [README.md](README.md)
 - Clean Code Standards: [../engineering/clean-code.md](../engineering/clean-code.md)
+

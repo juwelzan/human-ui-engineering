@@ -22,3 +22,4 @@
 
 - Complete Responsive Design Guide: [../../../design/responsive-design.md](../../../design/responsive-design.md)
 - Navigation Architecture: [../../../components/navigation.md](../../../components/navigation.md)
+

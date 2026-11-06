@@ -65,3 +65,4 @@ Summarize findings using the [Project Brief Template](../templates/project-brief
 - Project Discovery Guide: [../core/project-discovery.md](../core/project-discovery.md)
 - Anti-Hallucination: [../core/anti-hallucination.md](../core/anti-hallucination.md)
 - Project Brief Template: [../templates/project-brief.md](../templates/project-brief.md)
+

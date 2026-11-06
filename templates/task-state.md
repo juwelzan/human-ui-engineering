@@ -42,3 +42,4 @@
 ## 4. Next Safe Action
 - **Immediate Next Step**: [e.g. "Implement empty cart state and run widget tests"]
 ```
+
