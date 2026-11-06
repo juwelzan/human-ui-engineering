@@ -1,0 +1,75 @@
+#!/usr/bin/env python3
+"""
+Human UI Engineering — Structural & Framework Isolation Validator
+Verifies:
+1. Agent entry points properly reference canonical instructions.
+2. Core universal guidelines remain framework-agnostic.
+3. Framework isolation: framework-specific guides reside in frameworks/.
+"""
+
+import os
+import sys
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+AGENT_ENTRIES = [
+    ("CLAUDE.md", "AGENTS.md"),
+    ("GEMINI.md", "AGENTS.md"),
+    (".github/copilot-instructions.md", "AGENTS.md"),
+    (".cursor/rules/human-ui.mdc", "AGENTS.md"),
+    (".agent/rules/human-ui.md", "AGENTS.md"),
+    (".windsurf/rules/human-ui.md", "AGENTS.md"),
+]
+
+def main():
+    print("==================================================")
+    print(" Human UI Engineering — Structural Validator      ")
+    print("==================================================")
+
+    errors = []
+
+    # 1. Verify Agent Entry Points
+    print("\n[1/2] Verifying Agent Entry Points reference canonical instructions...")
+    for entry_rel, expected_ref in AGENT_ENTRIES:
+        entry_path = os.path.join(REPO_ROOT, entry_rel)
+        if not os.path.exists(entry_path):
+            errors.append(f"Missing agent entry file: {entry_rel}")
+            continue
+
+        with open(entry_path, "r", encoding="utf-8") as fh:
+            content = fh.read()
+
+        if expected_ref not in content:
+            errors.append(f"Agent entry {entry_rel} does not reference {expected_ref}")
+        else:
+            print(f"  ✓ {entry_rel} correctly references {expected_ref}")
+
+    # 2. Verify Framework Isolation
+    print("\n[2/2] Checking Framework Module Isolation...")
+    frameworks_dir = os.path.join(REPO_ROOT, "frameworks")
+    if not os.path.exists(frameworks_dir):
+        errors.append("Missing frameworks directory!")
+    else:
+        framework_modules = [
+            "flutter.md", "react.md", "nextjs.md", "vue.md",
+            "angular.md", "react-native.md", "native-android.md",
+            "native-ios.md", "web.md", "desktop.md"
+        ]
+        for fm in framework_modules:
+            p = os.path.join(frameworks_dir, fm)
+            if not os.path.exists(p):
+                errors.append(f"Missing framework module: frameworks/{fm}")
+            else:
+                print(f"  ✓ Isolated framework module verified: frameworks/{fm}")
+
+    if errors:
+        print(f"\n❌ STRUCTURAL VALIDATION FAILED with {len(errors)} error(s):")
+        for err in errors:
+            print(f"  - {err}")
+        return 1
+    else:
+        print("\n✅ ALL STRUCTURAL & ISOLATION CHECKS PASSED!")
+        return 0
+
+if __name__ == "__main__":
+    sys.exit(main())

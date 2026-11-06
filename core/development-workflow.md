@@ -76,6 +76,7 @@ When modifying existing UI code:
 ## 4. Related Documentation
 
 - Master Instructions: [AGENTS.md](../AGENTS.md)
+- Universal Engineering Workflow: [engineering-workflow.md](engineering-workflow.md)
 - Agent Behavior: [agent-behavior.md](agent-behavior.md)
 - Shared Component Rules: [../components/shared-component-rules.md](../components/shared-component-rules.md)
 - UI Review Checklist: [../quality/ui-review.md](../quality/ui-review.md)

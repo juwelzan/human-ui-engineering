@@ -90,15 +90,20 @@ This repository provides standardized, lightweight entry points for all major AI
 
 ## 4. Supported Frameworks
 
-Universal principles apply across all technologies, with specialized implementation guides in [`frameworks/`](frameworks/):
+Universal principles apply across all technologies, with specialized, strictly isolated implementation guides in [`frameworks/`](frameworks/README.md):
 
 - **[Flutter](frameworks/flutter.md)**: Clean architecture, widget granularity, `const` optimization, BLoC/Riverpod, semantics.
 - **[React](frameworks/react.md)**: Functional composition, custom hooks, strategic memoization, virtualized lists.
 - **[Next.js](frameworks/nextjs.md)**: App Router, React Server Components (RSC) vs Client boundaries, Streaming, Core Web Vitals.
+- **[Vue](frameworks/vue.md)**: Vue 3 Composition API, `<script setup lang="ts">`, Pinia state management, Nuxt 3.
+- **[Angular](frameworks/angular.md)**: Angular 17+ Standalone Components, Signals, modern control flow (`@if`/`@for`).
 - **[Native Android](frameworks/native-android.md)**: Jetpack Compose, ViewModel, Material 3, Coroutines, WindowSizeClass.
 - **[Native iOS](frameworks/native-ios.md)**: SwiftUI, Swift 6, Observation macro, SF Symbols, Apple HIG.
 - **[Modern Web](frameworks/web.md)**: Semantic HTML5, CSS Container Queries, native `<dialog>` and Popovers, Web Components.
-- **[Framework Selection Matrix](frameworks/framework-selection.md)**: Objective criteria for choosing the right stack.
+- **[React Native](frameworks/react-native.md)**: Expo, New Architecture (Fabric/TurboModules), FlashList, Safe Areas.
+- **[Desktop Development](frameworks/desktop.md)**: Electron, Tauri, Flutter Desktop, Frameless window dragging, system shortcuts, secure IPC.
+- **[Framework Selection Matrix](frameworks/framework-selection.md)**: Objective criteria and decision heuristics for choosing the right stack.
+- **[Framework Isolation Standards](frameworks/README.md)**: Boundaries ensuring framework rules never cross-contaminate.
 
 ---
 
@@ -112,6 +117,8 @@ human-ui-engineering/
 ├── GEMINI.md               # Gemini agent entry point
 ├── CONTRIBUTING.md         # Contribution standards
 ├── LICENSE                 # MIT License
+├── CHANGELOG.md            # Version release milestones & roadmap
+├── AI_TASK_STATE.md        # Active task checkpoint & recovery tracker
 │
 ├── skills/human-ui/        # Canonical Agent Skill Engine
 │   ├── SKILL.md            # Main skill with YAML frontmatter
@@ -142,16 +149,22 @@ human-ui-engineering/
 │   ├── rules/human-ui.md   # Cascade rules
 │   └── workflows/human-ui.md# Cascade workflow
 │
-├── core/                   # Foundational engineering mindset & architecture
+├── core/                   # Universal engineering core (framework-agnostic)
 │   ├── agent-behavior.md   # Eliminating AI tropes; human engineer mindset
-│   ├── project-discovery.md# Pre-flight discovery methodology
+│   ├── project-discovery.md# Evidence-based pre-flight codebase discovery
 │   ├── architecture.md     # 3-tier presentation architecture & UDF
 │   ├── folder-structure.md # Feature-First directory conventions
-│   └── development-workflow.md # 5-stage task execution cycle
+│   ├── engineering-workflow.md # 6-stage universal engineering lifecycle
+│   ├── development-workflow.md # Task execution cycle & step transitions
+│   ├── anti-hallucination.md # 5-tier evidence classification & pre-action verification
+│   ├── recovery-protocol.md # 6-step autonomous recovery sequence & blocker reporting
+│   ├── checkpoint-management.md # Checkpoint rules, state tracking & hygiene
+│   └── change-control.md   # Blast radius assessment & backward-compatible changes
 │
 ├── design/                 # Human-centered UI design system
 │   ├── design-philosophy.md# Purpose of UI, content-first design
 │   ├── human-design-rules.md# Strict visual Do's and Don'ts
+│   ├── human-interface-design.md # Information architecture, cognitive laws & visual rhythm
 │   ├── color-system.md     # 60-30-10 rule, functional tokens, dark mode
 │   ├── typography.md       # Typographic scale, measure, line-heights
 │   ├── spacing.md          # 8pt/4pt mathematical spatial grid
@@ -161,55 +174,78 @@ human-ui-engineering/
 │
 ├── components/             # Reusable shared component engineering
 │   ├── shared-component-rules.md # 6-question qualification rubric
+│   ├── component-principles.md # Component boundaries, composition & 7 interactive states
 │   ├── buttons.md          # Hierarchy, sizes, 6 interactive states
 │   ├── text-fields.md      # Labels, error states, mobile keyboards
+│   ├── forms.md            # Form control catalog, validation heuristics & multi-step wizards
 │   ├── typography.md       # Polymorphic text primitives, line clamping
 │   ├── cards.md            # Compound card patterns; anti-card fatigue
 │   ├── navigation.md       # Headers, sidebars, bottom bars, tabs
 │   ├── dialogs.md          # Focus trapping, escape dismissal, sheets
 │   ├── loading-states.md   # Skeletons, shimmers, spinners, optimistic UI
-│   └── reusable-widgets.md # Badges, avatars, tooltips, list tiles
+│   ├── reusable-widgets.md # Badges, avatars, tooltips, list tiles
+│   └── component-testing.md# 5-stage component test suite & resilient role selectors
 │
 ├── engineering/            # Production engineering standards
 │   ├── clean-code.md       # Modularity, naming rules, 200-line guideline
 │   ├── architecture-patterns.md # MVVM, MVI/Redux, BLoC, Custom Hooks
 │   ├── state-management.md # 4 state tiers, placement heuristics
 │   ├── error-handling.md   # Error boundaries, actionable user messages
+│   ├── async-operations.md # Async lifecycle safety, AbortController & debouncing
 │   ├── performance.md      # 16.6ms frame budget, virtualization, CLS
 │   ├── memory-management.md# Disposing listeners, timers, controllers
+│   ├── security.md         # UI security, XSS defenses, token hygiene & native IPC
 │   └── cross-platform.md   # Platform idioms, safe areas, RTL/i18n
 │
 ├── quality/                # Quality assurance & pre-flight gates
 │   ├── testing.md          # Testing pyramid, resilient selectors, honesty
 │   ├── ui-review.md        # Visual polish & spacing checklist
+│   ├── accessibility-audit.md # Exhaustive WCAG 2.1 AA audit checklist across all modalities
 │   ├── performance-audit.md# Profiling frames, memory leaks, assets
 │   ├── bug-prevention.md   # Top 10 recurring UI bugs & defenses
+│   ├── regression-prevention.md # 4-dimension regression prevention protocol & gates
 │   └── release-checklist.md# 8-point pre-flight release gate
 │
-├── frameworks/             # Framework-specific engineering guides
-│   ├── framework-selection.md # Objective selection matrix
-│   ├── flutter.md
-│   ├── react.md
-│   ├── nextjs.md
-│   ├── native-android.md
-│   ├── native-ios.md
-│   └── web.md
+├── frameworks/             # Independent, strictly isolated framework modules
+│   ├── README.md           # Framework isolation rules & monorepo boundaries
+│   ├── framework-selection.md # 10-framework decision tree & heuristics
+│   ├── flutter.md          # Flutter / Dart: Widget hierarchy, const, BLoC/Riverpod
+│   ├── react.md            # React: Hooks, memoization, virtualization, clean state
+│   ├── nextjs.md           # Next.js: RSC, App Router, Suspense, streaming
+│   ├── vue.md              # Vue 3: Script setup, Composition API, Pinia, Nuxt 3
+│   ├── angular.md          # Angular 17+: Signals, Standalone Components, control flow
+│   ├── native-android.md   # Android: Jetpack Compose, ViewModel, Coroutines
+│   ├── native-ios.md       # iOS: SwiftUI, Swift 6, Observation, HIG
+│   ├── web.md              # Modern Web: Semantic HTML5, CSS Container Queries
+│   ├── react-native.md     # React Native: Expo, Fabric/TurboModules, FlashList
+│   └── desktop.md          # Desktop: Electron, Tauri, Flutter Desktop, native IPC
 │
 ├── workflows/              # Actionable step-by-step execution guides
+│   ├── project-discovery.md# Codebase mapping & monorepo package isolation
 │   ├── new-project.md      # Bootstrapping from scratch
+│   ├── new-feature.md      # End-to-end multi-screen feature implementation
 │   ├── new-page.md         # Building a verified screen
 │   ├── shared-component.md # Extracting reusable primitives
 │   ├── redesign.md         # Safe modernization without regressions
-│   └── performance-fix.md  # Profiling, isolating, and fixing jank
+│   ├── refactoring.md      # Safe refactoring sequence & extraction checkpoints
+│   ├── debugging.md        # Scientific 6-stage defect isolation & repair loop
+│   ├── performance-optimization.md # Profiling, bottleneck isolation & metrics
+│   ├── performance-fix.md  # Quick repair of visual jank and frame drops
+│   └── recovery.md         # Autonomous recovery from interrupted tasks
 │
 ├── templates/              # Standardized fillable markdown templates
 │   ├── project-brief.md    # Discovery summary
 │   ├── architecture-plan.md# Technical proposal
 │   ├── design-system.md    # Design token spec
+│   ├── task-state.md       # Fillable checkpoint state for AI_TASK_STATE.md
+│   ├── bug-report.md       # Fillable UI bug report & root-cause analysis template
 │   └── quality-report.md   # QA & verification audit
 │
-└── scripts/
-    └── validate.py         # Automated repository integrity & link validator
+└── scripts/                # Automated repository validation suite
+    ├── validate-docs       # Checks required architecture files exist & populated
+    ├── validate-links      # Validates all internal relative markdown links
+    ├── validate-structure  # Validates agent entry points & 10 framework modules
+    └── validate.py         # Master runner coordinating all validators
 ```
 
 ---

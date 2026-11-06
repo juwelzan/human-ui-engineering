@@ -24,10 +24,17 @@ flowchart LR
 
 ### Phase 1: Manifest & Dependency Inspection
 Examine package declarations and build configurations to understand the runtime ecosystem:
-- **Web / Node / Next.js**: `package.json`, `tsconfig.json`, `tailwind.config.*`, `vite.config.*`.
+- **Web / React / Next.js / Vue / Angular**: `package.json`, `tsconfig.json`, `tailwind.config.*`, `vite.config.*`, `angular.json`, `nuxt.config.*`.
 - **Flutter**: `pubspec.yaml`, `analysis_options.yaml`.
 - **Android**: `settings.gradle.kts`, `app/build.gradle.kts`, `libs.versions.toml`.
-- **iOS**: `Package.swift`, `Podfile`, `.xcodeproj/project.pbxproj`.
+- **iOS / macOS**: `Package.swift`, `Podfile`, `.xcodeproj/project.pbxproj`.
+- **Desktop (Electron / Tauri)**: `src-tauri/tauri.conf.json`, `electron-builder.json`.
+
+**Monorepo & Multi-Package Boundary Discovery:**
+If the repository is a monorepo (pnpm workspaces, Turborepo, Nx, Melos, Gradle multi-project):
+1. Identify all distinct applications and packages in `apps/` or `packages/`.
+2. Determine which specific package the user's task targets.
+3. Formulate an isolated project context for that subproject; never cross-contaminate dependencies or styling systems between subprojects.
 
 **Determine:**
 - What UI libraries are already installed (e.g. Tailwind, Shadcn, Material, Cupertino, Compose, Tamagui)?
@@ -83,6 +90,8 @@ For medium-to-large initiatives, summarize discovery findings using the standard
 ## 5. Related Documentation
 
 - Master Instructions: [AGENTS.md](../AGENTS.md)
+- Anti-Hallucination: [anti-hallucination.md](anti-hallucination.md)
+- Universal Engineering Workflow: [engineering-workflow.md](engineering-workflow.md)
 - Agent Behavior: [agent-behavior.md](agent-behavior.md)
 - Architecture Guidelines: [architecture.md](architecture.md)
 - Folder Structure Standards: [folder-structure.md](folder-structure.md)
