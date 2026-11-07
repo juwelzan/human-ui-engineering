@@ -27,46 +27,54 @@ A component should have **one primary reason to change**:
 
 ## 3. Composition Over Configuration (Slots & Compound Patterns)
 
-When a component begins accumulating configuration props, pivot to **Composition**:
+When a component begins accumulating configuration parameters, pivot to **Flutter Widget Composition**:
 
-```tsx
-// Anti-Pattern: Prop explosion / Mega-component
-<Modal
-  isOpen={isOpen}
-  title="Edit Profile"
-  titleIcon="user"
-  showCloseButton={true}
-  onClose={handleClose}
-  bodyText="Please update your info"
-  hasAvatarUpload={true}
-  primaryActionLabel="Save"
-  onPrimaryAction={handleSave}
-  isPrimaryLoading={isSaving}
-  secondaryActionLabel="Cancel"
-  onSecondaryAction={handleClose}
-/>
+```dart
+// ❌ Anti-Pattern: Parameter explosion / Monolithic widget
+AppDialog(
+  isOpen: isOpen,
+  title: 'Edit Profile',
+  titleIcon: Icons.person,
+  showCloseButton: true,
+  onClose: handleClose,
+  bodyText: 'Please update your info',
+  hasAvatarUpload: true,
+  primaryActionLabel: 'Save',
+  onPrimaryAction: handleSave,
+  isPrimaryLoading: isSaving,
+  secondaryActionLabel: 'Cancel',
+  onSecondaryAction: handleClose,
+);
 
-// Best Practice: Compound Component Pattern
-<Modal isOpen={isOpen} onDismiss={handleClose}>
-  <ModalHeader>
-    <ModalTitle icon={<UserIcon />}>Edit Profile</ModalTitle>
-    <ModalCloseButton onClick={handleClose} />
-  </ModalHeader>
-  <ModalBody>
-    <Text>Please update your info</Text>
-    <AvatarUpload onUpload={handleUpload} />
-  </ModalBody>
-  <ModalFooter>
-    <Button variant="ghost" onClick={handleClose}>Cancel</Button>
-    <Button variant="primary" isLoading={isSaving} onClick={handleSave}>Save</Button>
-  </ModalFooter>
-</Modal>
+// ✅ Best Practice: Flutter Widget Composition Pattern
+AppDialog(
+  title: const AppDialogTitle(
+    icon: Icon(Icons.person_outline),
+    label: 'Edit Profile',
+  ),
+  content: Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      Text('Please update your info', style: theme.textTheme.bodyMedium),
+      const SizedBox(height: 16),
+      AvatarUploadField(onUploaded: handleUpload),
+    ],
+  ),
+  actions: [
+    AppButton.secondary(label: 'Cancel', onPressed: handleClose),
+    AppButton.primary(
+      label: 'Save',
+      isLoading: isSaving,
+      onPressed: handleSave,
+    ),
+  ],
+);
 ```
 
 ### Why Composition Wins:
-1. **Zero Prop Bloat**: Adding a new icon, tooltip, or secondary badge requires zero changes to the `Modal` API.
-2. **Flexible Structure**: Consumers can reorder headers, footers, or add custom dividers without hacking internal props.
-3. **Transparent Mental Model**: The code in the consumer file mirrors the visual DOM tree.
+1. **Zero Parameter Bloat**: Adding a new icon, tooltip, or secondary badge requires zero changes to the `AppDialog` API.
+2. **Flexible Structure**: Consumers can reorder headers, footers, or add custom dividers using standard Flutter children without hacking internal flags.
+3. **Transparent Mental Model**: The code in the consumer file mirrors Flutter's declarative widget tree.
 
 ---
 

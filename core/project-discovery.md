@@ -60,9 +60,9 @@ Identify where and how the software runs:
 
 ### Phase 5: State & Data Flow Mapping
 Identify how data reaches the UI layer:
-- What state management solution is in active use (e.g. Redux Toolkit, Zustand, Riverpod, BLoC, Jetpack ViewModel, SwiftUI Observation)?
-- How are async operations, caching, and server state managed (e.g. TanStack Query, RTK Query, Repository pattern)?
-- How are navigation and routing handled (e.g. Next.js App Router, React Router, GoRouter, Android Navigation, SwiftUI NavigationStack)?
+- What Flutter state management solution is in active use (e.g. BLoC/Cubit, Riverpod, Provider, GetX)?
+- How are async operations, caching, and local storage managed (e.g. Repository pattern, Drift, Hive, Isar, Dio)?
+- How are navigation and routing handled (e.g. GoRouter declarative routing, route guards)?
 
 ---
 
@@ -70,12 +70,12 @@ Identify how data reaches the UI layer:
 
 Before writing a single line of code, the agent must be able to answer:
 
-- [ ] What framework and version is this project running?
-- [ ] What is the existing styling paradigm (CSS modules, utility classes, styled components, framework widgets)?
-- [ ] Where do shared UI primitives live?
-- [ ] Can existing buttons, inputs, and modals be reused for this task?
-- [ ] What state management solution is idiomatic to this project?
-- [ ] Are there existing test suites that should be updated or run?
+- [ ] What Flutter SDK and Dart version is this project targeting in `pubspec.yaml`?
+- [ ] What design tokens exist in `lib/core/theme/` (ThemeData, ColorScheme, AppSpacing)?
+- [ ] Where do shared UI primitives live (`lib/shared/widgets/`)?
+- [ ] Can existing buttons, inputs, cards, and dialogs in `shared/` be reused for this task?
+- [ ] What state management solution is approved and idiomatic to this project?
+- [ ] Are there existing unit or widget tests that must be updated or executed?
 
 ---
 

@@ -121,6 +121,7 @@ CORE_FILES = [
     "templates/quality-report.md",
     "templates/adr.md",
     "templates/test-plan.md",
+    "templates/decision-memory.md",
 
     # Docs & ADRs
     "docs/compatibility-matrix.md",
@@ -135,7 +136,9 @@ CORE_FILES = [
     # Skills & References (Canonical Flutter Engine)
     "skills/human-flutter/SKILL.md",
     "skills/human-flutter/references/permission-system.md",
+    "skills/human-flutter/references/decision-memory.md",
     "skills/human-flutter/references/project-structure.md",
+    "skills/human-flutter/references/core-engineering.md",
     "skills/human-flutter/references/ui-design.md",
     "skills/human-flutter/references/color-intelligence.md",
     "skills/human-flutter/references/color-preview.md",

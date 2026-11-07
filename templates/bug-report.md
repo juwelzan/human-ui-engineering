@@ -7,7 +7,7 @@
 ## 1. Defect Overview
 
 - **Bug Title**: [Concise summary, e.g. "Input field obscured by virtual keyboard on mobile"]
-- **Affected Area**: [Screen / Component name, e.g. `src/features/auth/LoginView.tsx`]
+- **Affected Area**: [Screen / Component name, e.g. `lib/features/auth/presentation/screens/login_screen.dart`]
 - **Severity**: [Critical / High / Medium / Low]
 - **Target Platform**: [iOS / Android / Web / Desktop]
 - **Viewport Dimensions**: [e.g. 375px width (iPhone SE portrait)]

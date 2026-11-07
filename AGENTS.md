@@ -216,14 +216,16 @@ Developers can invoke this entire knowledge system directly from any supported A
 
 ---
 
-## 8. Complete Reference Library (28 Dedicated Modules)
+## 8. Complete Reference Library (30 Dedicated Modules)
 
-The system organizes Flutter engineering into 28 specialized, discoverable reference modules located in `skills/human-flutter/references/`:
+The system organizes Flutter engineering into 30 specialized, discoverable reference modules located in `skills/human-flutter/references/`:
 
 | Module | Category | Primary Focus |
 |---|---|---|
 | [`permission-system.md`](skills/human-flutter/references/permission-system.md) | **Permissions** | 7-step Bengali protocol, decision gates, non-assumption |
+| [`decision-memory.md`](skills/human-flutter/references/decision-memory.md) | **Decisions** | Persistent register, Approved/Rejected/Pending tiers |
 | [`project-structure.md`](skills/human-flutter/references/project-structure.md) | **Structure** | Mandatory `lib/core/`, `lib/shared/`, `lib/features/` |
+| [`core-engineering.md`](skills/human-flutter/references/core-engineering.md) | **Core Infra** | `lib/core/` Dio client, SSL pinning, errors & Result pattern |
 | [`flutter-architecture.md`](skills/human-flutter/references/flutter-architecture.md) | **Architecture** | UDF, presentation-domain-data separation, Result pattern |
 | [`dart-standards.md`](skills/human-flutter/references/dart-standards.md) | **Code Quality** | Sound null safety, records, patterns, sealed classes |
 | [`ui-design.md`](skills/human-flutter/references/ui-design.md) | **UI/UX Design** | Visual hierarchy, focal anchor, human-centered UI |

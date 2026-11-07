@@ -28,9 +28,11 @@ AGENT_ENTRIES = [
 ]
 
 EXPECTED_REFERENCES = [
-    # Core 28 Reference Modules
+    # Core 30 Reference Modules
     "permission-system.md",
+    "decision-memory.md",
     "project-structure.md",
+    "core-engineering.md",
     "flutter-architecture.md",
     "dart-standards.md",
     "ui-design.md",

@@ -24,12 +24,12 @@ flowchart TD
     end
 ```
 
-| Category | Typical Scope | Examples | Recommended Tooling |
+| Category | Typical Scope | Examples | Recommended Flutter Tooling |
 |---|---|---|---|
-| **1. Local / Ephemeral** | Single component | `isOpen`, `hoveredIndex`, input text string, tab active index | `useState`, `StatefulWidget`, Compose `rememberSaveable`, `@State` |
-| **2. Feature State** | Multiple components within a single page/flow | Multi-step checkout wizard, active filter selections, pagination cursor | React Context, ViewModel, Riverpod family, Zustand slice, BLoC |
-| **3. Global State** | Entire application lifecycle | Current user auth session, active theme (light/dark), shopping cart, permissions | Zustand, Redux Toolkit, Riverpod, App-level ViewModel, `@Environment` |
-| **4. Server / Cache** | Remote asynchronous data | User list, product catalog, search query results | TanStack Query, RTK Query, SWR, Repository cache |
+| **1. Local / Ephemeral** | Single widget | `isOpen`, `hoveredIndex`, input text string, tab active index | `StatefulWidget`, `ValueNotifier`, `AnimationController` |
+| **2. Feature State** | Multiple widgets within a single feature/screen | Multi-step checkout wizard, active filter selections, pagination cursor | `Bloc` / `Cubit`, Riverpod `NotifierProvider` |
+| **3. Global State** | Entire application lifecycle | Current user auth session, active theme mode, shopping cart, permissions | Global `BlocProvider`, Riverpod, `InheritedWidget` |
+| **4. Server / Cache** | Remote asynchronous data | User profile, product catalog, search results | Repository pattern with Dio, Drift, or Hive cache |
 
 ---
 
@@ -37,10 +37,10 @@ flowchart TD
 
 Before declaring state, follow this decision sequence:
 
-1. **Can it be derived?** If a value can be computed on the fly from existing props or state (e.g. `fullName = firstName + ' ' + lastName` or `itemsCount = items.length`), **NEVER store it in state**. Redundant state creates out-of-sync bugs.
-2. **Does any sibling component need this?**
-   - **No**: Keep it strictly local to the component (`useState`, local variable).
-   - **Yes**: Lift the state up to the closest common ancestor.
+1. **Can it be derived?** If a value can be computed on the fly from existing properties or state (e.g. `fullName = '$firstName $lastName'` or `itemsCount = items.length`), **NEVER store it in state**. Redundant state creates out-of-sync bugs.
+2. **Does any sibling widget need this?**
+   - **No**: Keep it strictly local to the widget (`StatefulWidget`, `ValueNotifier`).
+   - **Yes**: Lift the state up to the closest common ancestor or scoped feature controller.
 3. **Does another screen or background service need this?**
    - **No**: Keep it inside the feature module.
    - **Yes**: Move it to the global application state.
@@ -49,34 +49,42 @@ Before declaring state, follow this decision sequence:
 
 ## 4. Server State vs. Client State
 
-Do not treat server data like local UI state:
+Do not treat remote server data like local ephemeral UI state:
 - Server data is **remote**, **asynchronously owned**, and **potentially stale**.
-- **Do not manually dispatch Redux actions** just to set `data`, `isLoading`, and `error` for every standard GET request if modern data-fetching tooling (TanStack Query, RTK Query) is available.
-- Use query keys, automatic cache invalidation, and background refetching to keep server state fresh.
+- Leverage typed Repository caching or stream-based data sources to manage network fetching, caching, and cache invalidation.
+- Model loading, success, empty, and failure states explicitly using Dart sealed classes.
 
 ---
 
-## 5. Granular Subscriptions & Render Optimization
+## 5. Granular Subscriptions & Rebuild Optimization
 
-Avoid subscribing components to entire global state objects:
+Avoid subscribing widgets to entire global state objects:
 
-```tsx
-// Anti-Pattern: Subscribing to entire store triggers re-renders on ANY store update
-const store = useAppStore();
+```dart
+// ❌ Anti-Pattern: Subscribing to entire BLoC rebuilds on ANY state change
+final state = context.watch<UserBloc>().state;
 
-// Best Practice: Fine-grained selector pattern
-const userTheme = useAppStore((state) => state.theme);
+// ✅ Best Practice: Fine-grained selector pattern via context.select
+final username = context.select<UserBloc, String>((bloc) => bloc.state.user.name);
+
+// ✅ Best Practice: Scoped rebuilds with buildWhen
+BlocBuilder<OrderBloc, OrderState>(
+  buildWhen: (previous, current) => previous.status != current.status,
+  builder: (context, state) {
+    return OrderStatusBadge(status: state.status);
+  },
+);
 ```
 
-By selecting only the specific primitive or slice needed, components re-render only when their specific dependent slice actually changes.
+By selecting only the specific primitive or slice needed, widgets rebuild only when their specific dependent property actually changes.
 
 ---
 
 ## 6. State Anti-Patterns
 
-1. **Global Store Pollution**: Storing temporary text field typing strings or modal visibility booleans inside a global Redux/Zustand store.
-2. **Prop Drilling Hell**: Passing a `userId` down through 7 levels of intermediate layout components that have no interest in the user.
-3. **State Mutation In-Place**: Directly mutating arrays or objects (e.g. `items.push(newItem)`) instead of producing immutable copies (`[...items, newItem]`), which breaks reactive change-detection algorithms.
+1. **Global Store Pollution**: Storing temporary text field typing strings or modal visibility booleans inside a global application BLoC.
+2. **Parameter Drilling**: Passing parameters down through 7 levels of intermediate layout widgets that have no interest in the data.
+3. **In-Place Mutation**: Directly mutating lists in-place (e.g. `state.items.add(newItem)`) instead of emitting new immutable copies (`[...state.items, newItem]`), which breaks Flutter's equality checks.
 
 ---
 

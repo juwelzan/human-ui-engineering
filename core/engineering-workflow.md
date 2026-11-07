@@ -1,12 +1,12 @@
-# Universal Engineering Workflow
+# Flutter Engineering Workflow
 
-> The end-to-end operational execution workflow for AI coding agents operating across any programming language, framework, or platform.
+> The end-to-end operational execution workflow for AI coding agents operating across Flutter and Dart.
 
 ---
 
 ## 1. Purpose
 
-High-reliability engineering requires a consistent, repeatable operational loop. Regardless of whether an agent is building a new screen in Flutter, refactoring a React Native module, or fixing a memory leak in Next.js, this universal workflow governs every stage of the lifecycle.
+High-reliability engineering requires a consistent, repeatable operational loop. When an agent is building a new screen in Flutter, refactoring a state module, or fixing a memory leak in DevTools, this workflow governs every stage of the lifecycle.
 
 ---
 

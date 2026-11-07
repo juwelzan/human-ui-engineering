@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.2.0] - 2026-11-07
+
+### Milestone: Complete Foreign Code Cleansing, Decision Memory & Core Engineering Infrastructure
+
+#### Added & Enhanced
+- **Decision Memory System (`DECISION_MEMORY.md`)**:
+  - Implemented persistent decision memory register with 5 explicit tiers: Approved Decisions, Rejected Decisions, Pending Decisions, Project-Specific Choices, and Global User Preferences.
+  - Added dedicated reference: [`skills/human-flutter/references/decision-memory.md`](skills/human-flutter/references/decision-memory.md).
+  - Added project template: [`templates/decision-memory.md`](templates/decision-memory.md).
+  - Eliminates redundant questioning: once an architectural or color choice is approved in Bengali, the agent autonomously executes it without re-asking.
+- **Core Engineering Architecture (`lib/core/`)**:
+  - Added dedicated reference: [`skills/human-flutter/references/core-engineering.md`](skills/human-flutter/references/core-engineering.md) covering foundational infrastructure with zero feature UI dependencies.
+  - Provided production-ready Dart 3 implementations:
+    - Dio HTTP client with SSL pinning, auth token refreshing, and exponential retry backoff.
+    - Functional error handling with `Result<T, Failure>` pattern using Dart 3 sealed classes.
+    - Secure storage service wrapping `flutter_secure_storage` with hardware-backed encryption.
+    - Centralized spacing, radius, and `BuildContext` theme extensions.
+- **Complete Foreign Code Cleansing (100% Absolute Flutter-Only)**:
+  - Systematically purged all remaining non-Flutter code snippets, types, and package managers across 33 files in `core/`, `components/`, `engineering/`, `quality/`, `workflows/`, and `templates/`.
+  - Replaced legacy TSX/JSX, `AbortController`, React hooks, and npm references with Flutter equivalents (`Dio CancelToken`, `StreamSubscription`, `State.dispose()`, `WidgetTester`, `pubspec.yaml`).
+- **Automated Anti-Regression Validation Hardening**:
+  - Enhanced `scripts/validate-flutter-only` with automated document scanning to reject foreign framework code blocks (```tsx, ```jsx) and `package.json` references.
+  - Updated `scripts/validate-docs` and `scripts/validate-structure` to verify 150 documentation files and 36 reference guides.
+  - Master validation suite passes with 0 errors and 100% link integrity (773/773).
+
+---
+
 ## [4.1.0] - 2026-11-07
 
 ### Master Upgrade: Permission-First Bengali Decision System & Mandatory 3-Tier Architecture

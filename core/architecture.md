@@ -14,13 +14,13 @@ This guide defines the universal presentation architecture that keeps UI layers 
 
 ## 2. The 3-Tier Layered Architecture
 
-Regardless of framework (React, Flutter, Android, iOS, or Web), code should separate into three distinct layers:
+In Flutter & Dart user interface engineering, applications separate strictly into three distinct layers:
 
 ```mermaid
 flowchart TD
     subgraph Presentation Layer
         V[Views / Screens] --> C[Reusable UI Components]
-        V --> VM[UI Controller / ViewModel / Hook]
+        V --> VM[State / BLoC / Cubit / Notifier]
     end
 
     subgraph Domain Layer

@@ -1,6 +1,6 @@
 # UI Architecture Patterns & Paradigms
 
-> Comparative overview and implementation rules for UI architecture patterns: MVVM, MVI/Redux, BLoC, and Custom Hook architectures.
+> Comparative overview and implementation rules for Flutter UI architecture patterns: BLoC / Cubit, Riverpod, Provider, and Feature-First Clean Architecture.
 
 ---
 

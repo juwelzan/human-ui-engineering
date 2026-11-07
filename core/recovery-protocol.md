@@ -44,10 +44,10 @@ Gather actual forensic evidence rather than guessing:
 
 ### Step 3: Reconstruct Project Context
 If your mental model of the codebase is incomplete:
-- Re-read project manifests (`package.json`, `pubspec.yaml`, `build.gradle.kts`, `Package.swift`).
+- Re-read project manifests (`pubspec.yaml`, `pubspec.lock`, `analysis_options.yaml`).
 - Inspect the entry points and trace the execution path from caller to callee.
 - Inspect how sibling components in the project solve identical problems.
-- Re-read the master instructions in [`AGENTS.md`](../AGENTS.md) and relevant framework guides.
+- Re-read the master instructions in [`AGENTS.md`](../AGENTS.md) and relevant Flutter reference guides.
 
 ### Step 4: Resume from the Last Verified Checkpoint
 - Inspect `AI_TASK_STATE.md` (or reconstruct the state checkpoint).
@@ -57,7 +57,7 @@ If your mental model of the codebase is incomplete:
 
 ### Step 5: Pivot to an Alternative Solution When Necessary
 If an architectural approach or third-party library proves incompatible:
-1. Document clearly **why** the initial approach failed (e.g. *"Package X is incompatible with React 19's new ref model"*).
+1. Document clearly **why** the initial approach failed (e.g. *"Package X requires Flutter >=3.27, which conflicts with current SDK constraint"*).
 2. Evaluate 2–3 alternative strategies (e.g. native browser API, established project alternative, custom lightweight utility).
 3. Select the safest, lowest-friction verified alternative.
 4. Implement incrementally and re-run validation checks.

@@ -29,10 +29,7 @@ flowchart TD
    - **Render Duration**: Measure component evaluation duration (in milliseconds).
    - **Heap Memory**: Record heap allocation (in MB) before and after interaction.
 2. Tooling:
-   - **Web**: Chrome DevTools Performance & Memory tabs, React DevTools Profiler.
-   - **Flutter**: Flutter DevTools Performance and CPU profiler.
-   - **Android**: Android Studio CPU / Memory Profiler.
-   - **iOS**: Xcode Instruments (Time Profiler, Allocations).
+   - **Flutter DevTools**: Performance view (Frame rendering bar chart, UI/Raster thread time), CPU Profiler, and Memory allocation diff snapshots.
 
 ### Step 2: Isolate Bottleneck Category
 1. **Excessive Rebuilds**: A parent state change forces hundreds of unchanged child components to re-render.

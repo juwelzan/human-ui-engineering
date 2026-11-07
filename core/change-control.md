@@ -38,12 +38,12 @@ flowchart LR
 
 Under no circumstances should an agent:
 
-1. **NEVER Rewrite Entire Files Unnecessarily**: If modifying 5 lines inside a function, make a localized edit. Do not overwrite the entire file with newly generated boilerplate.
-2. **NEVER Replace Architecture for Fashion**: Never rewrite a Redux project into Zustand, a Provider Flutter app into Riverpod, or an RxJS Angular app into signals unless the user explicitly requests an architectural migration.
-3. **NEVER Add Dependencies Without Justification**: Do not install a heavy npm/pub package (e.g. `lodash`, `moment`) when a 3-line native JavaScript/Dart function achieves the same result.
+1. **NEVER Rewrite Entire Files Unnecessarily**: If modifying 5 lines inside a function or widget, make a localized edit. Do not overwrite the entire file with newly generated boilerplate.
+2. **NEVER Replace Architecture for Fashion**: Never rewrite an existing Provider app into Riverpod, or a BLoC app into Cubit, without first explaining the decision in Bengali and obtaining explicit user permission.
+3. **NEVER Add Dependencies Without Justification**: Do not add a third-party pub package to `pubspec.yaml` without a genuine technical need and explicit user approval in Bengali.
 4. **NEVER Alter UI During a Logic-Only Refactor**: When assigned to optimize performance or refactor state logic, the visual appearance of the UI must remain identical.
 5. **NEVER Silently Remove Existing Functionality**: If an existing component handles an obscure error state or keyboard shortcut, preserve it.
-6. **NEVER Suppress Errors Instead of Fixing Them**: Never add `@ts-ignore`, `// ignore: ...`, or empty catch blocks (`catch (e) {}`) to mask compilation or runtime failures.
+6. **NEVER Suppress Errors Instead of Fixing Them**: Never add `// ignore: ...` or empty catch blocks (`catch (e) {}`) to mask Flutter compilation or runtime failures.
 
 ---
 

@@ -6,9 +6,9 @@
 # Test Plan: [Feature / Module Name]
 
 - **Date**: YYYY-MM-DD
-- **Target Component / Service**: [e.g., `src/features/billing/`]
+- **Target Component / Service**: [e.g., `lib/features/billing/`]
 - **Author**: [AI Pair Programmer / Human Engineer]
-- **Target Environment**: [e.g., Local Node.js / Docker Postgres]
+- **Target Environment**: [e.g., Flutter Engine / Local Dart VM / Device Emulator]
 
 ---
 
@@ -22,12 +22,12 @@
 
 | Test Layer | Test Case Description | Target File / Command | Expected Outcome | Status |
 |---|---|---|---|---|
-| **Unit** | Calculate tax for zero-rate exemptions | `taxCalculator.test.ts` | Returns `$0.00` with exemption flag | [PASSED] |
-| **Unit** | Reject expired credit card format | `cardValidator.test.ts` | Throws `InvalidExpiryError` | [PASSED] |
-| **Component** | Form submit button remains disabled until valid | `BillingForm.test.tsx` | Button has `disabled` attribute | [PASSED] |
-| **API** | POST /api/v1/checkout idempotency | `checkout.api.test.ts` | Second call with same key returns cached 201 | [PASSED] |
-| **A11y** | Error messages announced by screen readers | `BillingForm.a11y.test.tsx` | Error container has `role="alert"` | [PASSED] |
-| **Regression** | Ensure legacy webhook still receives ping | `webhook.test.ts` | Returns 200 OK | [PASSED] |
+| **Unit** | Calculate tax for zero-rate exemptions | `tax_calculator_test.dart` | Returns `$0.00` with exemption flag | [PASSED] |
+| **Unit** | Reject expired credit card format | `card_validator_test.dart` | Throws `InvalidExpiryError` | [PASSED] |
+| **Widget** | Form submit button remains disabled until valid | `billing_form_test.dart` | Button widget has `onPressed == null` | [PASSED] |
+| **Integration** | Checkout idempotency across retries | `checkout_flow_test.dart` | Second call with same idempotency key returns cached 201 | [PASSED] |
+| **A11y** | Error messages announced by screen readers | `billing_form_a11y_test.dart` | Error widget has `Semantics(liveRegion: true)` | [PASSED] |
+| **Regression** | Ensure local cache persists offline billing state | `billing_repository_test.dart` | Returns cached invoice when offline | [PASSED] |
 
 ---
 

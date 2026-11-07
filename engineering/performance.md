@@ -56,13 +56,23 @@ To maintain 60fps (16.6ms/frame) or 120fps (8.3ms/frame) smooth interactions:
 
 ---
 
-## 5. Startup Time, Code Splitting & Bundle Size
+## 5. Startup Time, Code Splitting & Binary Size
 
-1. **Route-Level Code Splitting**:
-   - Lazy-load secondary views and administrative dashboards via dynamic imports (`React.lazy()`, dynamic route chunks in Next.js/Nuxt).
-2. **Tree Shaking & Dependency Hygiene**:
-   - Import only necessary submodules (e.g., `import debounce from 'lodash/debounce'` rather than the entire `lodash` library).
-   - Audit bundle sizes via Webpack Bundle Analyzer or Vite Visualizer.
+1. **Deferred Loading in Flutter Web & Desktop**:
+   - Lazy-load secondary features and heavy charts using deferred imports:
+     ```dart
+     import 'features/admin_dashboard.dart' deferred as admin;
+     
+     Future<void> loadAdmin() async {
+       await admin.loadLibrary();
+     }
+     ```
+2. **Tree Shaking & Binary Size Optimization**:
+   - Build production releases with symbol stripping and obfuscation:
+     ```bash
+     flutter build appbundle --release --obfuscate --split-debug-info=build/symbols
+     ```
+   - Analyze APK/AAB size distributions via `flutter build appbundle --analyze-size`.
 
 ---
 

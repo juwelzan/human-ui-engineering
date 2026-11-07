@@ -23,23 +23,21 @@
 
 ## 2. Core Technical Invariants & Rules
 
-- **Language & Runtime**: [e.g., TypeScript 5.4, strict mode enabled, no explicit `any`]
-- **State Management**: [e.g., TanStack Query for server state, Zustand for client modal state]
-- **Design Tokens**: [e.g., 8pt spatial grid, Tailwind semantic color tokens, WCAG AA contrast]
-- **Testing Standard**: [e.g., Vitest for unit tests, Playwright for E2E user flows]
-- **Security Boundaries**: [e.g., HttpOnly secure cookies for auth, zero secrets in client bundles]
+- **Language & Runtime**: [e.g., Dart 3.x, sound null safety, strict lints in analysis_options.yaml]
+- **State Management**: [e.g., BLoC / Cubit for feature state, Riverpod for reactive dependency state]
+- **Design Tokens**: [e.g., 8pt spatial grid, ThemeData & ColorScheme, WCAG AA contrast]
+- **Testing Standard**: [e.g., package:test for unit tests, WidgetTester for UI, integration_test for E2E flows]
+- **Security Boundaries**: [e.g., FlutterSecureStorage for auth tokens, SSL pinning via Dio]
 
 ---
 
 ## 3. Directory Map & Package Boundaries
 
 ```text
-src/
-├── app/             # Next.js App Router pages and layouts
-├── components/      # Shared presentation primitives (Button, Card, Modal)
-├── features/        # Domain features (auth, billing, metrics)
-├── lib/             # Shared utilities, database client, API clients
-└── types/           # Global TypeScript definitions
+lib/
+├── core/            # Global foundational infrastructure (network, storage, theme tokens)
+├── shared/          # Reusable cross-feature UI widgets, custom painters, animations
+└── features/        # Feature-first domain modules (data, domain, presentation)
 ```
 
 ---

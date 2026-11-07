@@ -23,27 +23,27 @@ flowchart TD
     S5 --> S6[6. Produce Project Brief]
 ```
 
-### Step 1: Inspect Root Manifests & Identify Frameworks
+### Step 1: Inspect Manifests & Dart Constraints
 1. Run directory inspection on root files.
-2. Locate package manifests and read dependencies:
-   - `package.json` -> Check dependencies for React, Next.js, Vue, Angular, React Native, Tailwind, etc.
-   - `pubspec.yaml` -> Check Flutter SDK constraints, state management (bloc, riverpod, provider).
-   - `build.gradle.kts` / `settings.gradle.kts` -> Check Android Compose, Kotlin version, target SDK.
-   - `Package.swift` / `Podfile` -> Check iOS deployment targets and Swift dependencies.
+2. Locate `pubspec.yaml` and inspect dependencies:
+   - Check Flutter SDK constraints (e.g., `sdk: ^3.24.0`).
+   - Check state management packages (`flutter_bloc`, `flutter_riverpod`, `provider`).
+   - Check networking, routing, and database dependencies (`dio`, `go_router`, `drift`).
+   - Inspect `analysis_options.yaml` for strict lint rules.
 
 ### Step 2: Monorepo & Multi-Package Boundary Isolation
-1. If the project contains `apps/` or `packages/`:
+1. If the project is a Flutter monorepo (Melos) containing `apps/` or `packages/`:
    - Identify which subproject the active task belongs to.
-   - Restrict edits strictly to that subproject's boundaries.
+   - Restrict edits strictly to that subpackage's boundaries.
    - Never cross-contaminate dependencies between isolated packages.
 
 ### Step 3: Inventory Design Tokens & Shared Primitives
-1. Search for color and typography token definitions:
-   - Web: `tailwind.config.*`, `styles/tokens.css`, `theme/`.
-   - Flutter: `lib/core/theme/` (`AppColors`, `AppTypography`).
-   - Android: `core/designsystem/` (`Color.kt`, `Type.kt`, `Theme.kt`).
-   - Flutter: `lib/core/theme/app_colors.dart`, `app_theme.dart`.
-2. Locate shared widget libraries (`lib/core/widgets/`). Catalog existing buttons, inputs, and dialogs to prevent building duplicates.
+1. Search for color, typography, and spacing tokens in `lib/core/theme/`:
+   - `app_colors.dart` (ColorScheme & ThemeExtensions).
+   - `app_typography.dart` (TextTheme scales).
+   - `app_spacing.dart` (8pt/4pt mathematical grid).
+2. Locate shared widget libraries in `lib/shared/widgets/`:
+   - Catalog existing buttons, inputs, cards, and dialogs to prevent building duplicates.
 
 ### Step 4: Map State Management & Data Flow
 1. Identify how asynchronous data is fetched and cached (Dio, Repository pattern, Drift, Isar).

@@ -17,11 +17,11 @@ flowchart TD
 
 | Test Layer | Focus & Target | Execution Speed | Framework Tooling |
 |---|---|---|---|
-| **Unit Tests** | Pure functions, domain calculations, utilities, business rules | Milliseconds | Vitest, Jest, `test` (Dart), PyTest, JUnit 5, Go test |
-| **Component Tests** | UI rendering, user interaction, state transitions, accessibility | Seconds | React Testing Library, Flutter WidgetTester, Compose UI Test |
-| **API / Integration** | HTTP controllers, database transactions, middleware, auth | Seconds | Supertest, Testcontainers, Ktor Test, Httptest (Go) |
-| **End-to-End (E2E)** | Full user journeys across real browsers / devices | Minutes | Playwright, Cypress, Maestro, Patrol, Appium |
-| **Regression Tests** | Exact reproduction of previously fixed defects | Milliseconds–Seconds | Integrated into standard unit/component suite |
+| **Unit Tests** | Pure functions, domain calculations, utilities, business rules, BLoCs | Milliseconds | `package:test`, `bloc_test`, `mocktail` |
+| **Widget Tests** | UI rendering, user tap/scroll interactions, state transitions, accessibility | Seconds | `package:flutter_test` (`WidgetTester`) |
+| **Integration Tests** | Real database (Drift), HTTP client mocking, multi-screen navigation flows | Seconds | `package:integration_test`, `patrol` |
+| **End-to-End (E2E)** | Full user journeys across real Android/iOS devices and Web browsers | Minutes | `package:integration_test`, Flutter Driver |
+| **Regression Tests** | Exact reproduction of previously fixed bugs or overflow defects | Milliseconds–Seconds | Integrated into standard widget test suite |
 
 ---
 

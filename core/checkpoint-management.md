@@ -33,8 +33,8 @@ When tracking substantial tasks, maintain an `AI_TASK_STATE.md` file in the proj
 # AI Task State
 
 - **Task Title**: [Concise task description, e.g. "Implement Responsive Billing Dashboard"]
-- **Target Framework**: [e.g. Next.js 15 App Router / Tailwind CSS]
-- **Current Phase**: [Phase 1 to 5 / 14-Step Workflow Stage]
+- **Target Framework**: [Flutter & Dart / Material 3]
+- **Current Phase**: [Phase 1 to 5 / 18-Step Workflow Stage]
 - **Status**: [IN PROGRESS / BLOCKED / VERIFIED]
 
 ---
@@ -47,10 +47,10 @@ When tracking substantial tasks, maintain an `AI_TASK_STATE.md` file in the proj
 ---
 
 ## Active Checkpoint & Execution State
-- **Active Step**: Wiring `InvoiceTable` to the `useInvoices` server query.
+- **Active Step**: Wiring `InvoiceTable` to the billing BLoC.
 - **Modified Files**:
-  - `src/components/ui/MetricCard.tsx` (Verified & Passing)
-  - `src/features/billing/components/InvoiceTable.tsx` (Partially written)
+  - `lib/shared/widgets/cards/metric_card.dart` (Verified & Passing)
+  - `lib/features/billing/presentation/widgets/invoice_table.dart` (Partially written)
 - **Last Verified Checkpoint**: Commit `a1b2c3d` / Tests passing on `MetricCard`.
 - **Known Errors / Roadblocks**: None.
 - **Next Safe Action**: Complete invoice status cell rendering and write component tests.

@@ -180,7 +180,9 @@ flowchart TD
 | Reference Module | Domain | Key Topics |
 |---|---|---|
 | [permission-system.md](references/permission-system.md) | **Permissions** | 7-step Bengali protocol, permission rules, non-assumption |
+| [decision-memory.md](references/decision-memory.md) | **Decisions** | Persistent register, Approved/Rejected/Pending tiers |
 | [project-structure.md](references/project-structure.md) | **Structure** | Mandatory `lib/core/`, `lib/shared/`, `lib/features/` |
+| [core-engineering.md](references/core-engineering.md) | **Core Infra** | `lib/core/` Dio client, SSL pinning, errors & Result pattern |
 | [flutter-architecture.md](references/flutter-architecture.md) | **Architecture** | UDF, presentation-domain-data separation, Result pattern |
 | [dart-standards.md](references/dart-standards.md) | **Code Quality** | Sound null safety, records, patterns, sealed classes |
 | [ui-design.md](references/ui-design.md) | **UI/UX Design** | Visual hierarchy, focal anchor, human-centered UI |

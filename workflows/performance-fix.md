@@ -6,9 +6,9 @@
 
 ## 1. Purpose
 
-Attempting to fix performance through guesswork—such as randomly adding `useMemo` or `React.memo` everywhere—often degrades performance and obfuscates code. 
+Attempting to fix performance through guesswork—such as blindly wrapping widgets or guessing rebuild causes without profiling—often degrades performance and obfuscates code. 
 
-This workflow provides a scientific, evidence-based approach to resolving UI jank, frame drops, and memory leaks.
+This workflow provides a scientific, evidence-based approach to resolving Flutter UI jank, frame drops, and memory leaks.
 
 ---
 
@@ -24,23 +24,22 @@ flowchart TD
 
 ### Step 1: Profile & Measure the Baseline
 Never optimize without measurable data:
-1. Record a trace using profiler tools:
-   - **Web**: Chrome DevTools Performance tab, React Developer Tools Profiler.
-   - **Flutter**: Flutter DevTools Performance and CPU profiler.
-   - **Android**: Android Studio CPU & Memory Profiler.
-   - **iOS**: Xcode Instruments (Time Profiler, Allocations).
+1. Record a trace using **Flutter DevTools**:
+   - Performance view (UI thread time vs Raster thread time, frame budget bar chart).
+   - CPU Profiler (trace expensive function calls).
+   - Memory allocation view (heap snapshot diffs to detect un-disposed objects).
 2. Record concrete baseline numbers:
-   - Average FPS during scroll / interaction.
-   - Component render duration (in milliseconds).
+   - Average FPS during scroll / interaction (target: 60fps / 120fps).
+   - Widget build duration (in milliseconds, frame budget ≤ 16.6ms or ≤ 8.3ms).
    - Heap memory allocation (MB) over time.
 
 ### Step 2: Isolate the Bottleneck Category
 Determine the exact cause:
-- **Excessive Re-renders**: A parent component re-renders on every keystroke, forcing 200 child components to evaluate.
-- **Unbounded List Rendering**: Rendering 2,000 DOM nodes or widgets simultaneously without virtualization.
-- **Main Thread CPU Blocking**: Heavy sorting, regex, or JSON parsing executing synchronously during animation.
-- **Memory Leak**: Event listeners or controllers accumulating without disposal.
-- **Layout Thrashing**: Reading DOM layout geometry (`offsetHeight`) immediately followed by writing styling in a loop.
+- **Excessive Rebuilds**: A parent state change triggers full-screen rebuilds. Wrap static widgets in `const` and use fine-grained selectors (`context.select`, `buildWhen`).
+- **Unbounded List Rendering**: Rendering hundreds of items without virtualization. Use `ListView.builder` or `GridView.builder`.
+- **Main Thread CPU Blocking**: Heavy sorting, regex, or JSON decoding executing synchronously during animation. Offload to background isolates via `compute()`.
+- **Memory Leak**: `TextEditingController`, `AnimationController`, or `StreamSubscription` accumulating without `dispose()`.
+- **Raster Thread Overload**: Heavy runtime blur (`BackdropFilter`) or un-cached oversized image decoding on the raster thread.
 
 ### Step 3: Apply the Targeted Architectural Fix
 

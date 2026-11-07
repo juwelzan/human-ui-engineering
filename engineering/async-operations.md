@@ -16,95 +16,80 @@ This guide defines the universal standards for asynchronous UI engineering.
 
 ```mermaid
 flowchart LR
-    H1[1. Race Condition] --> S1[AbortController / Sequence IDs]
+    H1[1. Race Condition] --> S1[CancelToken / Sequence IDs]
     H2[2. Zombie State Update] --> S2[Lifecycle Cancellation on Unmount]
     H3[3. API Request Flooding] --> S3[Debounce & Throttle]
 ```
 
 ### 1. Race Conditions (Out-of-Order Responses)
-- **Scenario**: User types "React" (Request 1), then rapidly types "React 19" (Request 2). If Request 1 is delayed by network jitter and arrives *after* Request 2, the UI will display the outdated "React" results instead of "React 19".
-- **Solution**: Cancel obsolete in-flight requests or track monotonically increasing request sequence IDs.
+- **Scenario**: User types "Flutter" (Request 1), then rapidly types "Flutter 3.27" (Request 2). If Request 1 is delayed by network latency and arrives *after* Request 2, the UI will display the outdated "Flutter" results instead of "Flutter 3.27".
+- **Solution**: Cancel obsolete in-flight requests using Dio's `CancelToken` or stream transformers (`switchMap`).
 
 ### 2. Zombie Updates on Unmounted Views
-- **Scenario**: A user taps "Load Analytics", then immediately clicks "Back". 3 seconds later, the promise resolves and calls `setState`, throwing warnings or leaking memory.
-- **Solution**: Bind async tasks to the view's lifecycle and cancel them upon destruction.
+- **Scenario**: A user taps "Load Analytics", then immediately clicks "Back". 3 seconds later, the asynchronous `Future` resolves and calls `setState()`, throwing Flutter framework warnings or leaking memory.
+- **Solution**: Check `if (!context.mounted) return;` or `if (!mounted) return;` before calling `setState()`, and cancel listeners in `dispose()`.
 
 ### 3. API Request Flooding
-- **Scenario**: An input fires an HTTP request on every single keystroke, overwhelming the backend.
-- **Solution**: Debounce user input by 250ms–350ms.
+- **Scenario**: An input fires an HTTP request on every single keystroke, overwhelming backend servers.
+- **Solution**: Debounce user input by 250ms–350ms using a `Timer` or reactive stream operator.
 
 ---
 
-## 3. Request Cancellation Across Ecosystems
+## 3. Asynchronous Cancellation Patterns in Flutter & Dart
 
-Always wire request cancellation to component teardown:
+Always wire asynchronous operations to widget and controller lifecycles:
 
-### A. Web / React / Next.js / Vue
-```typescript
-useEffect(() => {
-  const controller = new AbortController();
-
-  async function fetchResults() {
-    try {
-      const response = await fetch(`/api/search?q=${query}`, {
-        signal: controller.signal,
-      });
-      const data = await response.json();
-      setResults(data);
-    } catch (err: unknown) {
-      if ((err as Error).name !== 'AbortError') {
-        setError('Failed to fetch search results');
-      }
-    }
-  }
-
-  fetchResults();
-
-  // Cancel in-flight request if query changes or component unmounts
-  return () => controller.abort();
-}, [query]);
-```
-
-### B. Flutter / Dart
+### A. HTTP Request Cancellation via Dio `CancelToken`
 ```dart
-CancelToken? _cancelToken;
+class _SearchScreenState extends State<SearchScreen> {
+  CancelToken? _cancelToken;
+  List<SearchResult> _results = [];
+  bool _isLoading = false;
 
-Future<void> search(String query) async {
-  _cancelToken?.cancel('Cancelled by new search request');
-  _cancelToken = CancelToken();
+  Future<void> _performSearch(String query) async {
+    // 1. Cancel previous in-flight request
+    _cancelToken?.cancel('Cancelled by newer search query');
+    _cancelToken = CancelToken();
 
-  try {
-    final response = await dio.get('/api/search', 
-      queryParameters: {'q': query}, 
-      cancelToken: _cancelToken,
-    );
-    setState(() => _results = response.data);
-  } catch (e) {
-    if (!CancelToken.isCancel(e)) {
-      setState(() => _hasError = true);
+    setState(() => _isLoading = true);
+
+    try {
+      final response = await dio.get(
+        '/api/search',
+        queryParameters: {'q': query},
+        cancelToken: _cancelToken,
+      );
+
+      if (!mounted) return; // Prevent zombie state update
+      setState(() {
+        _results = (response.data as List)
+            .map((e) => SearchResult.fromJson(e))
+            .toList();
+        _isLoading = false;
+      });
+    } on DioException catch (e) {
+      if (CancelToken.isCancel(e)) return; // Ignored deliberate cancellation
+      if (!mounted) return;
+      setState(() => _isLoading = false);
     }
   }
-}
 
-@override
-void dispose() {
-  _cancelToken?.cancel();
-  super.dispose();
+  @override
+  void dispose() {
+    _cancelToken?.cancel('Widget disposed'); // Prevent leaks on unmount
+    super.dispose();
+  }
 }
 ```
 
-### C. Android (Kotlin Coroutines)
-Use `viewModelScope`—all launched jobs automatically cancel when the ViewModel clears:
-```kotlin
-private var searchJob: Job? = null
+### B. Reactive Debouncing with StreamController & `switchMap`
+In BLoC or reactive controllers, use stream transformers to automatically cancel obsolete requests:
 
-fun onQueryChanged(newQuery: String) {
-    searchJob?.cancel() // Cancel previous pending query
-    searchJob = viewModelScope.launch {
-        delay(300) // Debounce
-        val results = repository.search(newQuery)
-        _uiState.update { it.copy(results = results) }
-    }
+```dart
+EventTransformer<SearchEvent> debounceRestartable<SearchEvent>(Duration duration) {
+  return (events, mapper) => events
+      .debounceTime(duration)
+      .switchMap(mapper); // switchMap automatically drops prior unresolved futures
 }
 ```
 

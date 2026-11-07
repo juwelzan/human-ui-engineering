@@ -25,10 +25,11 @@ The single source of truth for all agent operations is [`AGENTS.md`](AGENTS.md).
 2. **Absolute Flutter-Only Rule**: Flutter and Dart are the only supported application development framework. Never switch to or recommend alternative frameworks. Native code is allowed ONLY when platform channels or OS APIs require it.
 3. **Mandatory 3-Tier Project Structure**: All generated Flutter codebases must enforce `lib/core/` (foundations), `lib/shared/` (reusable UI), and `lib/features/` (feature-first domain modules).
 4. **Mandatory 3–4 Color Selection & Visual Preview**: Users choose 3–4 HEX colors, followed by a mandatory 12-component visual color placement board preview before theme finalization.
-5. **18-Step Human Design-to-Code Workflow**: All non-trivial UI engineering follows the 18-step lifecycle from requirements and project inspection through responsive layout, state binding, performance profiling, and testing.
-6. **Evidence-Based Engineering**: 5-tier evidence hierarchy; zero hallucination; honest reporting of test outcomes (`flutter test`, `dart analyze`).
-7. **Autonomous Recovery**: Session interruptions are resumed via [`AI_TASK_STATE.md`](AI_TASK_STATE.md) and [`core/recovery-protocol.md`](core/recovery-protocol.md) without restarting completed work.
-8. **Automated Validation**: All documentation files, internal relative links, and Flutter-only structural isolation must validate cleanly via `python3 scripts/validate.py`.
+5. **Decision Memory Protocol**: Record all user approvals and rejections into `DECISION_MEMORY.md` across 5 explicit tiers (Approved, Rejected, Pending, Project-Specific, Global Preferences) to prevent redundant questioning.
+6. **18-Step Human Design-to-Code Workflow**: All non-trivial UI engineering follows the 18-step lifecycle from requirements and project inspection through responsive layout, state binding, performance profiling, and testing.
+7. **Evidence-Based Engineering**: 5-tier evidence hierarchy; zero hallucination; honest reporting of test outcomes (`flutter test`, `dart analyze`).
+8. **Autonomous Recovery**: Session interruptions are resumed via [`AI_TASK_STATE.md`](AI_TASK_STATE.md) and [`core/recovery-protocol.md`](core/recovery-protocol.md) without restarting completed work.
+9. **Automated Validation**: All documentation files, internal relative links, and Flutter-only structural isolation must validate cleanly via `python3 scripts/validate.py`.
 
 ---
 
@@ -49,7 +50,7 @@ human-ui-engineering/
 ├── templates/              # Fillable engineering templates (ADRs, task state, bug reports)
 ├── docs/                   # Guides, matrices, and docs/adr/ (Architecture Decision Records)
 ├── scripts/                # Automated validation suite (validate-docs, validate-links, etc.)
-└── skills/human-flutter/   # Canonical Agent Skills engine (28 reference modules)
+└── skills/human-flutter/   # Canonical Agent Skills engine (30 reference modules)
 ```
 
 ---

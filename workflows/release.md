@@ -34,7 +34,7 @@ flowchart TD
 
 ### Stage 4: Version Bump & Changelog Update
 1. Determine semantic version increment (MAJOR, MINOR, PATCH).
-2. Update version in `package.json`, `pubspec.yaml`, or project manifest.
+2. Update version and build number in `pubspec.yaml` (e.g. `version: 1.2.0+15`).
 3. Document release notes, features, fixes, and breaking changes in [`../CHANGELOG.md`](../CHANGELOG.md).
 
 ### Stage 5: Release Tag & Rollback Plan

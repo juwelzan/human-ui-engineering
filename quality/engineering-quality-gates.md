@@ -37,9 +37,9 @@ When completing a task, output the status of all evaluated gates:
 | Gate | Status | Notes |
 |---|---|---|
 | 1. Requirements | **PASSED** | All 4 checkout acceptance criteria satisfied. |
-| 2. Framework Idioms | **PASSED** | React custom hook with clean unmount cleanup. |
-| 3. Architecture | **PASSED** | Isolated state in `useBillingForm.ts`. |
-| 4. Code Quality | **PASSED** | Max file length 142 lines, strict TypeScript. |
+| 2. Framework Idioms | **PASSED** | Flutter BLoC with clean State.dispose() cleanup. |
+| 3. Architecture | **PASSED** | Isolated state in `billing_form_cubit.dart`. |
+| 4. Code Quality | **PASSED** | Max file length 142 lines, sound null-safe Dart. |
 | 5. UI Tokens | **PASSED** | Used `var(--spacing-md)` and semantic status tokens. |
 | 6. Responsiveness | **PASSED** | Form stacks cleanly on 375px mobile. |
 | 7. Accessibility | **PASSED** | Verified with screen reader labels & 4.8:1 contrast. |

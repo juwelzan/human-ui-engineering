@@ -28,9 +28,9 @@ Adhere to Semantic Versioning (`MAJOR.MINOR.PATCH`):
 
 ### Release Pre-Flight Checklist
 - [ ] Working tree is clean on `main` / release branch (`git status`).
-- [ ] All automated tests pass (`npm test`, `pytest`, `flutter test`, `cargo test`).
-- [ ] Type check and static analysis pass with 0 errors.
-- [ ] Production build succeeds (`npm run build`, `flutter build`).
+- [ ] All automated tests pass (`flutter test`).
+- [ ] Static analysis passes with 0 errors (`dart analyze`).
+- [ ] Production build succeeds (`flutter build appbundle --release` or `flutter build web --release`).
 - [ ] [`CHANGELOG.md`](../CHANGELOG.md) updated with release notes and migration guides.
 - [ ] Required database migrations are backward-compatible.
 

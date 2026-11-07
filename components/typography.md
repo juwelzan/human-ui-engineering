@@ -12,39 +12,38 @@ This guide defines the engineering standard for reusable typography components.
 
 ---
 
-## 2. Decoupling Visual Style from Semantic HTML
+## 2. Decoupling Visual Style from Screen Reader Semantics
 
-A critical principle of accessible UI engineering is separating **visual size** from **semantic markup**:
-- A heading might need the **semantic weight** of an `<h2>` for screen reader document structure, but require the **visual style** of a compact `h4` due to tight card space.
-- Typography components should support an `as` prop (polymorphic rendering) or semantic tag parameter:
-
-```tsx
-// React Example: Styled as Heading 3, rendered semantically as H2
-<Heading variant="h3" as="h2">
-  Account Settings
-</Heading>
-```
+A critical principle of accessible Flutter UI engineering is separating **visual style** from **assistive accessibility semantics**:
+- A heading might require the **visual size** of a compact `titleMedium` due to tight card constraints, but need to announce itself as an explicit section header for TalkBack / VoiceOver screen readers.
+- In Flutter, wrap text primitives with the `Semantics` widget or use semantic label flags:
 
 ```dart
-// Flutter Example: Pre-composed text widgets with semantic roles
-AppHeading.h3(
-  'Account Settings',
-  semanticTag: 'h2',
-)
+// Flutter Example: Visual titleMedium styling with explicit assistive header semantics
+Semantics(
+  header: true,
+  child: Text(
+    'Account Settings',
+    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+      fontWeight: FontWeight.w600,
+    ),
+  ),
+);
 ```
 
 ---
 
 ## 3. Recommended Typography Primitives
 
-Create a focused set of typography components:
+Create a focused set of reusable typography primitives in `lib/shared/widgets/text/`:
 
-| Component | Intended Content | Default Element / Tag | Default Style |
+| Component Primitive | Material 3 Style Role | Semantic Behavior | Typical Usage |
 |---|---|---|---|
-| `<Heading>` | Page, section, and card titles | `<h1>` – `<h6>` | Bold / Semibold, tight line-height |
-| `<Text>` | General body copy, descriptions | `<p>`, `<span>` | Regular / Medium, comfortable line-height |
-| `<Label>` | Form labels, category badges | `<label>`, `<span>` | Medium / Semibold, compact height |
-| `<Code>` | Monospace snippets, IDs, keys | `<code>`, `<pre>` | Monospace font, subtle background tint |
+| `AppHeading` | `headlineLarge` / `headlineMedium` | `Semantics(header: true)` | Screen titles, hero metrics |
+| `AppSubheading` | `titleLarge` / `titleMedium` | `Semantics(header: true)` | Card headers, section dividers |
+| `AppBodyText` | `bodyLarge` / `bodyMedium` | Default text node | Paragraphs, descriptions |
+| `AppLabel` | `labelLarge` / `labelSmall` | `Semantics(label: ...)` | Buttons, badges, timestamps |
+| `AppCodeText` | Custom Monospace `TextStyle` | Font: Fira Code / JetBrains | API keys, transaction IDs |
 
 ---
 

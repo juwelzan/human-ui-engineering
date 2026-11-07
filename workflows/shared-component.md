@@ -33,28 +33,28 @@ Answer the 6 qualification questions from [Shared Component Rules](../components
 - Will abstraction ease maintenance?
 
 ### Step 2: API Contract Design
-1. Define explicit types/interfaces for props/parameters.
-2. Provide sensible defaults for all optional parameters.
-3. Use compound components if configuration exceeds 10 props.
-4. Support polymorphic rendering (`as` prop) if applicable.
+1. Define explicit types for all widget parameters.
+2. Provide sensible defaults for optional parameters.
+3. Expose named constructors for variants (e.g. `AppButton.primary()`, `AppButton.secondary()`).
+4. Keep constructors `const` wherever possible.
 
 ### Step 3: Implement the 5 Core States
 Ensure the component explicitly supports:
 1. **Default / Rest**: Standard styling with design tokens.
 2. **Hover / Active**: Visual and tactile feedback.
-3. **Focused**: High-contrast focus ring with offset.
-4. **Disabled**: Reduced opacity, non-interactive cursor, `aria-disabled="true"`.
+3. **Focused**: High-contrast keyboard focus highlight.
+4. **Disabled**: Reduced opacity, `onPressed: null`.
 5. **Loading**: Inline progress indicator without layout jitter or dimension shifts.
 
 ### Step 4: Accessibility & Semantics
-1. Assign semantic roles and ARIA attributes (`aria-label`, `aria-expanded`, etc.).
-2. Ensure touch target padding satisfies minimum dimensions (44x44pt / 48x48dp).
-3. Test keyboard activation via `Enter` and `Space`.
+1. Assign semantic roles using Flutter's `Semantics` widget.
+2. Ensure touch target padding satisfies minimum dimensions (48x48dp, `kMinInteractiveDimension`).
+3. Verify contrast ratio (minimum 4.5:1).
 
-### Step 5: Co-Located Tests & Previews
-1. Write unit/component tests in `[ComponentName].test.tsx` (or `_test.dart`).
-2. Test default rendering, click handlers, disabled lock, and loading states.
-3. Create an interactive preview or Storybook story if the repository uses one.
+### Step 5: Co-Located Widget Tests & Previews
+1. Write widget tests in `test/shared/widgets/<category>/<widget_name>_test.dart`.
+2. Test default rendering, tap handlers, disabled lock, and loading states using `WidgetTester`.
+3. Verify interactive widget previews where applicable.
 
 ### Step 6: Documentation & Caller Migration
 1. Document the component's variants and usage example in a markdown docstring or story.

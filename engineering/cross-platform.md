@@ -48,13 +48,19 @@ Modern mobile and desktop devices have physical display cutouts, camera notches,
 ## 4. Internationalization (i18n) & Localization (L10n)
 
 ### 1. No Hardcoded Strings
-Never render hardcoded English strings inside UI components:
-```tsx
-// Anti-Pattern
-<Button>Submit Payment</Button>
+Never render hardcoded English strings inside Flutter widgets:
+```dart
+// ❌ Anti-Pattern: Hardcoded text strings
+AppButton.primary(
+  label: 'Submit Payment',
+  onPressed: _submit,
+);
 
-// Standard
-<Button>{t('checkout.submit_payment')}</Button>
+// ✅ Standard: Flutter AppLocalizations (generated from ARB files)
+AppButton.primary(
+  label: AppLocalizations.of(context)!.submitPayment,
+  onPressed: _submit,
+);
 ```
 
 ### 2. Layout Flexibility for Text Expansion

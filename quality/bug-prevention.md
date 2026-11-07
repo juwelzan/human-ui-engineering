@@ -37,17 +37,15 @@ flowchart TD
 
 ### 3. Keyboard Obscuring Inputs on Mobile
 - **Root Cause**: The soft virtual keyboard covers the bottom half of a form, hiding the active input and submit button.
-- **Defensive Pattern**: Wrap forms in scrollable, keyboard-aware containers:
-  - **Flutter**: `SingleChildScrollView` + `MediaQuery.viewInsetsOf(context)`.
-  - **React Native**: `KeyboardAvoidingView`.
-  - **Web**: Keep inputs scrollable and support `scrollIntoView({ behavior: 'smooth' })`.
+- **Defensive Pattern**: Wrap forms in a scrollable, keyboard-aware view:
+  - In Flutter: Wrap in `SingleChildScrollView` with padding derived from `MediaQuery.viewInsetsOf(context)`.
 
 ### 4. Double-Submit & Race Conditions
 - **Root Cause**: An impatient user taps "Submit Order" three times rapidly, firing 3 duplicate charges.
-- **Defensive Pattern**: Immediately disable the button upon first click (`disabled={isLoading}`) and abort previous pending requests with `AbortController`.
+- **Defensive Pattern**: Immediately disable the button upon first click (`onPressed: isLoading ? null : _submit`) and cancel previous pending requests with a Dio `CancelToken`.
 
 ### 5. Infinite Re-Render Loops
-- **Root Cause**: Creating object literals, inline arrays, or mutating state directly inside component render bodies or `useEffect` dependency arrays.
+- **Root Cause**: Instantiating controllers or mutating state directly inside Flutter `build()` methods or reactive listener callbacks.
 - **Defensive Pattern**: Never dispatch state changes in pure render functions. Ensure dependency arrays only track primitives or properly memoized values.
 
 ### 6. Sticky Hover States on Mobile Touchscreens

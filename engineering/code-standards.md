@@ -37,14 +37,14 @@ Writing code like a senior human software engineer requires discipline. This gui
 | 5  | Premature Abstractions     | Creating complex generics or base | Follow the Rule of Three: duplicate |
 |    |                            | classes before 3 distinct usages. | twice, abstract on the 3rd instance.|
 +----+----------------------------+-----------------------------------+-------------------------------------+
-| 6  | Unnecessary Dependencies   | Installing large npm/pub packages | Prefer standard library or minimal  |
+| 6  | Unnecessary Dependencies   | Installing large pub packages      | Prefer standard library or minimal  |
 |    |                            | for simple 10-line utilities.     | self-contained utility functions.   |
 +----+----------------------------+-----------------------------------+-------------------------------------+
 | 7  | Dead Code                  | Commented-out blocks, unreachable | Remove dead code cleanly; rely on   |
 |    |                            | branches, unused interfaces.      | Git history for preservation.       |
 +----+----------------------------+-----------------------------------+-------------------------------------+
-| 8  | Unused Imports             | Lingering unused imports bloating | Run automated linter (`eslint --fix`|
-|    |                            | bundles and triggering warnings.  | or `dart fix --apply`).             |
+| 8  | Unused Imports             | Lingering unused imports bloating | Run automated linter                |
+|    |                            | bundles and triggering warnings.  | (`dart fix --apply`).               |
 +----+----------------------------+-----------------------------------+-------------------------------------+
 | 9  | Unnecessary State          | Duplicating calculated values in  | Compute derived values on the fly   |
 |    | (Derived State Desync)     | state (`fullName` from names).    | or leverage memoized selectors.     |
@@ -53,7 +53,7 @@ Writing code like a senior human software engineer requires discipline. This gui
 |    |                            | mutate state or dispatch network. | effects exclusively in event sinks. |
 +----+----------------------------+-----------------------------------+-------------------------------------+
 | 11 | Uncontrolled Global State  | Dumping ephemeral UI toggles into | Restrict global state to true app   |
-|    |                            | root Redux or global singletons.  | globals (auth user, theme, locale). |
+|    |                            | root state or global singletons.  | globals (auth user, theme, locale). |
 +----+----------------------------+-----------------------------------+-------------------------------------+
 ```
 

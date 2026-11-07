@@ -18,13 +18,13 @@ This guide defines the non-negotiable **Evidence-Based Engineering** protocol th
 
 Under no circumstances may an AI agent fabricate or assume the existence of:
 
-1. **Package & Library Names**: Recommending third-party packages without verifying that they exist in the official package registry (`npm`, `pub.dev`, `Maven`, `crates.io`, `PyPI`).
+1. **Package & Library Names**: Recommending third-party packages without verifying that they exist in the official package registry (`pub.dev`).
 2. **API Methods & Parameters**: Invoking methods, flags, or parameters on external or internal classes without verifying their signatures in source code or installed type definitions.
-3. **Dependency Versions**: Hardcoding arbitrary version numbers (e.g. `^4.18.2`) without inspecting existing lockfiles (`package-lock.json`, `pubspec.lock`, `yarn.lock`).
-4. **Configuration Options**: Inventing compiler flags, linter rules, or framework config properties in `tsconfig.json`, `next.config.js`, `build.gradle.kts`, or `vite.config.ts`.
-5. **File Paths & Directory Structures**: Assuming that files live at specific paths (e.g. `/src/utils/api.ts`) without running discovery tools or reading directory trees.
-6. **Test & Build Results**: Claiming that tests passed, compilation succeeded, or benchmarks achieved 60fps without terminal execution evidence.
-7. **Platform Capabilities**: Assuming a web API is universally available on native mobile, or vice versa, without verifying platform support.
+3. **Dependency Versions**: Hardcoding arbitrary version numbers (e.g. `^4.18.2`) without inspecting existing lockfiles (`pubspec.lock`).
+4. **Configuration Options**: Inventing compiler flags, linter rules, or framework config properties in `analysis_options.yaml` or `build.gradle.kts`.
+5. **File Paths & Directory Structures**: Assuming that files live at specific paths (e.g. `lib/core/network/api_client.dart`) without running discovery tools or reading directory trees.
+6. **Test & Build Results**: Claiming that tests passed, compilation succeeded, or benchmarks achieved 120fps without terminal execution evidence.
+7. **Platform Capabilities**: Assuming a mobile API is universally available on Flutter Web or Desktop without verifying platform support.
 
 ---
 
@@ -48,11 +48,11 @@ flowchart TD
 
 | Tier | Definition | Example Statement |
 |---|---|---|
-| **1. Verified Fact** | Confirmed by inspecting project files or running commands | *"Checked `package.json`: Project is using Next.js version 15.0.3 and React 19."* |
-| **2. Existing Project Convention** | Established pattern observed in current repository code | *"Existing screens in `src/features/` encapsulate state in custom hooks."* |
-| **3. Recommended Approach** | Official community pattern supported by framework documentation | *"In Next.js 15, route handlers should handle mutation via Server Actions."* |
+| **1. Verified Fact** | Confirmed by inspecting project files or running commands | *"Checked `pubspec.yaml`: Project is using Flutter SDK ^3.24.0 and flutter_bloc ^8.1.6."* |
+| **2. Existing Project Convention** | Established pattern observed in current repository code | *"Existing screens in `lib/features/` encapsulate state in BLoC/Cubit."* |
+| **3. Recommended Approach** | Official community pattern supported by Flutter documentation | *"In Flutter, declarative routing should use GoRouter with route guards."* |
 | **4. Assumption** | Plausible premise that has not yet been verified against code | *"Assumption: The backend API returns timestamps in ISO 8601 UTC format. Needs verification."* |
-| **5. Unverified Information** | Uncertain claim where documentation or tests are unavailable | *"Unverified: Whether this specific third-party calendar widget supports RTL layout without custom CSS overrides."* |
+| **5. Unverified Information** | Uncertain claim where documentation or tests are unavailable | *"Unverified: Whether this specific third-party calendar widget supports RTL layout without custom overrides."* |
 
 > [!CAUTION]
 > If an agent is uncertain about an API, dependency, or version, it MUST classify it as an **Assumption** or **Unverified Information** rather than presenting it as a confirmed fact.
@@ -89,7 +89,7 @@ AI agents must report execution outcomes with strict, unimpeachable honesty:
 - **FAILED**: The command was executed and failed with a specific non-zero exit code or error output.
 - **SKIPPED**: The test was intentionally omitted (with an explicit technical reason).
 - **BLOCKED**: The check could not run due to missing environment tooling, dependencies, or permissions.
-- **NOT APPLICABLE**: The check does not apply to this specific task (e.g. Android tests on a React web task).
+- **NOT APPLICABLE**: The check does not apply to this specific task (e.g. Linux desktop tests on a mobile-only task).
 
 > [!IMPORTANT]
 > Never say "All 24 tests passed" if you did not execute the test runner. Fabricating test output is a severe violation of engineering ethics.

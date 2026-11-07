@@ -18,36 +18,39 @@
 flowchart TD
     subgraph Presentation
         V[Views / Screens] --> C[Shared UI Primitives]
-        V --> VM[UI Controller / ViewModel / Hook]
+        V --> VM[UI Controller / BLoC / Cubit / Notifier]
     end
     subgraph Domain
-        VM --> UC[Use Cases / Transformers]
+        VM --> UC[Use Cases / Entities / Value Objects]
     end
     subgraph Data
-        UC --> R[Repositories / Query Client]
-        R --> API[Remote API / Storage]
+        UC --> R[Repositories / Remote Data Sources]
+        R --> API[Dio Client / Local Cache / Hive / Drift]
     end
 ```
 
-- **Presentation Layer**: [Describe components, controllers, views]
-- **Domain Layer**: [Describe validation rules, business logic entities]
-- **Data Layer**: [Describe repositories, DTO mappers, API integration]
+- **Presentation Layer**: [Describe screens, widgets, BLoC/Cubit state handlers]
+- **Domain Layer**: [Describe validation entities, use cases, domain repository contracts]
+- **Data Layer**: [Describe repository implementations, DTO models, data sources, database storage]
 
 ---
 
 ## 3. Directory & Folder Layout Proposal
 
 ```text
-src/ (or lib/)
-├── core/
-│   ├── designsystem/           # [Tokens & Primitives]
-│   └── network/                # [API Clients]
-├── features/
-│   └── [feature-name]/
-│       ├── components/         # [Sub-widgets]
-│       ├── hooks/              # [Controllers / ViewModels]
-│       ├── [FeatureScreen]     # [Main View]
-│       └── types.ts            # [Data contracts]
+lib/
+├── core/                       # Global infrastructure & theme tokens
+│   ├── network/                # Dio client, interceptors, SSL pinning
+│   ├── theme/                  # app_colors.dart, app_theme.dart, typography
+│   └── errors/                 # failures.dart, exceptions.dart
+├── shared/                     # Reusable widgets, custom painters, animations
+│   ├── widgets/                # app_button.dart, app_card.dart, app_text_field.dart
+│   └── layouts/                # responsive_layout.dart
+└── features/                   # Feature-first domain modules
+    └── [feature-name]/
+        ├── data/               # models, datasources, repository implementations
+        ├── domain/             # entities, repository interfaces, usecases
+        └── presentation/       # screens, widgets, bloc / cubit / state
 ```
 
 ---
@@ -56,10 +59,10 @@ src/ (or lib/)
 
 | State Tier | Scope | Mechanism / Tool | Justification |
 |---|---|---|---|
-| **Local / Ephemeral** | Component | `useState` / `remember` | UI toggles, text input values |
-| **Feature State** | Single Flow | Custom Hook / ViewModel / Cubit | Multi-step wizard state |
-| **Server / Cache** | Remote Data | TanStack Query / Repository cache | Auto-caching, retry, deduplication |
-| **Global State** | App-wide | Zustand / Riverpod / Store | User session, active theme |
+| **Local / Ephemeral** | Widget | `StatefulWidget` / `ValueNotifier` | UI toggles, text input focus |
+| **Feature State** | Single Flow | BLoC / Cubit / Riverpod Notifier | Predictable business logic & validation |
+| **Repository Cache** | Remote Data | Repository pattern + Local DB | Offline persistence & sync |
+| **Global State** | App-wide | BLoC / Riverpod Provider | User session, auth token, theme mode |
 
 ---
 

@@ -36,7 +36,7 @@ flowchart TD
 |---|---|---|---|
 | **Tier 1** | **Ground Truth** | Telemetry directly produced by compilers, package managers, test runners, or git commands. | Accept as authoritative; ground all reports here. |
 | **Tier 2** | **Project Artifacts** | Existing source files, design tokens, styling files, test files, and config files on disk. | Quote exact lines, respect existing types and signatures. |
-| **Tier 3** | **Authoritative Docs** | Official framework and library documentation (MDN, Flutter docs, React docs). | Consult for API signatures, deprecations, and idioms. |
+| **Tier 3** | **Authoritative Docs** | Official framework and language documentation (Flutter docs, Dart API reference, pub.dev). | Consult for API signatures, deprecations, and idioms. |
 | **Tier 4** | **Inferences** | Deductions regarding unstated user requirements or system architecture. | Must be labeled as recommendations or validated against code. |
 | **Tier 5** | **Unverified Assumptions** | Speculative guesses about file locations, API behavior, or test passes. | **STRICTLY BANNED**. Never claim a test passed without running it. |
 
@@ -50,8 +50,8 @@ Before applying any code modification, evaluate the decision against this matrix
 +-----------------------+----------------------------------+----------------------------------+
 | Situation             | Unprofessional AI Behavior       | Professional Engineer Behavior  |
 +-----------------------+----------------------------------+----------------------------------+
-| Missing library       | Silently imports uninstalled npm | Inspects package.json; proposes  |
-| dependency            | package or creates mock shim.    | installation with justification. |
+| Missing library       | Silently imports uninstalled pub | Inspects pubspec.yaml; asks      |
+| dependency            | package or creates mock shim.    | permission in Bengali first.     |
 +-----------------------+----------------------------------+----------------------------------+
 | Ambiguous requirement | Assumes one path blindly without | Evaluates safe default; asks     |
 |                       | mentioning alternatives.         | only if choice is irreversible.  |

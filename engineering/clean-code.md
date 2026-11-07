@@ -30,52 +30,50 @@ Always prefix booleans with auxiliary verbs (`is`, `has`, `should`, `can`):
 - **Good**: `isOpen`, `isLoading`, `hasError`, `canSubmit`, `shouldAutoFocus`
 - **Bad**: `open`, `loading`, `error`, `submit`, `focus`
 
-### 2. Event Handlers & Callbacks
-Distinguish clearly between **callback props** and **handler implementations**:
-- **Props (Declarative)**: Prefix with `on` (`onClick`, `onSelectionChange`, `onDismiss`).
-- **Internal Handlers (Imperative)**: Prefix with `handle` (`handleClick`, `handleSelectionChange`, `handleDismiss`).
+### 2. Event Callbacks & Handlers
+Distinguish clearly between **callback parameters** and **handler methods**:
+- **Callbacks (Declarative)**: Prefix with `on` (`onPressed`, `onSelectionChanged`, `onDismiss`).
+- **Internal Handlers (Private)**: Prefix with `_handle` (`_handleTap`, `_handleSelectionChanged`, `_handleDismiss`).
 
-### 3. Component & File Names
-- Use **PascalCase** for component definitions and filenames (`UserProfileCard.tsx`, `app_text_field.dart`, `ProfileHeader.kt`).
+### 3. Widget & File Names
+- Use **PascalCase** for Flutter widget class definitions (`UserProfileCard`, `AppTextField`).
+- Use **snake_case** for all Dart filenames (`user_profile_card.dart`, `app_text_field.dart`).
 - Use domain-descriptive nouns, never generic names (`DashboardAnalyticsSummary` instead of `ContentBox2`).
 
 ---
 
-## 4. Control Flow & JSX / Template Cleanliness
+## 4. Control Flow & Widget Tree Cleanliness
 
 ### Eliminate Nested Ternaries
-Nested ternary operators inside templates are unreadable and error-prone:
+Nested ternary operators inside Flutter widget trees are unreadable and error-prone:
 
-```tsx
-// Anti-Pattern: Nested Ternary Nightmare
-return (
-  <div>
-    {isLoading ? (
-      <Spinner />
-    ) : hasError ? (
-      <ErrorMessage />
-    ) : data.length === 0 ? (
-      <EmptyState />
-    ) : (
-      <DataList items={data} />
-    )}
-  </div>
+```dart
+// ❌ Anti-Pattern: Nested Ternaries inside build()
+return Container(
+  child: isLoading
+      ? const AppSpinner()
+      : hasError
+          ? const AppErrorWidget()
+          : data.isEmpty
+              ? const AppEmptyState()
+              : AppDataList(items: data),
 );
 
-// Clean Alternative: Early returns or declarative state branching
-if (isLoading) return <Spinner />;
-if (hasError) return <ErrorMessage />;
-if (data.length === 0) return <EmptyState />;
-
-return <DataList items={data} />;
+// ✅ Clean Alternative: Dart 3 Exhaustive Pattern Matching
+return switch (state) {
+  DataLoading() => const AppSpinner(),
+  DataError(:final message) => AppErrorWidget(message: message),
+  DataSuccess(:final items) when items.isEmpty => const AppEmptyState(),
+  DataSuccess(:final items) => AppDataList(items: items),
+};
 ```
 
 ---
 
-## 5. Explicit Typing & Prop Contracts
+## 5. Explicit Typing & Widget Parameter Contracts
 
-- Always declare explicit types/interfaces for component props. Never use `any` (TypeScript) or `dynamic` (Dart) for UI data bindings.
-- Differentiate between strictly required parameters and optional overrides.
+- Always declare explicit types for widget parameters. Never use `dynamic` or `Object` for UI data bindings.
+- Differentiate between strictly required parameters (`required this.onPressed`) and optional overrides.
 - Provide sensible default values for all optional configuration properties.
 
 ---

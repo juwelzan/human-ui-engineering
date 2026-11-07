@@ -35,39 +35,44 @@ flowchart TD
    - Modern mobile & SPA apps: Use OAuth 2.0 with Proof Key for Code Exchange (PKCE).
    - Session tokens: Store in `HttpOnly`, `Secure`, `SameSite=Strict` cookies. Rotate session IDs upon privilege elevation or login.
    - Multi-Factor Authentication (MFA): Support TOTP (Time-based One-Time Password) or WebAuthn/Passkeys.
-2. **Broken Object Level Authorization (BOLA / IDOR) Defense**:
-   - **Never trust client-supplied entity IDs without verifying ownership**:
-   ```typescript
-   // VULNERABLE TO IDOR:
-   app.get('/api/documents/:id', async (req, res) => {
-     const doc = await db.documents.findUnique({ where: { id: req.params.id } });
-     res.json(doc);
-   });
+### 2. Client-Side Authentication Storage & Secure Key Management
+In Flutter applications, sensitive auth tokens and refresh tokens must never be written to plain `SharedPreferences`. Always leverage hardware-backed platform security:
 
-   // SAFE: Enforce tenant / user ownership boundary
-   app.get('/api/documents/:id', async (req, res) => {
-     const doc = await db.documents.findFirst({
-       where: {
-         id: req.params.id,
-         tenantId: req.user.tenantId, // Ownership bound to auth session
-       },
-     });
-     if (!doc) throw new NotFoundException('Document not found');
-     res.json(doc);
-   });
-   ```
+```dart
+// lib/core/storage/secure_storage_service.dart
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+class SecureStorageService {
+  const SecureStorageService(this._storage);
+  final FlutterSecureStorage _storage;
+
+  static const _tokenKey = 'auth_token_key';
+
+  Future<void> saveAuthToken(String token) async {
+    await _storage.write(
+      key: _tokenKey,
+      value: token,
+      aOptions: const AndroidOptions(encryptedSharedPreferences: true),
+      iOptions: const IOSOptions(accessibility: KeychainAccessibility.first_unlock),
+    );
+  }
+
+  Future<String?> readAuthToken() => _storage.read(key: _tokenKey);
+  Future<void> clearAuthToken() => _storage.delete(key: _tokenKey);
+}
+```
 
 ---
 
 ## 4. Input Validation & Output Encoding
 
 1. **Input Validation (Perimeter Defense)**:
-   - Validate every inbound payload against strict type schemas (Zod, Pydantic, Joi).
-   - Reject unrecognised fields (`strip` or `strict` mode) to prevent mass-assignment vulnerabilities.
-2. **Output Encoding (XSS Defense)**:
-   - Rely on automatic template escaping (React JSX, Flutter Text, Angular templates).
-   - Sanitize rich markdown/HTML with `DOMPurify` before rendering.
-   - Whitelist protocols on hyperlinks (`https:`, `http:`, `mailto:`); reject `javascript:` pseudo-protocols.
+   - Validate every form input using strictly typed validation rules (`AppValidators.email()`, `AppValidators.password()`).
+   - Reject arbitrary untyped parameters to prevent injection bugs.
+2. **Output Encoding (Injection Defense)**:
+   - Rely on automatic string escaping in Flutter text widgets (`Text`, `SelectableText`).
+   - Sanitize rich markdown strings before rendering to prevent malicious hyperlink pseudo-protocols (`javascript:`).
+   - Whitelist protocols on hyperlinks (`https:`, `http:`, `mailto:`, `tel:`).
 
 ---
 

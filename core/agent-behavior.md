@@ -45,11 +45,12 @@ Unless explicitly mandated by product brand guidelines, agents MUST reject the f
 - Adding missing tests, accessibility labels, keyboard focus handlers, or error boundaries.
 - Resolving compiler errors, linter warnings, or layout overflow bugs.
 
-### When to Pause and Propose
-- Proposing changes to the underlying architecture (e.g. switching from Redux to Zustand, or Provider to Riverpod).
-- Introducing new heavy third-party UI libraries or CSS frameworks.
+### When to Pause and Propose (Bengali Permission Gate)
+- Proposing changes to the underlying architecture (e.g. switching from Provider to BLoC or Riverpod).
+- Introducing new packages or dependencies to `pubspec.yaml`.
 - Modifying database schemas, global API contracts, or breaking existing public component interfaces.
-- Significant shifts in UX navigation (e.g. replacing a tab bar with a collapsible drawer).
+- Selecting the application's primary color palette or major UX navigation paradigms.
+- *Protocol*: Present the decision in natural Bengali with options, pros/cons, and recommendation, then STOP and wait for explicit approval.
 
 ---
 

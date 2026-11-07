@@ -67,7 +67,7 @@ def main():
         print("  ✓ Zero non-Flutter framework files detected across repository.")
 
     # 3. Check for Misleading Universal Claims in Core Invariants
-    print("\n[3/3] Scanning core instructions for Absolute Flutter-Only compliance...")
+    print("\n[3/4] Scanning core instructions for Absolute Flutter-Only compliance...")
     core_files_to_check = [
         "AGENTS.md",
         "PROJECT_CONTEXT.md",
@@ -90,6 +90,31 @@ def main():
 
     if not any("Prohibited multi-framework pattern" in e for e in errors):
         print("  ✓ All core instructions strictly uphold the Absolute Flutter-Only Rule.")
+
+    # 4. Check for Foreign Framework Code Blocks and Package References
+    print("\n[4/4] Scanning active documents for foreign code blocks (tsx/jsx/npm)...")
+    foreign_syntax_patterns = [
+        re.compile(r'```(?:tsx|jsx)\b', re.IGNORECASE),
+        re.compile(r'\bpackage\.json\b', re.IGNORECASE),
+        re.compile(r'\bnpm\s+install\b', re.IGNORECASE),
+    ]
+
+    for root, dirs, files in os.walk(REPO_ROOT):
+        if ".git" in root.split(os.sep):
+            continue
+        for f in files:
+            if not f.endswith(".md") or f == "CHANGELOG.md":
+                continue
+            fpath = os.path.join(root, f)
+            with open(fpath, "r", encoding="utf-8") as fh:
+                body = fh.read()
+            rel = os.path.relpath(fpath, REPO_ROOT)
+            for fpat in foreign_syntax_patterns:
+                if fpat.search(body):
+                    errors.append(f"Foreign code or npm reference matching '{fpat.pattern}' detected in {rel}")
+
+    if not any("Foreign code or npm reference" in e for e in errors):
+        print("  ✓ Zero foreign code blocks (tsx/jsx) or npm references detected across all documents.")
 
     if errors:
         print(f"\n❌ FLUTTER-ONLY VALIDATION FAILED with {len(errors)} error(s):")
