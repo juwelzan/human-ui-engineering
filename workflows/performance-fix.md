@@ -46,11 +46,11 @@ Determine the exact cause:
 
 | Diagnosed Cause | Prescribed Engineering Fix |
 |---|---|
-| **Excessive Re-renders** | Isolate volatile state into local leaf components; use selectors or `const` constructors. |
-| **Long List Jank** | Virtualize the list using `@tanstack/react-virtual`, `ListView.builder`, or `LazyColumn`. |
-| **Heavy Computation** | Move work off the UI thread (Web Worker, Dart isolate, Kotlin Coroutines `Dispatchers.Default`). |
-| **Memory Leak** | Add missing cleanup in `useEffect`, `dispose()`, or unregister event listeners. |
-| **Layout Thrashing** | Batch DOM reads and writes using `requestAnimationFrame`. |
+| **Excessive Rebuilds** | Isolate volatile state into local leaf widgets; use selectors or `const` constructors. |
+| **Long List Jank** | Virtualize the collection using `ListView.builder` or `CustomScrollView` with `SliverList`. |
+| **Heavy Computation** | Move work off the UI thread via Dart background isolates (`compute()`). |
+| **Memory Leak** | Add missing cleanup in `State.dispose()`, cancel `StreamSubscription`s, dispose controllers. |
+| **Unbounded Constraints** | Wrap dynamic children in `Expanded` or `Flexible` to prevent `RenderFlex` exceptions. |
 
 ### Step 4: Re-Measure & Verify Metrics
 1. Re-run the identical profiling trace under the same device conditions.

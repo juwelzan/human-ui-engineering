@@ -76,15 +76,15 @@ Long strings (names, URLs, descriptions) must never break layouts or overflow th
 ```
 
 ### Full Text Preservation
-Whenever text is truncated, ensure the full string is accessible via a native tooltip (`title="..."` attribute, `<Tooltip>` component, or screen reader disclosure).
+Whenever text is truncated, ensure the full string is accessible via a native `Tooltip(message: fullText, child: Text(...))` or screen reader `Semantics(label: fullText)`.
 
 ---
 
 ## 5. Typography Anti-Patterns
 
-1. **Semantic Flattening**: Rendering all page titles as `<div>` or `<span>` without heading tags, destroying screen reader document outline navigation.
-2. **Skipping Heading Levels**: Jumping directly from `<h1>` to `<h4>` without intermediate levels.
-3. **Uncapped Line Lengths**: Allowing `<Text>` to stretch across 1400px of screen real estate. Always constrain reading width (`max-w-prose` / ~65ch).
+1. **Semantic Flattening**: Rendering all page titles as plain unannotated text without semantic heading roles (`Semantics(header: true)`), destroying screen reader document outline navigation.
+2. **Missing TextScaler Clamp**: Failing to handle OS-level font enlargement, causing `RenderFlex` overflow errors on mobile devices.
+3. **Uncapped Line Lengths**: Allowing `Text` to stretch across 1400px of screen real estate. Always constrain reading width with a `ConstrainedBox(constraints: BoxConstraints(maxWidth: 700))`.
 
 ---
 

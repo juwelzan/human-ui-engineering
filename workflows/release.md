@@ -22,9 +22,9 @@ flowchart TD
 3. Confirm active branch is `main` or release branch.
 
 ### Stage 2: Master Test Suite Gate
-1. Execute formatting and lint check (`npm run lint`, `dart analyze`).
-2. Execute full automated test suite (`npm test`, `pytest`, `flutter test`).
-3. Execute production build (`npm run build`, `flutter build`).
+1. Execute formatting and static analysis (`dart format --output=none --set-exit-if-changed .`, `dart analyze`).
+2. Execute full automated test suite (`flutter test`).
+3. Execute release build (`flutter build appbundle --release`, `flutter build ipa --release`, or `flutter build web --release`).
 4. **Golden Rule**: If any check fails, halt the release immediately.
 
 ### Stage 3: Database & Migration Readiness

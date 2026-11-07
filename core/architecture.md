@@ -104,9 +104,9 @@ flowchart LR
 ## 6. Adapting to Existing Codebases
 
 Do not forcefully re-architect a working codebase. 
-- If the project uses **Redux**, use Redux Toolkit idiomatic patterns.
-- If it uses **BLoC** or **Riverpod** in Flutter, structure code according to established community best practices.
-- If it uses **Jetpack Compose + ViewModel** or **SwiftUI + Observation**, align with platform-idiomatic reactive state patterns.
+- If the Flutter project uses **BLoC / Cubit**, structure code according to established event/state patterns.
+- If it uses **Riverpod**, adhere to type-safe notifiers and provider scoping.
+- If it uses **Provider**, follow clean ChangeNotifier separation.
 
 ---
 

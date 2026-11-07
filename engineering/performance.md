@@ -21,14 +21,13 @@ flowchart TD
 ## 2. UI & Rendering Efficiency (The Frame Budget)
 
 To maintain 60fps (16.6ms/frame) or 120fps (8.3ms/frame) smooth interactions:
-1. **Rebuild & Re-render Containment**:
-   - Isolate volatile state (e.g., search text inputs) into leaf components to avoid re-rendering entire parent views.
-   - Use compile-time `const` constructors in Flutter.
-   - Use `React.memo`, `useMemo`, and `useCallback` on heavy subtrees in React.
-   - Mark data models `@Immutable` in Jetpack Compose to skip recomposition.
+1. **Rebuild Containment**:
+   - Isolate volatile state (e.g. search text inputs) into leaf widgets to avoid re-rendering entire parent views.
+   - Use compile-time `const` constructors on all immutable widgets.
+   - Use scoped rebuilds (`buildWhen` in BLoC, `.select()` in Riverpod, `ValueListenableBuilder`).
 2. **List Virtualization (Mandatory for Large Data)**:
-   - Always virtualize lists exceeding 50 items (`@tanstack/react-virtual`, `ListView.builder`, `LazyColumn`, `LazyVStack`).
-   - Virtualization keeps memory flat regardless of whether 100 or 100,000 items exist.
+   - Always virtualize dynamic lists and collections exceeding 20 items using `ListView.builder`, `GridView.builder`, or `CustomScrollView` with `SliverList`.
+   - Virtualization keeps memory flat regardless of whether 100 or 100,000 items exist in the collection.
 3. **Cumulative Layout Shift (CLS)**:
    - Explicitly declare aspect ratios or width/height on images and dynamic placeholders to eliminate visual jumps during load.
 

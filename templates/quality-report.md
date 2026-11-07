@@ -20,10 +20,9 @@
 
 | Test Suite / Command | Total Tests | Passed | Failed | Skipped | Status |
 |---|---|---|---|---|---|
-| `[e.g. npm test / vitest]` | 42 | 42 | 0 | 0 | **PASSED** |
-| `[e.g. flutter test]` | 18 | 18 | 0 | 0 | **PASSED** |
-| `[e.g. tsc --noEmit]` | N/A | 0 errors | 0 | 0 | **PASSED** |
-| `[e.g. npm run lint]` | N/A | 0 warnings | 0 | 0 | **PASSED** |
+| `flutter test` | 42 | 42 | 0 | 0 | **PASSED** |
+| `dart analyze` | N/A | 0 errors | 0 warnings | 0 | **PASSED** |
+| `dart format --set-exit-if-changed .` | N/A | Formatted | 0 errors | 0 | **PASSED** |
 
 **Execution Log / Command Summary:**
 ```text

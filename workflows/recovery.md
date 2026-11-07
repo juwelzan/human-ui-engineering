@@ -54,7 +54,7 @@ git log -n 5 --oneline
 
 ### Step 5: Apply Surgical Fix
 1. Repair the specific compiler or logic error.
-2. Verify that the project compiles cleanly (`npm run build`, `flutter analyze`, etc.).
+2. Verify that the project compiles cleanly (`dart analyze`, `flutter test`).
 
 ### Step 6: Resume from Last Verified Checkpoint
 1. Re-enter the 14-step engineering workflow at the earliest uncompleted step.

@@ -22,21 +22,18 @@ flowchart TD
 3. Check that zero secret keys are referenced in client-side bundles.
 
 ### Stage 2: Authentication & Authorization Review
-1. Inspect session management: verify `HttpOnly`, `Secure`, `SameSite=Strict` cookies.
-2. Check for Insecure Direct Object References (IDOR): ensure every resource lookup explicitly checks tenant/user ownership.
-3. Review role-based access control (RBAC) guards on all protected API routes.
+1. Inspect session management: verify secure storage via `FlutterSecureStorage` (hardware keystore/keychain).
+2. Check for token exposure: verify access tokens are never logged or persisted in plain `SharedPreferences`.
+3. Review certificate pinning in `Dio` client to prevent Man-in-the-Middle attacks.
 
-### Stage 3: Input Validation & Query Inspection
-1. Verify that all endpoint inputs are validated against strict type schemas (Zod/Pydantic).
-2. Audit database queries to confirm 100% parameterization (zero string interpolation).
-3. Check rich text / HTML rendering for XSS vulnerabilities; verify `DOMPurify` usage.
+### Stage 3: Input Validation & Serialization
+1. Verify that all API response mappings validate types and null safety gracefully.
+2. Confirm that sensitive fields (passwords, auth tokens) are marked `@JsonKey(includeToJson: false)` where appropriate.
+3. Check biometric authentication (`local_auth`) configurations and fallback policies.
 
 ### Stage 4: Dependency Vulnerability Audit
 1. Execute package vulnerability scanner:
-   - Node: `npm audit`
-   - Dart/Flutter: `dart pub audit`
-   - Python: `pip-audit`
-   - Rust: `cargo audit`
+   - Flutter/Dart: `dart pub outdated` and security audit checks.
 2. Evaluate severity of any flagged CVEs.
 
 ### Stage 5: Remediation & Security Regression Testing

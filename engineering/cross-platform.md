@@ -6,22 +6,22 @@
 
 ## 1. Purpose
 
-A cross-platform app (Flutter, React Native, or responsive Web) that feels like a poorly ported alien application fails with users. True cross-platform engineering balances a unified brand identity with deep respect for platform-specific hardware, navigation idioms, and international linguistic differences.
+A multi-platform Flutter application that feels like a poorly ported alien application fails with users. True Flutter cross-platform engineering balances a unified brand identity with deep respect for platform-specific hardware, navigation idioms, and international linguistic differences across Android, iOS, macOS, Windows, Linux, and Flutter Web.
 
-This guide defines the standards for multi-platform excellence.
+This guide defines the standards for multi-platform Flutter excellence.
 
 ---
 
-## 2. Platform Idiom Matrix
+## 2. Platform Idiom Matrix in Flutter
 
-| UX Element | iOS Platform Idiom | Android Platform Idiom | Web / Desktop Idiom |
+| UX Element | iOS Platform Idiom | Android Platform Idiom | Web & Desktop Idiom |
 |---|---|---|---|
-| **Primary Navigation** | Bottom tab bar (translucent blur) | Bottom navigation bar or navigation rail | Left persistent sidebar or top navigation bar |
-| **Back Navigation** | Interactive edge-swipe gesture + top left Chevron | Predictive back gesture / hardware back | Browser back button + breadcrumbs |
-| **Action Confirmation** | Bottom Action Sheet (`UIActionSheet`) | Modal Bottom Sheet or Alert Dialog | Centered Modal Dialog or Popover |
-| **Scroll Physics** | Elastic rubber-band overshoot with high friction | Overscroll stretch effect with linear deceleration | Scrollbar with discrete wheel ticks |
-| **Context Menus** | Long-press / Haptic touch preview card | Long-press bottom sheet | Right-click context menu |
-| **Icons** | SF Symbols (thin, smooth rounded strokes) | Material Symbols (geometric, sharp/rounded) | Lucide, Feather, or Heroicons |
+| **Primary Navigation** | `CupertinoTabBar` or translucent pill bar | `NavigationBar` or `NavigationRail` | Left persistent sidebar / drawer |
+| **Back Navigation** | Interactive edge-swipe gesture (`CupertinoPageRoute`) | Predictive back gesture / hardware back | Browser back button (`go_router`) |
+| **Action Confirmation** | `showCupertinoModalPopup` Action Sheet | `showModalBottomSheet` or `AlertDialog` | Centered `showDialog` |
+| **Scroll Physics** | `BouncingScrollPhysics` | `ClampingScrollPhysics` | Desktop wheel physics with scrollbar |
+| **Context Menus** | `CupertinoContextMenu` | Material Long-press context menu | Right-click mouse context menu |
+| **Icons** | `CupertinoIcons` (SF Symbols aligned) | `Icons` (Material Symbols) | Platform-adaptive iconography |
 
 ---
 
@@ -31,16 +31,17 @@ Modern mobile and desktop devices have physical display cutouts, camera notches,
 
 ### Mandatory Safe Area Handling:
 - **Never allow interactive elements or text to collide with physical cutouts or home indicators**.
-- **Web**:
-  ```css
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
+- In Flutter, wrap top-level scaffold bodies in `SafeArea`:
+  ```dart
+  Scaffold(
+    body: SafeArea(
+      top: true,
+      bottom: true,
+      child: ContentBody(),
+    ),
+  );
   ```
-- **Flutter**: Wrap edge views in `SafeArea()`.
-- **Android**: Use `Modifier.windowInsetsPadding(WindowInsets.safeDrawing)`.
-- **iOS**: Respect `safeAreaInsets` or `.ignoresSafeArea()` only for edge-to-edge background artwork, never for interactive buttons.
+- For edge-to-edge background media, extend artwork beneath safe areas using `extendBodyBehindAppBar: true`, but ensure text and interactive controls remain inside `SafeArea`.
 
 ---
 

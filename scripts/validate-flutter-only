@@ -1,0 +1,104 @@
+#!/usr/bin/env python3
+"""
+Human Flutter Engineering — Absolute Flutter-Only Policy Validator
+Verifies:
+1. No prohibited frameworks (React, Next.js, Vue, Angular, React Native) exist as documentation modules.
+2. The legacy frameworks/ directory does not exist.
+3. No foreign framework skills or configuration files are present.
+4. Future contributors cannot accidentally reintroduce non-Flutter frameworks.
+"""
+
+import os
+import re
+import sys
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Forbidden directories that must not exist in a Flutter-Only repository
+FORBIDDEN_DIRS = [
+    "frameworks",
+    "skills/human-ui",
+    ".agents/skills/human-ui",
+    ".agent/skills/human-ui",
+    ".cursor/skills/human-ui",
+]
+
+# Forbidden file names that signify non-Flutter framework modules
+FORBIDDEN_FILES = [
+    "react.md", "nextjs.md", "vue.md", "angular.md", "react-native.md",
+    "svelte.md", "solid.md", "nuxt.md"
+]
+
+# Prohibited patterns in core engineering guidelines that claim multi-framework support
+PROHIBITED_PATTERNS = [
+    re.compile(r'framework-agnostic', re.IGNORECASE),
+    re.compile(r'universal,\s*framework-neutral', re.IGNORECASE),
+    re.compile(r'(?:supports?|supporting)\s+(?:for\s+)?(?:react|next\.?js|vue|angular|react-native)', re.IGNORECASE),
+    re.compile(r'alternative\s+(?:framework|solution)s?:\s*(?:react|next\.?js|vue|angular)', re.IGNORECASE),
+]
+
+def main():
+    print("==================================================")
+    print(" Human Flutter Engineering — Flutter-Only Policy ")
+    print("==================================================")
+
+    errors = []
+
+    # 1. Check for Forbidden Directories
+    print("\n[1/3] Enforcing directory isolation (no legacy framework dirs)...")
+    for fdir in FORBIDDEN_DIRS:
+        p = os.path.join(REPO_ROOT, fdir)
+        if os.path.exists(p):
+            errors.append(f"Forbidden directory exists: {fdir}")
+        else:
+            print(f"  ✓ Confirmed absent: {fdir}")
+
+    # 2. Check for Forbidden Files across the repository
+    print("\n[2/3] Scanning repository for prohibited framework files...")
+    for root, dirs, files in os.walk(REPO_ROOT):
+        if ".git" in root.split(os.sep):
+            continue
+        for f in files:
+            if f.lower() in FORBIDDEN_FILES:
+                rel = os.path.relpath(os.path.join(root, f), REPO_ROOT)
+                errors.append(f"Forbidden framework file detected: {rel}")
+
+    if not any("Forbidden framework file" in e for e in errors):
+        print("  ✓ Zero non-Flutter framework files detected across repository.")
+
+    # 3. Check for Misleading Universal Claims in Core Invariants
+    print("\n[3/3] Scanning core instructions for Absolute Flutter-Only compliance...")
+    core_files_to_check = [
+        "AGENTS.md",
+        "PROJECT_CONTEXT.md",
+        "README.md",
+        "CLAUDE.md",
+        "GEMINI.md",
+        "skills/human-flutter/SKILL.md",
+        ".agents/skills/human-flutter/SKILL.md",
+    ]
+
+    for rel_path in core_files_to_check:
+        full_path = os.path.join(REPO_ROOT, rel_path)
+        if not os.path.exists(full_path):
+            continue
+        with open(full_path, "r", encoding="utf-8") as fh:
+            content = fh.read()
+        for pat in PROHIBITED_PATTERNS:
+            if pat.search(content):
+                errors.append(f"Prohibited multi-framework pattern '{pat.pattern}' found in {rel_path}")
+
+    if not any("Prohibited multi-framework pattern" in e for e in errors):
+        print("  ✓ All core instructions strictly uphold the Absolute Flutter-Only Rule.")
+
+    if errors:
+        print(f"\n❌ FLUTTER-ONLY VALIDATION FAILED with {len(errors)} error(s):")
+        for err in errors:
+            print(f"  - {err}")
+        return 1
+    else:
+        print("\n✅ ABSOLUTE FLUTTER-ONLY POLICY VERIFIED CLEANLY!")
+        return 0
+
+if __name__ == "__main__":
+    sys.exit(main())

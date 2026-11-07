@@ -39,38 +39,23 @@ Closures capturing `self` or large outer view state strongly, preventing the gar
 
 ---
 
-## 3. Idiomatic Cleanup Patterns by Framework
+## 3. Flutter Lifecycle & Memory Cleanup Patterns
 
-### A. React / Next.js
-Always return a cleanup function from `useEffect`:
-```tsx
-useEffect(() => {
-  const handleResize = () => setDimensions(window.innerWidth);
-  window.addEventListener('resize', handleResize);
-  
-  const timer = setInterval(pollStatus, 5000);
-
-  // MANDATORY: Cleanup on unmount
-  return () => {
-    window.removeEventListener('resize', handleResize);
-    clearInterval(timer);
-  };
-}, []);
-```
-
-### B. Flutter
+### 1. StatefulWidget Lifecycle Disposal
 Always override `dispose()` in `StatefulWidget`:
 ```dart
-class _CustomWidgetState extends State<CustomWidget> {
+class _CustomWidgetState extends State<CustomWidget> with SingleTickerProviderStateMixin {
   late final TextEditingController _controller;
   late final AnimationController _animController;
-  StreamSubscription? _sub;
+  late final ScrollController _scrollController;
+  StreamSubscription<UserEvent>? _sub;
 
   @override
   void initState() {
     super.initState();
     _controller = TextEditingController();
-    _animController = AnimationController(vsync: this);
+    _animController = AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
+    _scrollController = ScrollController();
     _sub = eventBus.stream.listen(_handleEvent);
   }
 
@@ -79,33 +64,37 @@ class _CustomWidgetState extends State<CustomWidget> {
     // MANDATORY: Dispose controllers and cancel subscriptions
     _controller.dispose();
     _animController.dispose();
+    _scrollController.dispose();
     _sub?.cancel();
     super.dispose();
   }
 }
 ```
 
-### C. Android (Kotlin / Compose)
-Use `DisposableEffect` for cleanup:
-```kotlin
-DisposableEffect(key1) {
-    val listener = SensorEventListener { /* ... */ }
-    sensorManager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_UI)
-    
-    onDispose {
-        sensorManager.unregisterListener(listener)
-    }
+### 2. Riverpod Provider Disposal
+Use `ref.onDispose` to release native resources or close subscriptions:
+```dart
+final locationStreamProvider = StreamProvider.autoDispose<LocationData>((ref) {
+  final service = LocationService();
+  ref.onDispose(() => service.stopTracking());
+  return service.locationStream;
+});
+```
+
+### 3. BLoC & Cubit Sink Closure
+Always close streams and sinks in `Bloc.close()`:
+```dart
+@override
+Future<void> close() {
+  _authSubscription.cancel();
+  return super.close();
 }
 ```
 
-### D. iOS (Swift / SwiftUI)
-Use `[weak self]` in closures and clean up on dismiss:
-```swift
-.onDisappear {
-    timer?.invalidate()
-    timer = nil
-    cancellables.removeAll()
-}
+### 4. Image Cache Eviction
+High-resolution images can quickly overwhelm mobile heap memory. Downsample decoded bitmaps using `cacheWidth` and `cacheHeight`, or clear the image cache if necessary:
+```dart
+PaintingBinding.instance.imageCache.clear();
 ```
 
 ---

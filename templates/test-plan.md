@@ -34,14 +34,14 @@
 ## 3. Execution Commands & Telemetry
 
 ```bash
-# Unit & Component Tests
-npm test src/features/billing/
+# Unit & Widget Tests
+flutter test test/features/billing/
 
-# Type Check
-npm run typecheck
+# Static Analysis
+dart analyze
 
-# Lint & Formatting
-npm run lint
+# Formatting Check
+dart format --output=none --set-exit-if-changed .
 ```
 
 ---

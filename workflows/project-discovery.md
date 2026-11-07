@@ -42,17 +42,17 @@ flowchart TD
    - Web: `tailwind.config.*`, `styles/tokens.css`, `theme/`.
    - Flutter: `lib/core/theme/` (`AppColors`, `AppTypography`).
    - Android: `core/designsystem/` (`Color.kt`, `Type.kt`, `Theme.kt`).
-   - iOS: `Assets.xcassets`, `Color+Extensions.swift`.
-2. Locate shared component libraries (`components/ui/`, `core/widgets/`). Catalog existing buttons, inputs, and modals to prevent building duplicates.
+   - Flutter: `lib/core/theme/app_colors.dart`, `app_theme.dart`.
+2. Locate shared widget libraries (`lib/core/widgets/`). Catalog existing buttons, inputs, and dialogs to prevent building duplicates.
 
 ### Step 4: Map State Management & Data Flow
-1. Identify how asynchronous server data is fetched and cached (TanStack Query, RTK Query, Repository pattern).
-2. Identify how global client state is managed (Zustand, Redux, Pinia, Riverpod, Signals, ViewModel).
-3. Identify routing and navigation libraries (App Router, React Router, GoRouter, Jetpack Navigation).
+1. Identify how asynchronous data is fetched and cached (Dio, Repository pattern, Drift, Isar).
+2. Identify how client state is managed (BLoC, Cubit, Riverpod, Provider).
+3. Identify routing and navigation libraries (`go_router`, Navigator 2.0).
 
 ### Step 5: Inspect Existing Tests & Linters
-1. Inspect `package.json` scripts or test configurations (`vitest.config.ts`, `analysis_options.yaml`, `build.gradle.kts`).
-2. Run a baseline test or static check to confirm the current health of the codebase.
+1. Inspect `pubspec.yaml` test dependencies and `analysis_options.yaml`.
+2. Run a baseline test (`flutter test`) and static check (`dart analyze`) to confirm the current health of the codebase.
 
 ### Step 6: Produce Project Brief
 Summarize findings using the [Project Brief Template](../templates/project-brief.md) before presenting architectural proposals to the user.

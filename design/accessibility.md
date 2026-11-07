@@ -36,7 +36,7 @@ Never use color as the sole indicator of meaning, status, or validation:
 Every interactive workflow must be fully operable via keyboard alone:
 
 1. **Logical Tab Order**: Tab sequence must follow visual layout left-to-right, top-to-bottom.
-2. **Visible Focus Rings**: Never remove `:focus { outline: none; }` without providing a high-contrast custom focus indicator (e.g. `ring-2 ring-primary ring-offset-2`).
+2. **Visible Focus Indicators**: Ensure a high-contrast focus indicator is visible when navigating via keyboard or directional pad (e.g. `Focus(child: ...)` with border highlighting).
 3. **Modal Focus Trapping**: When a dialog or sheet opens:
    - Initial focus must move to the dialog title or first interactive element.
    - Tab navigation must remain trapped inside the modal until dismissed.

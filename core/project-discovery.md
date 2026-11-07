@@ -24,22 +24,20 @@ flowchart LR
 
 ### Phase 1: Manifest & Dependency Inspection
 Examine package declarations and build configurations to understand the runtime ecosystem:
-- **Web / React / Next.js / Vue / Angular**: `package.json`, `tsconfig.json`, `tailwind.config.*`, `vite.config.*`, `angular.json`, `nuxt.config.*`.
-- **Flutter**: `pubspec.yaml`, `analysis_options.yaml`.
-- **Android**: `settings.gradle.kts`, `app/build.gradle.kts`, `libs.versions.toml`.
-- **iOS / macOS**: `Package.swift`, `Podfile`, `.xcodeproj/project.pbxproj`.
-- **Desktop (Electron / Tauri)**: `src-tauri/tauri.conf.json`, `electron-builder.json`.
+- **Flutter & Dart**: `pubspec.yaml`, `analysis_options.yaml`.
+- **Platform Embeddings**: `android/app/build.gradle.kts`, `ios/Podfile`, `macos/Podfile`, `web/index.html`, `linux/CMakeLists.txt`, `windows/CMakeLists.txt`.
 
 **Monorepo & Multi-Package Boundary Discovery:**
-If the repository is a monorepo (pnpm workspaces, Turborepo, Nx, Melos, Gradle multi-project):
-1. Identify all distinct applications and packages in `apps/` or `packages/`.
+If the repository is a Flutter monorepo (Melos or multi-package repository):
+1. Identify all distinct packages and apps in `packages/` or `apps/`.
 2. Determine which specific package the user's task targets.
-3. Formulate an isolated project context for that subproject; never cross-contaminate dependencies or styling systems between subprojects.
+3. Formulate an isolated project context for that subproject; never cross-contaminate dependencies between subpackages.
 
 **Determine:**
-- What UI libraries are already installed (e.g. Tailwind, Shadcn, Material, Cupertino, Compose, Tamagui)?
-- What icon sets, font packages, and animation libraries are present?
-- What are the minimum language versions (TypeScript, Dart, Kotlin, Swift)?
+- What Flutter UI packages are already installed (e.g. `flutter_svg`, `dynamic_color`, `google_fonts`)?
+- What state management packages are present (`flutter_bloc`, `flutter_riverpod`, `provider`)?
+- What routing and network packages are configured (`go_router`, `dio`)?
+- What is the Dart SDK constraint (e.g. `sdk: ^3.3.0`)?
 
 ### Phase 2: Directory Layout & Architecture Recognition
 Inspect directory names and existing file groupings:

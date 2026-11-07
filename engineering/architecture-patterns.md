@@ -12,38 +12,38 @@ This guide outlines the standard UI architecture patterns and explains how to al
 
 ---
 
-## 2. Common UI Architecture Patterns
+## 2. Flutter UI Architecture Patterns
 
-### 1. MVVM (Model - View - ViewModel)
-- **Primary Environments**: Android (Jetpack Compose + ViewModel), iOS (SwiftUI + Observation/ObservableObject), Web.
+### 1. BLoC / Cubit (Business Logic Component)
+- **Primary Environments**: Flutter enterprise and medium-to-large applications.
 - **Data Flow**:
-  - **View**: Observes state exposed by the ViewModel and emits user events.
-  - **ViewModel**: Encapsulates UI state and business logic; communicates with repositories.
-  - **Model**: Pure data entities and business rules.
-- **Key Advantage**: ViewModel survives configuration changes (e.g. screen rotation on mobile).
+  - UI dispatches an **Event** into the BLoC sink.
+  - The BLoC processes asynchronous logic and emits a new immutable **State** via a reactive Dart Stream.
+  - UI listens via `BlocBuilder` / `BlocConsumer` and rebuilds selectively using `buildWhen`.
+- **Key Advantage**: Strict event-driven auditability, predictable state transitions, and clear separation of business logic from UI widgets.
 
-### 2. MVI / Redux / Flux (Model - View - Intent)
-- **Primary Environments**: React (Redux Toolkit, Zustand), Web, complex state workflows.
+### 2. Riverpod (Notifier & AsyncNotifier Architecture)
+- **Primary Environments**: Modern Flutter applications requiring compile-time type safety.
 - **Data Flow**:
-  - User interaction dispatches an **Intent / Action**.
-  - A pure **Reducer** processes current state + action to compute the new state.
-  - The UI subscribes to the store and renders the new immutable state snapshot.
-- **Key Advantage**: 100% deterministic, time-travel debugging, highly auditable state transitions.
+  - State is encapsulated in `Notifier<T>` or `AsyncNotifier<T>` providers.
+  - Views read state with `ref.watch()` and select specific sub-properties with `ref.watch(provider.select(...))`.
+  - Side effects are triggered through `ref.read(provider.notifier).method()`.
+- **Key Advantage**: Compile-time safety (no `ProviderNotFoundException`), automatic dependency cleanup (`.autoDispose`), and robust family parameterization.
 
-### 3. BLoC / Cubit (Business Logic Component)
-- **Primary Environments**: Flutter.
+### 3. Provider & ChangeNotifier
+- **Primary Environments**: Lightweight Flutter applications and simple dependency injection.
 - **Data Flow**:
-  - UI emits **Events** into the BLoC sink.
-  - The BLoC processes asynchronous tasks and emits new **States** via a reactive Dart Stream.
-  - UI listens via `BlocBuilder` / `BlocConsumer` and rebuilds granularly.
-- **Key Advantage**: Strict separation of concerns, reactive stream-based data handling.
+  - State holder extends `ChangeNotifier` and calls `notifyListeners()` on state mutation.
+  - Views observe changes using `context.watch<T>()` or `context.select<T, R>()`.
+- **Key Advantage**: Minimal boilerplate, gentle learning curve, native to Flutter core patterns.
 
-### 4. Custom Hook / Composition Architecture
-- **Primary Environments**: React, Next.js, Vue 3 Composition API.
+### 4. Feature-First Clean Architecture
+- **Primary Environments**: Scalable, modular Flutter codebases.
 - **Data Flow**:
-  - Encapsulate reactive state, caching, and handlers in custom hooks (e.g. `useCheckoutFlow()`).
-  - Views remain purely presentational, consuming hook returns.
-- **Key Advantage**: Lightweight, highly reusable logic without heavy boilerplate.
+  - Features isolate `presentation/`, `domain/`, and `data/` layers.
+  - `domain/` contains pure Dart entities and repository contracts.
+  - `data/` implements repositories and communicates with `Dio` or `Drift`.
+- **Key Advantage**: High testability; UI can be refactored without breaking business rules.
 
 ---
 
@@ -68,10 +68,10 @@ flowchart LR
 ## 4. Adapting to Existing Projects
 
 > [!IMPORTANT]
-> **Golden Rule**: Never force a new architectural pattern or state-management library on an existing codebase without explicit user instruction.
-> - If an existing React project uses Redux Toolkit, write RTK slices.
-> - If an existing Flutter project uses Provider, use Provider.
-> - If an Android app uses Jetpack Compose with MVI, follow MVI.
+> **Golden Rule**: Never force a new architectural pattern or state-management library on an existing Flutter codebase without explicit user instruction.
+> - If an existing Flutter project uses BLoC / Cubit, write BLoC events and states.
+> - If an existing Flutter project uses Riverpod, write Riverpod Notifiers.
+> - If an existing Flutter project uses Provider, follow its established patterns.
 
 ---
 

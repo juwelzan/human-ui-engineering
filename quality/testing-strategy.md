@@ -29,11 +29,11 @@ flowchart TD
 
 > [!IMPORTANT]
 > **Do Not Run the Entire Test Suite for Simple Changes**:
-> Running a 45-minute suite for a single styling or documentation tweak is wasteful. Scope test execution to the blast radius of your changes:
-> - **Edited utility function**: Run the targeted unit test file (`npm test src/lib/formatters.test.ts`).
-> - **Edited UI component**: Run the component test and visual snapshot.
-> - **Edited API route / schema**: Run the integration test for that endpoint.
-> - **Full release / pre-flight**: Run the complete automated test suite.
+> Scope test execution to the blast radius of your changes:
+> - **Edited utility / repository**: Run the targeted unit test file (`flutter test test/core/utils/formatters_test.dart`).
+> - **Edited UI widget**: Run the targeted widget test (`flutter test test/core/widgets/app_button_test.dart`).
+> - **Edited state holder**: Run the Cubit/Notifier test (`flutter test test/features/auth/auth_cubit_test.dart`).
+> - **Full release / pre-flight**: Run the complete suite (`flutter test`).
 
 ---
 
@@ -43,15 +43,15 @@ After every code edit, execute this 4-step verification gate:
 
 ```mermaid
 flowchart LR
-    F[1. Format & Lint] --> S[2. Static Analysis]
+    F[1. Format] --> S[2. Static Analysis]
     S --> T[3. Targeted Tests]
     T --> B[4. Build Verification]
 ```
 
-1. **Format & Lint**: Run project formatter/linter (`npm run lint`, `dart analyze`, `ruff check`).
-2. **Static Type Analysis**: Verify zero type errors (`tsc --noEmit`, `mypy`, `cargo check`).
-3. **Targeted Tests**: Run relevant unit/component tests and inspect outputs.
-4. **Build Verification**: Run production build if dependencies or exports were altered (`npm run build`).
+1. **Format**: Format Dart files cleanly (`dart format .`).
+2. **Static Type Analysis**: Verify zero errors or warnings (`dart analyze`).
+3. **Targeted Tests**: Run relevant unit or widget tests (`flutter test <path_to_test>`).
+4. **Build Verification**: Run release build verification if dependencies or exports were altered (`flutter build appbundle` or `flutter build web`).
 
 ---
 
@@ -62,14 +62,14 @@ When reporting test outcomes, AI agents MUST use these standardized statuses:
 - **PASSED**: Command executed with exit code 0; all assertions confirmed green.
 - **FAILED**: Command executed with non-zero exit code or assertion failure (quote exact error).
 - **SKIPPED**: Test suite was intentionally bypassed (state explicit justification).
-- **BLOCKED**: Test could not be run due to missing environment, database, or token.
+- **BLOCKED**: Test could not be run due to missing environment, simulator, or credentials.
 - **NOT APPLICABLE**: Change does not impact executable logic (e.g., Markdown documentation).
 
 ```markdown
 ### Verification Summary
-- Static Analysis (`tsc --noEmit`): **PASSED** (0 errors)
-- Unit Tests (`npm test billing.test.ts`): **PASSED** (8 passed, 0 failed)
-- Integration Tests: **BLOCKED** (Local Postgres container not running on port 5432)
-- E2E Tests: **SKIPPED** (Proportional scope for minor billing logic patch)
+- Static Analysis (`dart analyze`): **PASSED** (0 errors, 0 warnings)
+- Unit Tests (`flutter test test/features/cart/cart_cubit_test.dart`): **PASSED** (8 passed, 0 failed)
+- Integration Tests: **BLOCKED** (No connected mobile simulator on port 5554)
+- E2E Tests: **SKIPPED** (Proportional scope for minor cart logic patch)
 ```
 

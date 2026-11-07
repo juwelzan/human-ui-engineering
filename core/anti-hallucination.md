@@ -72,12 +72,12 @@ flowchart LR
     S5 --> S6[6. Validate via Compiler / Analyzer]
 ```
 
-1. **Check Lockfile & Manifest**: Confirm the exact installed package and version in `package.json`, `pubspec.yaml`, `build.gradle.kts`, or lockfiles.
-2. **Inspect Types & Signatures**: Read the `.d.ts` declaration file, Dart doc comments, or Kotlin/Swift interface to confirm the exact parameter names and types.
-3. **Search for Existing Usage**: Search the repository (e.g. using grep or file search) to see how the team already invokes this module.
-4. **Verify Runtime Compatibility**: Confirm that the API works in the target runtime (Node.js version, browser baseline, Dart SDK constraint, iOS deployment target).
+1. **Check Lockfile & Manifest**: Confirm the exact installed package and version in `pubspec.yaml` or `pubspec.lock`.
+2. **Inspect Types & Signatures**: Read Dart doc comments and library declarations to confirm exact parameter names and types.
+3. **Search for Existing Usage**: Search the repository (using grep or file search) to see how the codebase already invokes this widget or service.
+4. **Verify Runtime Compatibility**: Confirm that the API works in the target Flutter runtime and Dart SDK constraint.
 5. **Prefer Local Verified Patterns**: Mimic patterns already proven to work in the project rather than introducing unvetted patterns from training weights.
-6. **Validate via Compiler**: Run static type-checking (`tsc --noEmit`, `dart analyze`, `./gradlew compileDebugSources`) immediately after writing code.
+6. **Validate via Compiler**: Run static analysis (`dart analyze`) and tests (`flutter test`) immediately after writing code.
 
 ---
 

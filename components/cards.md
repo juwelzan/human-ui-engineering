@@ -44,24 +44,39 @@ Structure cards using compound components:
 └────────────────────────────────────────────────────────┘
 ```
 
-### Compound Pattern Implementation (React Example):
-```tsx
-<Card variant="outline">
-  <CardHeader>
-    <div>
-      <CardTitle>Cloud Storage</CardTitle>
-      <CardDescription>Enterprise plan usage</CardDescription>
-    </div>
-    <Badge variant="warning">82% Full</Badge>
-  </CardHeader>
-  <CardContent>
-    <ProgressBar value={82} />
-  </CardContent>
-  <CardFooter>
-    <Button variant="ghost" size="sm">View Logs</Button>
-    <Button variant="primary" size="sm">Upgrade</Button>
-  </CardFooter>
-</Card>
+### Compound Pattern Implementation (Flutter Example):
+```dart
+AppCard(
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Cloud Storage', style: theme.textTheme.titleMedium),
+              Text('Enterprise plan usage', style: theme.textTheme.bodySmall),
+            ],
+          ),
+          const AppBadge.warning(label: '82% Full'),
+        ],
+      ),
+      const SizedBox(height: 16),
+      const LinearProgressIndicator(value: 0.82),
+      const SizedBox(height: 16),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          AppButton.ghost(label: 'View Logs', onPressed: handleViewLogs),
+          const SizedBox(width: 8),
+          AppButton.primary(label: 'Upgrade', onPressed: handleUpgrade),
+        ],
+      ),
+    ],
+  ),
+);
 ```
 
 ---

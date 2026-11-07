@@ -48,19 +48,19 @@ src/
 
 - **Spacing Scale**: 4px (xs), 8px (sm), 16px (md), 24px (lg), 32px (xl), 48px (2xl).
 - **Color Tokens**:
-  - Primary: `var(--color-primary-600)`
-  - Surface: `var(--color-surface)`
-  - Semantic: `var(--color-success)`, `var(--color-warning)`, `var(--color-danger)`
-- **Typography**: Inter (Body), JetBrains Mono (Code/Telemetry).
+  - Primary: `theme.colorScheme.primary`
+  - Surface: `theme.colorScheme.surface`
+  - Semantic: `context.customColors.success`, `context.customColors.warning`
+- **Typography**: Inter (`TextTheme.bodyMedium`, `TextTheme.titleLarge`).
 
 ---
 
 ## 5. Build, Test & CI Commands
 
-- **Local Dev Server**: `npm run dev`
-- **Type Check**: `npm run typecheck`
-- **Lint**: `npm run lint`
-- **Test Suite**: `npm test`
-- **Build**: `npm run build`
+- **Run Debug**: `flutter run`
+- **Static Analysis**: `dart analyze`
+- **Format Check**: `dart format --output=none --set-exit-if-changed .`
+- **Test Suite**: `flutter test`
+- **Release Build**: `flutter build appbundle --release` (or `flutter build web --release`)
 ```
 

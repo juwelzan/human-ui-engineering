@@ -45,47 +45,68 @@ flowchart TD
 ## 3. Component API Design Guidelines
 
 ### 1. Sensible Defaults
-Components must work out-of-the-box with minimal required props:
-```tsx
-// Good: Sensible defaults, only content required
-<Button>Save Changes</Button>
+Components must work out-of-the-box with minimal required parameters:
+```dart
+// Good: Sensible defaults, only label and action required
+AppButton(
+  label: 'Save Changes',
+  onPressed: handleSave,
+);
 
 // Bad: Requiring excessive boilerplate for standard behavior
-<Button variant="primary" size="medium" fullWidth={false} isDisabled={false} isLoading={false} type="button">
-  Save Changes
-</Button>
+AppButton(
+  label: 'Save Changes',
+  onPressed: handleSave,
+  variant: AppButtonVariant.primary,
+  size: AppButtonSize.medium,
+  isFullWidth: false,
+  isDisabled: false,
+  isLoading: false,
+);
 ```
 
-### 2. Avoid Prop Explosion (The 25-Prop Megacomponent)
-When a component accumulates 15+ props, it is doing too much. Break it down using **Composition** and **Compound Components**:
+### 2. Avoid Parameter Explosion (The 25-Parameter Megawidget)
+When a widget accumulates 15+ constructor parameters, it is doing too much. Break it down using **Widget Composition**:
 
-```tsx
-// Anti-Pattern: Megacomponent
-<Card 
-  title="Profile" 
-  titleColor="primary" 
-  subtitle="Manage account" 
-  avatarUrl="/pic.jpg" 
-  hasBadge={true} 
-  badgeText="Active" 
-  actionButtonText="Edit" 
-  onActionClick={handleEdit} 
-/>
+```dart
+// Anti-Pattern: Megawidget (parameter creep for a rigid layout)
+AppProfileCard(
+  title: "Profile", 
+  titleColor: Colors.blue, 
+  subtitle: "Manage account", 
+  avatarUrl: "/pic.jpg", 
+  hasBadge: true, 
+  badgeText: "Active", 
+  actionButtonText: "Edit", 
+  onActionClick: handleEdit, 
+);
 
-// Idiomatic: Composition / Slotting
-<Card>
-  <CardHeader>
-    <Avatar src="/pic.jpg" alt="Avatar" />
-    <div>
-      <CardTitle>Profile</CardTitle>
-      <CardDescription>Manage account</CardDescription>
-    </div>
-    <Badge variant="success">Active</Badge>
-  </CardHeader>
-  <CardFooter>
-    <Button variant="outline" onClick={handleEdit}>Edit</Button>
-  </CardFooter>
-</Card>
+// Idiomatic: Flutter Widget Composition
+AppCard(
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(
+        children: [
+          const CircleAvatar(backgroundImage: AssetImage('assets/pic.jpg')),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Profile', style: theme.textTheme.titleMedium),
+                Text('Manage account', style: theme.textTheme.bodySmall),
+              ],
+            ),
+          ),
+          const AppBadge.success(label: 'Active'),
+        ],
+      ),
+      const SizedBox(height: 16),
+      AppButton.secondary(label: 'Edit', onPressed: handleEdit),
+    ],
+  ),
+);
 ```
 
 ### 3. Support the 5 Mandatory States

@@ -50,61 +50,85 @@ flowchart LR
 
 ---
 
-## 3. Reference Test Implementations
+## 3. Flutter Widget Test Implementation (`testWidgets`)
 
-### A. React Testing Library (React / Next.js)
-```tsx
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { Button } from './Button';
-
-describe('Button Primitive', () => {
-  it('fires onClick callback on click', async () => {
-    const handleClick = vi.fn();
-    render(<Button onClick={handleClick}>Submit</Button>);
-    
-    await userEvent.click(screen.getByRole('button', { name: /submit/i }));
-    expect(handleClick).toHaveBeenCalledTimes(1);
-  });
-
-  it('prevents click events when disabled', async () => {
-    const handleClick = vi.fn();
-    render(<Button disabled onClick={handleClick}>Submit</Button>);
-    
-    await userEvent.click(screen.getByRole('button', { name: /submit/i }));
-    expect(handleClick).not.toHaveBeenCalled();
-    expect(screen.getByRole('button', { name: /submit/i })).toBeDisabled();
-  });
-});
-```
-
-### B. Flutter Widget Test (`testWidgets`)
 ```dart
-testWidgets('AppButton displays spinner and blocks tap when loading', (tester) async {
-  bool tapped = false;
-  await tester.pumpWidget(
-    MaterialApp(
-      home: Scaffold(
-        body: AppButton(
-          label: 'Submit',
-          isLoading: true,
-          onPressed: () => tapped = true,
-        ),
-      ),
-    ),
-  );
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:your_app/core/widgets/app_button.dart';
 
-  expect(find.byType(CircularProgressIndicator), findsOneWidget);
-  await tester.tap(find.byType(AppButton));
-  expect(tapped, isFalse);
-});
+void main() {
+  group('AppButton Widget Tests', () {
+    testWidgets('fires onPressed callback on user tap', (tester) async {
+      bool tapped = false;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: AppButton(
+              label: 'Submit',
+              onPressed: () => tapped = true,
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('Submit'), findsOneWidget);
+      await tester.tap(find.byType(AppButton));
+      await tester.pumpAndSettle();
+
+      expect(tapped, isTrue);
+    });
+
+    testWidgets('prevents tap events when disabled', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: AppButton(
+              label: 'Submit',
+              onPressed: null, // Disabled
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.byType(AppButton));
+      await tester.pumpAndSettle();
+
+      final button = tester.widget<FilledButton>(find.byType(FilledButton));
+      expect(button.onPressed, isNull);
+    });
+
+    testWidgets('displays spinner and blocks taps when loading', (tester) async {
+      bool tapped = false;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: AppButton(
+              label: 'Submit',
+              isLoading: true,
+              onPressed: () => tapped = true,
+            ),
+          ),
+        ),
+      );
+
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      await tester.tap(find.byType(AppButton));
+      await tester.pumpAndSettle();
+
+      expect(tapped, isFalse);
+    });
+  });
+}
 ```
 
 ---
 
 ## 4. Testing Anti-Patterns to Avoid
 
-1. **Testing CSS Class Names**: Writing `expect(element.classList.contains('bg-blue-600')).toBe(true)`. Test whether the button is accessible and clickable, not its internal utility class.
+1. **Testing Internal State Instead of User Behavior**: Avoid asserting private widget fields. Assert what the user actually experiences via `find.text`, `find.byType`, and `tester.tap`.
+2. **Missing `pumpAndSettle()`**: Forgetting to pump the frame after an animation or tap causes false test failures.
+3. **Flaky Hardcoded Delays**: Never use `Future.delayed()` in widget tests. Use `tester.pump()` or `tester.pumpAndSettle()`.
 2. **Missing Wrapper Providers**: Testing components that require ThemeContext or NavigationContext without wrapping them in a test harness, resulting in false test crashes.
 3. **Flaky Timers**: Using real `setTimeout` in tests instead of fake timers (`vi.useFakeTimers()` / `tester.pump(duration)`).
 

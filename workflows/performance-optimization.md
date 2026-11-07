@@ -45,11 +45,11 @@ flowchart TD
 
 | Diagnosed Cause | Prescribed Engineering Fix |
 |---|---|
-| **Excessive Rebuilds** | Isolate volatile state; use fine-grained selectors; mark static widgets `const`. |
-| **Long List Jank** | Virtualize the list using `@tanstack/react-virtual`, `ListView.builder`, or `LazyColumn`. |
-| **CPU Blocking** | Offload work to Web Workers, Dart isolates, or Kotlin `Dispatchers.Default`. |
-| **Memory Leaks** | Add cleanup functions to `useEffect`, call `.dispose()`, cancel timers. |
-| **Layout Thrashing** | Batch DOM reads and writes using `requestAnimationFrame`. |
+| **Excessive Rebuilds** | Isolate volatile state; use fine-grained selectors (`buildWhen`, `select`); mark static widgets `const`. |
+| **Long List Jank** | Virtualize the collection using `ListView.builder`, `GridView.builder`, or `CustomScrollView` with `SliverList`. |
+| **CPU Blocking** | Offload heavy JSON parsing or calculation to background isolates via `compute()`. |
+| **Memory Leaks** | Override `dispose()` in `StatefulWidget`, cancel `StreamSubscription`s, dispose controllers. |
+| **Unbounded Viewports** | Wrap unbounded lists in `Expanded` or constrain heights to eliminate layout exceptions. |
 
 ### Step 4: Re-Profile under Identical Workload
 1. Re-run the exact profiling trace under the same device conditions.

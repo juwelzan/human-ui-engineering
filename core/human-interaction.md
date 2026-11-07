@@ -27,14 +27,14 @@ When completing a non-trivial implementation, summarize the result with clarity:
 
 ```markdown
 ### Summary of Changes
-- **Core Primitives**: Built `<UserAvatarGroup>` in `src/components/UserAvatarGroup.tsx`.
-- **Feature Assembly**: Integrated avatar group into `src/features/dashboard/UserProfileHeader.tsx`.
-- **Design Tokens**: Leveraged existing `var(--spacing-md)` and `var(--color-neutral-200)`.
+- **Core Primitives**: Built `AppAvatarGroup` in `lib/core/widgets/app_avatar_group.dart`.
+- **Feature Assembly**: Integrated avatar group into `lib/features/dashboard/presentation/widgets/user_profile_header.dart`.
+- **Design Tokens**: Leveraged existing `Theme.of(context).colorScheme.surfaceContainer` and 8pt spacing.
 
 ### Verification & Test Results
-- `npm run lint`: **PASSED** (0 errors, 0 warnings).
-- `npm test src/components/UserAvatarGroup.test.tsx`: **PASSED** (3 tests passed in 412ms).
-- A11y Audit: Verified keyboard focus ring and `aria-label="3 team members"` on trigger button.
+- `dart analyze`: **PASSED** (0 errors, 0 warnings).
+- `flutter test test/core/widgets/app_avatar_group_test.dart`: **PASSED** (3 tests passed in 412ms).
+- A11y Audit: Verified minimum 48x48dp touch bounds and `Semantics(label: "3 team members")`.
 
 ### Suggested Next Steps (Optional)
 - Add storybook stories for empty and overflow (+5) states.

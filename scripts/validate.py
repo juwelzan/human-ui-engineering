@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-Human UI Engineering — Master Repository Validation Script
+Human Flutter Engineering — Master Repository Validation Suite
 Runs:
 1. Documentation Validator (scripts/validate-docs)
 2. Relative Link Validator (scripts/validate-links)
-3. Structural & Isolation Validator (scripts/validate-structure)
+3. Structural & Component Validator (scripts/validate-structure)
+4. Absolute Flutter-Only Policy Validator (scripts/validate-flutter-only)
 """
 
 import os
@@ -22,13 +23,14 @@ def run_check(script_name):
 
 def main():
     print("==================================================")
-    print(" Human UI Engineering — Master Validation Suite   ")
+    print(" Human Flutter Engineering — Validation Suite     ")
     print("==================================================")
 
     exit_codes = []
     exit_codes.append(run_check("validate-docs"))
     exit_codes.append(run_check("validate-links"))
     exit_codes.append(run_check("validate-structure"))
+    exit_codes.append(run_check("validate-flutter-only"))
 
     print("\n--------------------------------------------------")
     if any(code != 0 for code in exit_codes):

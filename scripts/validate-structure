@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Human UI Engineering — Structural & Framework Isolation Validator
+Human Flutter Engineering — Structural Validator
 Verifies:
-1. Agent entry points properly reference canonical instructions.
-2. Core universal guidelines remain framework-agnostic.
-3. Framework isolation: framework-specific guides reside in frameworks/.
+1. Agent entry points properly reference canonical instructions and skills.
+2. Canonical Flutter skill has valid YAML frontmatter and all 26 reference modules.
+3. Official Antigravity workspace skill location exists and delegates cleanly.
 """
 
 import os
@@ -16,21 +16,37 @@ AGENT_ENTRIES = [
     ("CLAUDE.md", "AGENTS.md"),
     ("GEMINI.md", "AGENTS.md"),
     (".github/copilot-instructions.md", "AGENTS.md"),
-    (".cursor/rules/human-ui.mdc", "AGENTS.md"),
-    (".agent/rules/human-ui.md", "AGENTS.md"),
-    (".agents/rules/human-ui.md", "AGENTS.md"),
-    (".windsurf/rules/human-ui.md", "AGENTS.md"),
+    (".github/prompts/human-flutter.prompt.md", "AGENTS.md"),
+    (".cursor/rules/human-flutter.mdc", "AGENTS.md"),
+    (".cursor/skills/human-flutter/SKILL.md", "skills/human-flutter/SKILL.md"),
+    (".agent/rules/human-flutter.md", "AGENTS.md"),
+    (".agent/skills/human-flutter/SKILL.md", "skills/human-flutter/SKILL.md"),
+    (".agents/rules/human-flutter.md", "AGENTS.md"),
+    (".agents/skills/human-flutter/SKILL.md", "skills/human-flutter/SKILL.md"),
+    (".claude/commands/human-flutter.md", "AGENTS.md"),
+    (".windsurf/rules/human-flutter.md", "AGENTS.md"),
+]
+
+EXPECTED_REFERENCES = [
+    "ui-design.md", "color-system.md", "typography.md", "components.md",
+    "flutter-architecture.md", "dart-standards.md", "file-structure.md",
+    "responsive-design.md", "animation.md", "performance.md",
+    "state-management.md", "navigation.md", "api-integration.md",
+    "database-storage.md", "firebase.md", "platform-integration.md",
+    "accessibility.md", "security.md", "testing.md", "debugging.md",
+    "refactoring.md", "build-release.md", "design-audit.md",
+    "code-review.md", "project-audit.md", "workflow.md"
 ]
 
 def main():
     print("==================================================")
-    print(" Human UI Engineering — Structural Validator      ")
+    print(" Human Flutter Engineering — Structural Validator ")
     print("==================================================")
 
     errors = []
 
     # 1. Verify Agent Entry Points
-    print("\n[1/2] Verifying Agent Entry Points reference canonical instructions...")
+    print("\n[1/3] Verifying Agent Entry Points reference canonical instructions...")
     for entry_rel, expected_ref in AGENT_ENTRIES:
         entry_path = os.path.join(REPO_ROOT, entry_rel)
         if not os.path.exists(entry_path):
@@ -45,24 +61,31 @@ def main():
         else:
             print(f"  ✓ {entry_rel} correctly references {expected_ref}")
 
-    # 2. Verify Framework Isolation
-    print("\n[2/2] Checking Framework Module Isolation...")
-    frameworks_dir = os.path.join(REPO_ROOT, "frameworks")
-    if not os.path.exists(frameworks_dir):
-        errors.append("Missing frameworks directory!")
+    # 2. Verify Canonical Skill YAML Frontmatter
+    print("\n[2/3] Checking Canonical Skill YAML Frontmatter...")
+    skill_path = os.path.join(REPO_ROOT, "skills/human-flutter/SKILL.md")
+    if not os.path.exists(skill_path):
+        errors.append("Missing skills/human-flutter/SKILL.md!")
     else:
-        framework_modules = [
-            "flutter.md", "react.md", "nextjs.md", "vue.md",
-            "angular.md", "react-native.md", "native-android.md",
-            "native-ios.md", "web.md", "desktop.md",
-            "backend.md", "api.md", "database.md"
-        ]
-        for fm in framework_modules:
-            p = os.path.join(frameworks_dir, fm)
-            if not os.path.exists(p):
-                errors.append(f"Missing framework module: frameworks/{fm}")
+        with open(skill_path, "r", encoding="utf-8") as fh:
+            content = fh.read()
+        if not content.startswith("---") or "name: human-flutter" not in content:
+            errors.append("skills/human-flutter/SKILL.md missing valid YAML frontmatter with 'name: human-flutter'")
+        else:
+            print("  ✓ skills/human-flutter/SKILL.md frontmatter verified (name: human-flutter)")
+
+    # 3. Verify All 26 Reference Modules
+    print("\n[3/3] Verifying 26 Dedicated Flutter Reference Modules...")
+    refs_dir = os.path.join(REPO_ROOT, "skills/human-flutter/references")
+    if not os.path.exists(refs_dir):
+        errors.append("Missing skills/human-flutter/references directory!")
+    else:
+        for ref in EXPECTED_REFERENCES:
+            ref_path = os.path.join(refs_dir, ref)
+            if not os.path.exists(ref_path):
+                errors.append(f"Missing reference module: skills/human-flutter/references/{ref}")
             else:
-                print(f"  ✓ Isolated framework module verified: frameworks/{fm}")
+                print(f"  ✓ Reference verified: {ref}")
 
     if errors:
         print(f"\n❌ STRUCTURAL VALIDATION FAILED with {len(errors)} error(s):")
@@ -70,9 +93,8 @@ def main():
             print(f"  - {err}")
         return 1
     else:
-        print("\n✅ ALL STRUCTURAL & ISOLATION CHECKS PASSED!")
+        print("\n✅ ALL STRUCTURAL CHECKS PASSED!")
         return 0
 
 if __name__ == "__main__":
     sys.exit(main())
-

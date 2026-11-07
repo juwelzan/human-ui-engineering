@@ -25,11 +25,11 @@
 
 ## 3. Technology Stack & Existing Constraints
 
-- **Framework & Version**: [e.g. React 19 / Next.js 15, Flutter 3.24, Android Jetpack Compose]
-- **Styling Solution**: [e.g. Tailwind CSS, CSS Modules, Flutter ThemeData, Material 3]
-- **State Management**: [e.g. Zustand, TanStack Query, BLoC, Riverpod, ViewModel]
-- **Navigation System**: [e.g. Next.js App Router, GoRouter, React Router]
-- **Existing Component Libraries**: [e.g. Shadcn UI, Radix, Material 3, Custom in-house]
+- **Framework & Version**: Flutter 3.24+ (Dart 3.5+)
+- **Styling Solution**: Flutter ThemeData, Material 3 ColorScheme, custom ThemeExtension
+- **State Management**: [BLoC / Cubit / Riverpod / Provider]
+- **Navigation System**: [go_router / Navigator 2.0]
+- **Component Libraries**: [Core in-house AppPrimitives / Material 3 / Cupertino]
 
 ---
 

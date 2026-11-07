@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Human UI Engineering — Documentation Validator
+Human Flutter Engineering — Documentation Validator
 Verifies:
-1. All core, design, component, engineering, framework, quality, workflow, template, adr, and skill files exist.
-2. No file is empty or contains placeholder stubs.
-3. Universal core remains strictly framework-independent.
+1. All core, design, component, engineering, quality, workflow, template, adr, skill, and adapter files exist.
+2. No file is empty or contains placeholder stubs (< 50 bytes).
+3. The canonical Flutter skill and all 26 reference guides are verified.
 """
 
 import os
@@ -84,23 +84,6 @@ CORE_FILES = [
     "engineering/cross-platform.md",
     "engineering/devops-release.md",
 
-    # Frameworks
-    "frameworks/README.md",
-    "frameworks/framework-selection.md",
-    "frameworks/flutter.md",
-    "frameworks/react.md",
-    "frameworks/nextjs.md",
-    "frameworks/vue.md",
-    "frameworks/angular.md",
-    "frameworks/react-native.md",
-    "frameworks/native-android.md",
-    "frameworks/native-ios.md",
-    "frameworks/web.md",
-    "frameworks/desktop.md",
-    "frameworks/backend.md",
-    "frameworks/api.md",
-    "frameworks/database.md",
-
     # Quality
     "quality/testing.md",
     "quality/testing-strategy.md",
@@ -146,57 +129,54 @@ CORE_FILES = [
     "docs/adr/README.md",
     "docs/adr/template.md",
     "docs/adr/0001-record-architecture-decisions.md",
+    "docs/adr/0002-flutter-only-engineering-system.md",
 
-    # Skills & Adapters
-    "skills/human-ui/SKILL.md",
-    "skills/human-ui/references/plan.md",
-    "skills/human-ui/references/build.md",
-    "skills/human-ui/references/design.md",
-    "skills/human-ui/references/architect.md",
-    "skills/human-ui/references/audit.md",
-    "skills/human-ui/references/debug.md",
-    "skills/human-ui/references/refactor.md",
-    "skills/human-ui/references/test.md",
-    "skills/human-ui/references/review.md",
-    "skills/human-ui/references/security.md",
-    "skills/human-ui/references/performance.md",
-    "skills/human-ui/references/docs.md",
-    "skills/human-ui/references/release.md",
-    "skills/human-ui/references/recovery.md",
-    "skills/human-ui/references/status.md",
-    "skills/human-ui/references/responsive.md",
-    "skills/human-ui/references/routing.md",
-    "skills/human-ui/references/flutter.md",
-    "skills/human-ui/references/react.md",
-    "skills/human-ui/references/nextjs.md",
-    "skills/human-ui/references/vue.md",
-    "skills/human-ui/references/angular.md",
-    "skills/human-ui/references/react-native.md",
-    "skills/human-ui/references/android.md",
-    "skills/human-ui/references/ios.md",
-    "skills/human-ui/references/web.md",
-    "skills/human-ui/references/desktop.md",
-    "skills/human-ui/references/backend.md",
-    "skills/human-ui/references/api.md",
-    "skills/human-ui/references/database.md",
+    # Skills & References (Canonical Flutter Engine)
+    "skills/human-flutter/SKILL.md",
+    "skills/human-flutter/references/ui-design.md",
+    "skills/human-flutter/references/color-system.md",
+    "skills/human-flutter/references/typography.md",
+    "skills/human-flutter/references/components.md",
+    "skills/human-flutter/references/flutter-architecture.md",
+    "skills/human-flutter/references/dart-standards.md",
+    "skills/human-flutter/references/file-structure.md",
+    "skills/human-flutter/references/responsive-design.md",
+    "skills/human-flutter/references/animation.md",
+    "skills/human-flutter/references/performance.md",
+    "skills/human-flutter/references/state-management.md",
+    "skills/human-flutter/references/navigation.md",
+    "skills/human-flutter/references/api-integration.md",
+    "skills/human-flutter/references/database-storage.md",
+    "skills/human-flutter/references/firebase.md",
+    "skills/human-flutter/references/platform-integration.md",
+    "skills/human-flutter/references/accessibility.md",
+    "skills/human-flutter/references/security.md",
+    "skills/human-flutter/references/testing.md",
+    "skills/human-flutter/references/debugging.md",
+    "skills/human-flutter/references/refactoring.md",
+    "skills/human-flutter/references/build-release.md",
+    "skills/human-flutter/references/design-audit.md",
+    "skills/human-flutter/references/code-review.md",
+    "skills/human-flutter/references/project-audit.md",
+    "skills/human-flutter/references/workflow.md",
 
     # Agent Adapters
-    ".agents/skills/human-ui/SKILL.md",
-    ".agents/rules/human-ui.md",
-    ".agent/skills/human-ui/SKILL.md",
-    ".agent/rules/human-ui.md",
-    ".claude/commands/human-ui.md",
-    ".cursor/rules/human-ui.mdc",
-    ".cursor/skills/human-ui/SKILL.md",
+    ".agents/skills/human-flutter/SKILL.md",
+    ".agents/rules/human-flutter.md",
+    ".agent/skills/human-flutter/SKILL.md",
+    ".agent/rules/human-flutter.md",
+    ".claude/commands/human-flutter.md",
+    ".cursor/rules/human-flutter.mdc",
+    ".cursor/skills/human-flutter/SKILL.md",
     ".github/copilot-instructions.md",
-    ".github/prompts/human-ui.prompt.md",
-    ".windsurf/rules/human-ui.md",
-    ".windsurf/workflows/human-ui.md"
+    ".github/prompts/human-flutter.prompt.md",
+    ".windsurf/rules/human-flutter.md",
+    ".windsurf/workflows/human-flutter.md"
 ]
 
 def main():
     print("==================================================")
-    print(" Human UI Engineering — Documentation Validator   ")
+    print(" Human Flutter Engineering — Doc Validator        ")
     print("==================================================")
     errors = []
 

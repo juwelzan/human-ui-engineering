@@ -27,8 +27,8 @@ flowchart TD
 ---
 
 ### Stage 1: Evidence-Based Discovery & Intake
-- **Inspect Root & Manifests**: Read `package.json`, `pubspec.yaml`, `build.gradle.kts`, `Package.swift`, `angular.json` to identify active frameworks, versions, and build tooling.
-- **Monorepo Detection**: If working in a monorepository (Nx, Turborepo, Melos, Gradle multi-project), identify package boundaries and isolate the specific subproject.
+- **Inspect Root & Manifests**: Read `pubspec.yaml`, `analysis_options.yaml`, and platform embedding configurations to identify dependencies, versions, and build tooling.
+- **Monorepo Detection**: If working in a Flutter monorepo (Melos or multi-package), identify package boundaries and isolate the specific subpackage.
 - **Token & Primitive Inventory**: Locate existing design tokens (colors, typography, spacing) and reusable components before writing any code.
 - Reference: [Project Discovery](project-discovery.md) & [Anti-Hallucination](anti-hallucination.md).
 

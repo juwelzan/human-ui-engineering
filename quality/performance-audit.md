@@ -26,7 +26,7 @@ This checklist defines the mandatory performance and memory audit before releasi
 
 ## 3. List & Scroll Performance
 
-- [ ] **Mandatory Virtualization**: Are lists exceeding 20 items virtualized (e.g. `ListView.builder`, `LazyColumn`, `@tanstack/react-virtual`, `LazyVStack`)?
+- [ ] **Mandatory Virtualization**: Are lists and grids exceeding 20 items virtualized using `ListView.builder`, `GridView.builder`, or `CustomScrollView` with `SliverList`?
 - [ ] **Recycled Keys**: Does every dynamic list item have a stable, unique key/id (not array index) for efficient DOM / widget reconciliation?
 - [ ] **Scroll-Time Paint Bottlenecks**: Are elements free of heavy run-time blur effects (`backdrop-filter`) and complex multi-layered drop shadows during active scrolling?
 

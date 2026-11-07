@@ -24,13 +24,13 @@ flowchart TD
 ```
 
 ### 1. Build & Compilation
-- [ ] Project builds cleanly with zero errors in production mode (`npm run build`, `flutter build`, `./gradlew assembleRelease`, `xcodebuild`).
+- [ ] Project builds cleanly with zero errors in release mode (`flutter build appbundle`, `flutter build ipa`, or `flutter build web`).
 - [ ] No circular dependency warnings in the build log.
 
 ### 2. Static Analysis & Type Safety
-- [ ] Type check passes with zero errors (`tsc --noEmit`, `dart analyze`).
-- [ ] Linter passes with zero warnings (`npm run lint`, `ktlint`, `swiftlint`).
-- [ ] No remaining `any` types (TypeScript) or `dynamic` (Dart) in newly created UI props.
+- [ ] Static analysis passes with zero errors and zero warnings (`dart analyze`).
+- [ ] Code formatting verified with `dart format --output=none --set-exit-if-changed .`.
+- [ ] No remaining untyped `dynamic` variables in newly created widget constructors.
 
 ### 3. Automated Test Execution
 - [ ] All existing test suites pass.

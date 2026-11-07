@@ -10,11 +10,11 @@ metadata:
 
 This is the lightweight Antigravity agent skill entry point. It delegates execution directly to the canonical skill engine:
 
-👉 **Canonical Skill**: [skills/human-flutter/SKILL.md](../../skills/human-flutter/SKILL.md)
+👉 **Canonical Skill**: [skills/human-flutter/SKILL.md](../../../skills/human-flutter/SKILL.md)
 
 ## Execution Instructions for Agent
 
 1. Parse any subcommand passed to `/human-flutter` (or alias `/human-ui`):
    - `plan`, `build`, `design`, `color`, `component`, `responsive`, `animation`, `performance`, `platform`, `product`, `audit`, `debug`, `refactor`, `test`, `review`, `release`, `recover`, `status`.
-2. Follow the progressive disclosure protocol in [skills/human-flutter/SKILL.md](../../skills/human-flutter/SKILL.md).
-3. Strictly enforce the **Absolute Flutter-Only Rule** and execute the 18-step workflow defined in [AGENTS.md](../../AGENTS.md).
+2. Follow the progressive disclosure protocol in [skills/human-flutter/SKILL.md](../../../skills/human-flutter/SKILL.md).
+3. Strictly enforce the **Absolute Flutter-Only Rule** and execute the 18-step workflow defined in [AGENTS.md](../../../AGENTS.md).
