@@ -4,11 +4,45 @@ This repository implements the **Human Flutter Engineering** system for high-fid
 
 The authoritative single source of truth is [AGENTS.md](AGENTS.md).
 
-## Absolute Flutter-Only Rule
+---
+
+## 1. Permission-First Decision System in Bengali (Highest Priority)
+
+Gemini agents must **NEVER** make important architectural, state-management, routing, dependency, project-structure, database, or color decisions without first explaining the decision in Bengali, presenting options, stating pros and cons, recommending an approach, and obtaining explicit user permission.
+
+👉 **Permission Reference**: [skills/human-flutter/references/permission-system.md](skills/human-flutter/references/permission-system.md)
+
+---
+
+## 2. Absolute Flutter-Only Rule
 
 Flutter and Dart are the only supported application development framework. Never switch to or recommend alternative frameworks.
 
-## Chat Slash Command: `/human-flutter` (or `/human-ui`)
+---
+
+## 3. Mandatory Flutter Project Structure
+
+All generated Flutter projects must strictly enforce:
+- `lib/core/` — Global foundational infrastructure (config, network, routing, storage, theme tokens). Zero feature UI.
+- `lib/shared/` — Reusable widgets, custom painters, animations, and responsive layouts.
+- `lib/features/` — Feature-first domain modules (`data/`, `domain/`, `presentation/`).
+
+👉 **Project Structure**: [skills/human-flutter/references/project-structure.md](skills/human-flutter/references/project-structure.md)
+
+---
+
+## 4. Mandatory Color Selection & Visual Placement Preview
+
+Before finalizing theme code:
+1. Ask the user in Bengali to choose 3 or 4 HEX colors.
+2. Present a visual UI color placement board across the 12 core components.
+3. Obtain explicit user approval before writing `ThemeData` and `ColorScheme`.
+
+👉 **Visual Preview**: [skills/human-flutter/references/color-preview.md](skills/human-flutter/references/color-preview.md)
+
+---
+
+## 5. Chat Slash Command: `/human-flutter` (or `/human-ui`)
 
 Gemini CLI and Antigravity discover skills in `.agents/skills/human-flutter/SKILL.md`, `.agent/skills/human-flutter/SKILL.md`, or canonical `skills/human-flutter/SKILL.md`.
 - **Command Syntax**: `/human-flutter [subcommand] [task]` (or `/human-ui [subcommand] [task]`)
@@ -16,15 +50,9 @@ Gemini CLI and Antigravity discover skills in `.agents/skills/human-flutter/SKIL
 - **Recovery Mode**: `/human-flutter recover` restores context from `AI_TASK_STATE.md` and git telemetry.
 - **Skill Engine**: [skills/human-flutter/SKILL.md](skills/human-flutter/SKILL.md).
 
-## Operational Rules for Gemini
+---
 
-- **Mandatory 18-Step Workflow**: Follow the engineering process in [AGENTS.md](AGENTS.md).
-- **Discovery**: Thoroughly inspect `pubspec.yaml`, project structure, design tokens, and state management conventions before proposing code.
-- **Pragmatic Design**: Emulate senior human UI engineers. Reject cliché AI styling (e.g., purple/cyan glows, uniform cards, purposeless glassmorphism). Ground decisions in [Human Design Rules](design/human-design-rules.md).
-- **Modularity & Reusability**: Ensure shared primitives in [components/](components/) are utilized and maintained with `const` support.
-- **Verification**: Run `flutter test` and `dart analyze`, and verify contrast and accessibility before claiming completion.
-
-## Documentation Index
+## 6. Documentation Index
 
 - **Main Skill Engine**: [skills/human-flutter/](skills/human-flutter/SKILL.md)
 - **Core Guidelines**: [core/](core/)

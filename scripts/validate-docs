@@ -4,7 +4,7 @@ Human Flutter Engineering — Documentation Validator
 Verifies:
 1. All core, design, component, engineering, quality, workflow, template, adr, skill, and adapter files exist.
 2. No file is empty or contains placeholder stubs (< 50 bytes).
-3. The canonical Flutter skill and all 26 reference guides are verified.
+3. The canonical Flutter skill and all reference guides are verified.
 """
 
 import os
@@ -130,11 +130,19 @@ CORE_FILES = [
     "docs/adr/template.md",
     "docs/adr/0001-record-architecture-decisions.md",
     "docs/adr/0002-flutter-only-engineering-system.md",
+    "docs/adr/0003-permission-first-decision-system-and-mandatory-structure.md",
 
     # Skills & References (Canonical Flutter Engine)
     "skills/human-flutter/SKILL.md",
+    "skills/human-flutter/references/permission-system.md",
+    "skills/human-flutter/references/project-structure.md",
     "skills/human-flutter/references/ui-design.md",
+    "skills/human-flutter/references/color-intelligence.md",
+    "skills/human-flutter/references/color-preview.md",
     "skills/human-flutter/references/color-system.md",
+    "skills/human-flutter/references/design-system.md",
+    "skills/human-flutter/references/shared-components.md",
+    "skills/human-flutter/references/feature-engineering.md",
     "skills/human-flutter/references/typography.md",
     "skills/human-flutter/references/components.md",
     "skills/human-flutter/references/flutter-architecture.md",
@@ -142,6 +150,7 @@ CORE_FILES = [
     "skills/human-flutter/references/file-structure.md",
     "skills/human-flutter/references/responsive-design.md",
     "skills/human-flutter/references/animation.md",
+    "skills/human-flutter/references/animations.md",
     "skills/human-flutter/references/performance.md",
     "skills/human-flutter/references/state-management.md",
     "skills/human-flutter/references/navigation.md",

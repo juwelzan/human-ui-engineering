@@ -1,6 +1,6 @@
 # Project Context: Human Flutter Engineering
 
-> **Complete Flutter-Only Human UI Engineering Operating System & AI Agent Intelligence**
+> **Complete Permission-First, Flutter-Only Human UI Engineering Operating System & AI Agent Intelligence**
 
 - **Project Name**: Human Flutter Engineering
 - **Repository**: `juwelzan/human-ui-engineering`
@@ -21,11 +21,14 @@ The single source of truth for all agent operations is [`AGENTS.md`](AGENTS.md).
 
 ## 2. Core Technical Invariants & Rules
 
-- **Absolute Flutter-Only Rule**: Flutter and Dart are the only supported application development framework. Never switch to or recommend React, Next.js, Vue, Angular, React Native, or standalone Kotlin/Swift architectures. Native code is allowed ONLY when platform channels or OS APIs require it.
-- **18-Step Human Design-to-Code Workflow**: All non-trivial UI engineering follows the 18-step lifecycle from requirements and project inspection through responsive layout, state binding, performance profiling, and testing.
-- **Evidence-Based Engineering**: 5-tier evidence hierarchy; zero hallucination; honest reporting of test outcomes (`flutter test`, `dart analyze`).
-- **Autonomous Recovery**: Session interruptions are resumed via [`AI_TASK_STATE.md`](AI_TASK_STATE.md) and [`core/recovery-protocol.md`](core/recovery-protocol.md) without restarting completed work.
-- **Automated Validation**: All documentation files, internal relative links, and Flutter-only structural isolation must validate cleanly via `python3 scripts/validate.py`.
+1. **Permission-First in Bengali (Highest Priority)**: The agent must NEVER make important architectural, state-management, routing, dependency, project-structure, database, or color decisions without explaining the decision in natural Bengali, presenting options, recommending an approach, and obtaining explicit user permission.
+2. **Absolute Flutter-Only Rule**: Flutter and Dart are the only supported application development framework. Never switch to or recommend alternative frameworks. Native code is allowed ONLY when platform channels or OS APIs require it.
+3. **Mandatory 3-Tier Project Structure**: All generated Flutter codebases must enforce `lib/core/` (foundations), `lib/shared/` (reusable UI), and `lib/features/` (feature-first domain modules).
+4. **Mandatory 3–4 Color Selection & Visual Preview**: Users choose 3–4 HEX colors, followed by a mandatory 12-component visual color placement board preview before theme finalization.
+5. **18-Step Human Design-to-Code Workflow**: All non-trivial UI engineering follows the 18-step lifecycle from requirements and project inspection through responsive layout, state binding, performance profiling, and testing.
+6. **Evidence-Based Engineering**: 5-tier evidence hierarchy; zero hallucination; honest reporting of test outcomes (`flutter test`, `dart analyze`).
+7. **Autonomous Recovery**: Session interruptions are resumed via [`AI_TASK_STATE.md`](AI_TASK_STATE.md) and [`core/recovery-protocol.md`](core/recovery-protocol.md) without restarting completed work.
+8. **Automated Validation**: All documentation files, internal relative links, and Flutter-only structural isolation must validate cleanly via `python3 scripts/validate.py`.
 
 ---
 
@@ -46,7 +49,7 @@ human-ui-engineering/
 ├── templates/              # Fillable engineering templates (ADRs, task state, bug reports)
 ├── docs/                   # Guides, matrices, and docs/adr/ (Architecture Decision Records)
 ├── scripts/                # Automated validation suite (validate-docs, validate-links, etc.)
-└── skills/human-flutter/   # Canonical Agent Skills engine (26 reference modules)
+└── skills/human-flutter/   # Canonical Agent Skills engine (28 reference modules)
 ```
 
 ---
@@ -54,11 +57,11 @@ human-ui-engineering/
 ## 4. Key Agent Slash Commands
 
 - `/human-flutter` (or alias `/human-ui`) — General Flutter feature implementation
-- `/human-flutter plan` — Structured task planning and risk analysis
+- `/human-flutter plan` — Structured task planning, Bengali permission gates, and risk analysis
 - `/human-flutter build` — End-to-end full-stack Flutter feature development
 - `/human-flutter design` — UI/UX design system and token specification
-- `/human-flutter color` — Coherent color palette, ThemeData, and ColorScheme
-- `/human-flutter component` — Reusable widget primitive engineering
+- `/human-flutter color` — 3-4 color prompt, visual placement preview, and ThemeData
+- `/human-flutter component` — Reusable widget primitive engineering in `shared/`
 - `/human-flutter responsive` — Multi-breakpoint layouts (Mobile, Tablet, Desktop, Web)
 - `/human-flutter animation` — 60/120fps animations and micro-interactions
 - `/human-flutter performance` — Frame budget, rebuild reduction, and DevTools
@@ -68,16 +71,7 @@ human-ui-engineering/
 - `/human-flutter debug` — Scientific 10-step root-cause diagnosis (RenderFlex, leaks)
 - `/human-flutter refactor` — Safe widget extraction and state decoupling
 - `/human-flutter test` — Multi-tier test authoring and verification
-- `/human-flutter review` — PR review against pre-flight release checklist
-- `/human-flutter release` — Store release preparation, signing, and obfuscation
-- `/human-flutter recover` — Context restoration from `AI_TASK_STATE.md`
-- `/human-flutter status` — Report active task milestone and progress
-
----
-
-## 5. Verification Commands
-
-```bash
-# Run full automated validation suite (docs, links, structure, flutter-only)
-python3 scripts/validate.py
-```
+- `/human-flutter review` — Pre-flight pull request review against 13 quality gates
+- `/human-flutter release` — Production AAB/IPA build and release preparation
+- `/human-flutter recover` — Restore active context from `AI_TASK_STATE.md` and git telemetry
+- `/human-flutter status` — Output active task progress, milestones, and blockers

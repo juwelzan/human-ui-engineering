@@ -6,7 +6,78 @@ This repository provides an institutional, human-centered Flutter engineering sy
 
 ---
 
-## 1. Absolute Flutter-Only Rule
+## 1. Permission-First Decision System (Highest Priority)
+
+The agent must **NEVER** make important architectural, design-system, state-management, dependency, project-structure, database, or color decisions without first explaining the decision in professional, natural Bengali and obtaining the user's explicit permission.
+
+### The 7-Step Bengali Protocol
+Before executing any major decision, the agent MUST:
+1. **Explain what decision needs to be made** in clear Bengali.
+2. **Explain why the decision is necessary** at this stage.
+3. **Present the available options** with clarity.
+4. **Explain the advantages and disadvantages** of each option.
+5. **Recommend the most appropriate option** for the current project scale.
+6. **Ask the user clearly whether they approve** in Bengali.
+7. **STOP and wait for the user's response** before proceeding.
+
+```mermaid
+flowchart TD
+    P1["১. কী সিদ্ধান্ত নিতে হবে"] --> P2["২. কেন প্রয়োজনীয়"]
+    P2 --> P3["৩. অপশনসমূহ"]
+    P3 --> P4["৪. সুবিধা ও অসুবিধা"]
+    P4 --> P5["৫. সুপারিশ ও কারণ"]
+    P5 --> P6["৬. স্পষ্ট প্রশ্ন ও অনুমোদন চাওয়া"]
+    P6 --> P7["৭. থামা এবং উত্তরের অপেক্ষা করা (STOP)"]
+```
+
+#### Canonical Bengali Dialogue Example
+```text
+আপনার Flutter প্রজেক্টে State Management নির্বাচন করতে হবে।
+
+এই সিদ্ধান্তটি নেওয়া প্রয়োজন কারণ প্রজেক্টের ডেটা ফ্লো, টেস্টেবিলিটি এবং স্কেলেবিলিটি এর ওপর নির্ভর করে।
+
+নিচের অপশনগুলো রয়েছে:
+1. BLoC/Cubit — Structured, predictable এবং বড় প্রজেক্টের জন্য ভালো।
+2. Riverpod — Flexible dependency management এবং reactive state handling।
+3. Provider — তুলনামূলক সহজ ও ছোট প্রজেক্টের জন্য উপযোগী।
+4. GetX — State management, dependency management ও routing একসঙ্গে দেয়।
+
+আমার সুপারিশ: BLoC/Cubit।
+কারণ: আপনার প্রজেক্টের architecture এবং maintainability বিবেচনায় এটি উপযুক্ত হতে পারে।
+
+আপনি কোনটি ব্যবহার করতে চান?
+```
+*(এরপর এজেন্ট কোড বা ফাইল না লিখে সম্পূর্ণ থেমে থাকবে এবং উত্তরের অপেক্ষা করবে।)*
+
+### Permission Rules
+The agent **MUST** obtain permission before:
+- Selecting or altering **State Management**.
+- Selecting or altering a **Routing Solution**.
+- Selecting **Dependency Injection**.
+- Adding a **Package or Dependency** to `pubspec.yaml`.
+- Changing **Project Architecture** or modifying the mandatory 3-tier structure.
+- Changing **Existing File Structure**.
+- Introducing a new **Design System**.
+- Selecting the application's **Primary Color Palette**.
+- Choosing major **UI/UX Directions**.
+- Introducing a new **Database or Storage Solution**.
+- Introducing a new **API Architecture**.
+- Making significant **Native Platform Integrations**.
+- Removing **Existing Files or Functionality**.
+- Performing **Large-Scale Refactoring**.
+- Changing **Existing Application Behavior**.
+
+> [!CAUTION]
+> - Never interpret silence as permission.
+> - Never interpret a vague response as approval.
+> - All permission questions and decision explanations must be in Bengali. Technical names remain in English.
+> - Do not ask permission for trivial implementation details (padding, private helper names). Once a decision is approved, implement it without re-asking.
+
+👉 **Permission Reference**: [`skills/human-flutter/references/permission-system.md`](skills/human-flutter/references/permission-system.md)
+
+---
+
+## 2. Absolute Flutter-Only Rule
 
 Flutter is the **only** supported application development framework.
 
@@ -23,7 +94,82 @@ The agent must **NEVER**:
 
 ---
 
-## 2. Chat-Box Slash Command: `/human-flutter`
+## 3. Mandatory Flutter Project Structure
+
+Whenever creating a new Flutter application, generating modular architecture, or scaffolding project components, the agent **MUST** enforce the 3-tier top-level structure:
+
+```text
+lib/
+├── core/       # Global foundational infrastructure and configuration
+├── shared/     # Cross-feature reusable widgets, custom painters, and animations
+└── features/   # Independent, feature-first functional modules
+```
+
+### A. `lib/core/` — Foundational Infrastructure
+Application configuration, constants, network clients, error handling, local storage, routing, utilities, and theme tokens (`app_colors.dart`, `app_theme.dart`, `app_typography.dart`, `app_spacing.dart`, `app_radius.dart`, `app_elevation.dart`). Zero feature-specific UI or logic.
+
+### B. `lib/shared/` — Reusable Cross-Feature UI & Support
+- `widgets/` (buttons, cards, containers, dialogs, inputs, loaders, navigation, app bars, avatars, badges, dividers, menus, sheets).
+- `custom/` (painters, shapes, borders, layouts, effects).
+- `animations/` (controllers, transitions, implicit, explicit, effects).
+- `layouts/` (responsive layout builders, adaptive scaffolds).
+- *Rule*: Only place components in `shared/` if used by 2 or more features.
+
+### C. `lib/features/` — Feature-First Modules
+Every capability lives in its own module: `lib/features/<feature>/` containing:
+- `data/` (datasources, models, repositories).
+- `domain/` (entities, repositories, usecases).
+- `presentation/` (screens, pages, widgets, components, state).
+
+👉 **Project Structure Reference**: [`skills/human-flutter/references/project-structure.md`](skills/human-flutter/references/project-structure.md)  
+👉 **Shared Components Reference**: [`skills/human-flutter/references/shared-components.md`](skills/human-flutter/references/shared-components.md)  
+👉 **Feature Engineering Reference**: [`skills/human-flutter/references/feature-engineering.md`](skills/human-flutter/references/feature-engineering.md)
+
+---
+
+## 4. Mandatory Color Selection & Visual Placement Preview
+
+The agent must **NEVER** silently choose the application's primary brand colors.
+
+1. **Ask for 3 or 4 Colors in Bengali**:
+   Prompt the user:
+   ```text
+   আপনার অ্যাপ্লিকেশনের জন্য ৩টি অথবা ৪টি মূল রং (HEX কোডসহ) নির্বাচন করুন।
+   এই রংগুলোর ভিত্তিতে সম্পূর্ণ অ্যাপ্লিকেশনের Color System তৈরি করা হবে।
+   প্রতিটি রং কোথায় ব্যবহার হবে সেটিও আগে দেখানো হবে।
+   ```
+2. **Display 12-Component Visual Color Placement Preview**:
+   Render a visual UI-style color board mapping the colors across:
+   1. App background
+   2. Primary app bar
+   3. Navigation bar
+   4. Primary button
+   5. Secondary button
+   6. Cards & containers
+   7. Input fields
+   8. Text and headings
+   9. Icons
+   10. Borders and dividers
+   11. Selected and unselected states
+   12. Success, warning and error states
+3. **Wait for Approval**: Obtain explicit user approval in Bengali before writing `ThemeData` and `ColorScheme`.
+
+👉 **Color Intelligence Reference**: [`skills/human-flutter/references/color-intelligence.md`](skills/human-flutter/references/color-intelligence.md)  
+👉 **Visual Preview Board Reference**: [`skills/human-flutter/references/color-preview.md`](skills/human-flutter/references/color-preview.md)
+
+---
+
+## 5. State Management Permission Gate
+
+The agent must never independently select a state-management solution.
+- Inspect the existing project: If already using BLoC, Riverpod, Provider, or GetX, preserve it.
+- If a new choice is needed, present options in Bengali with pros/cons, recommend one, ask for approval, and wait.
+
+👉 **State Management Reference**: [`skills/human-flutter/references/state-management.md`](skills/human-flutter/references/state-management.md)
+
+---
+
+## 6. Chat-Box Slash Command: `/human-flutter`
 
 Developers can invoke this entire knowledge system directly from any supported AI coding agent's chat interface:
 
@@ -34,11 +180,11 @@ Developers can invoke this entire knowledge system directly from any supported A
 
 ### Supported Command Modes
 - `/human-flutter [task]` — General Flutter feature engineering (executes the 18-step workflow).
-- `/human-flutter plan [task]` — Structured task planning, dependency mapping, and risk analysis.
+- `/human-flutter plan [task]` — Structured task planning, Bengali permission gates, and risk analysis.
 - `/human-flutter build [task]` — End-to-end full-stack Flutter feature assembly (models, state, UI).
 - `/human-flutter design [task]` — UI/UX design, visual hierarchy, spacing grids, and typography.
-- `/human-flutter color [task]` — Coherent color systems, ThemeData, ColorScheme, and ThemeExtensions.
-- `/human-flutter component [task]` — Reusable widget primitives and custom rendering (`CustomPainter`).
+- `/human-flutter color [task]` — 3-4 color prompt, visual placement preview, and ThemeData.
+- `/human-flutter component [task]` — Reusable widget primitives and custom rendering in `shared/`.
 - `/human-flutter responsive [task]` — Multi-breakpoint layouts across phones, tablets, desktop, and web.
 - `/human-flutter animation [task]` — Meaningful, 60/120fps animations and micro-interactions.
 - `/human-flutter performance [task]` — Frame budget (16.6ms/8.3ms), const optimization, and DevTools profiling.
@@ -59,118 +205,65 @@ Developers can invoke this entire knowledge system directly from any supported A
 
 ---
 
-## 3. Core Operating Principles
+## 7. Core Operating Principles
 
-1. **Human Utility Over AI Decoration**: Never generate boilerplate "AI aesthetics" (unwarranted purple/teal neon glows, gratuitous gradients, uniform cards, arbitrary frosted glass). Every visual element must serve content hierarchy and user task completion.
-2. **Context Discovery Before Code**: Never write Flutter code without inspecting `pubspec.yaml`, existing architecture, state management conventions, and design tokens.
-3. **Foundation First, Screens Second**: Build design tokens and shared component primitives (`AppButton`, `AppCard`, `AppTextField`) before assembling complex views.
-4. **Platform Respect**: Honor platform-native conventions (touch targets, typography scales, gestures, navigation idioms) across Android, iOS, macOS, Windows, Linux, and Web.
-5. **Honest Engineering**: Never report that tests passed, memory was audited, or responsiveness was verified unless the checks were actually executed via `flutter test` and `dart analyze`.
-
----
-
-## 4. The 10 Human Flutter Engineering Modules
-
-### A. Human UI Design Engineering
-- Human-centered UI/UX principles, modern/minimal/premium styling, and content hierarchy.
-- Visual hierarchy and information architecture (single focal anchor per viewport).
-- Platform-adaptive design: Material Design 3, Cupertino, and custom-designed interfaces.
-- Beautiful, complete interaction states: pristine, loading (shimmer), empty, error, and success.
-- Minimum interactive touch targets (48x48dp, `kMinInteractiveDimension`).
-- Reference: [`skills/human-flutter/references/ui-design.md`](skills/human-flutter/references/ui-design.md) & [`design/design-philosophy.md`](design/design-philosophy.md).
-
-### B. Human Color Intelligence
-- 60-30-10 color hierarchy: 60% neutral surfaces, 30% structural text/outlines, 10% intentional accent.
-- Material 3 `ColorScheme` architecture for light and dark brightness modes.
-- Custom semantic colors (success, warning, info) via `ThemeExtension<AppCustomColors>`.
-- WCAG 2.1 AA accessibility contrast (min 4.5:1 body text, 3:1 graphical/interactive).
-- Dynamic color integration (`dynamic_color` package) for Android 12+ wallpaper tones.
-- Never choose colors randomly; establish a coherent palette before building screens.
-- Reference: [`skills/human-flutter/references/color-system.md`](skills/human-flutter/references/color-system.md) & [`design/color-system.md`](design/color-system.md).
-
-### C. Human Flutter Component Engineering
-- Reusable, theme-aware widget primitives (`AppButton`, `AppCard`, `AppTextField`, `AppDialog`).
-- Clear constructor APIs with named variants (`AppButton.primary`, `AppButton.secondary`, `AppButton.destructive`).
-- Full interactive state handling: default, hover, pressed, focused, disabled, and loading.
-- Custom rendering via `CustomPaint`, `CustomPainter`, and `RenderBox` when justified.
-- Composition over inheritance; avoid excessive wrappers and duplicate widgets.
-- Reference: [`skills/human-flutter/references/components.md`](skills/human-flutter/references/components.md) & [`components/component-principles.md`](components/component-principles.md).
-
-### D. Human Flutter Coding Intelligence
-- Clean, type-safe Dart 3 code with sound null safety (no unsafe `!` operators).
-- Algebraic data types and exhaustive pattern matching with `sealed class`.
-- Immutability first: `@immutable`, records, and `const` constructors.
-- Unidirectional Data Flow (UDF) and separation of presentation, domain, and data layers.
-- Widget granularity: private `StatelessWidget` classes instead of helper methods (`_buildHeader()`).
-- Safe asynchronous programming and the `Result` pattern for domain error handling.
-- Reference: [`skills/human-flutter/references/dart-standards.md`](skills/human-flutter/references/dart-standards.md) & [`skills/human-flutter/references/flutter-architecture.md`](skills/human-flutter/references/flutter-architecture.md).
-
-### E. Human Flutter File Structure Engineering
-- Feature-First architecture (`lib/core/` and `lib/features/<feature>/presentation|domain|data`).
-- Scalable layer separation; proportional architecture (do not force Clean Architecture on small utilities).
-- Core isolation: universal UI primitives in `lib/core/widgets/`; feature-private widgets stay local.
-- Test directory mirroring: `test/` mirrors `lib/` directory layout.
-- Reference: [`skills/human-flutter/references/file-structure.md`](skills/human-flutter/references/file-structure.md) & [`core/folder-structure.md`](core/folder-structure.md).
-
-### F. Human Responsive Design Engineering
-- Multi-platform targets: Android phones & tablets, iPhone & iPad, macOS, Windows, Linux, Flutter Web.
-- Constraint-driven design with `LayoutBuilder`, `MediaQuery.sizeOf`, `Flexible`, `Expanded`, and `Wrap`.
-- 3-tier breakpoint scale: Mobile (<600dp), Tablet (600–1023dp), Desktop/Web (≥1024dp).
-- Adaptive navigation: `NavigationBar` on mobile vs `NavigationRail` or persistent sidebar on desktop.
-- Zero overflow tolerance: prevent `RenderFlex overflow`, unbounded viewport errors, and keyboard overlap.
-- Desktop max-width containers: never stretch mobile forms across 1400px viewports.
-- Reference: [`skills/human-flutter/references/responsive-design.md`](skills/human-flutter/references/responsive-design.md) & [`design/responsive-design.md`](design/responsive-design.md).
-
-### G. Human Flutter Animation Engineering
-- Implicit animations (`AnimatedContainer`, `AnimatedOpacity`, `AnimatedCrossFade`, `AnimatedSwitcher`).
-- Explicit animations (`AnimationController`, `Tween`, `CurvedAnimation`, `AnimatedBuilder`).
-- Shared-element `Hero` transitions for spatial continuity between screens.
-- Declarative page transitions via `go_router` (`CustomTransitionPage`).
-- Performance rules: wrap animating subtrees in `RepaintBoundary`; avoid animating `Opacity` directly.
-- Reduced motion: always respect `MediaQuery.disableAnimationsOf(context)`.
-- Reference: [`skills/human-flutter/references/animation.md`](skills/human-flutter/references/animation.md) & [`design/animation.md`](design/animation.md).
-
-### H. Human Performance Engineering
-- 60fps (≤16.6ms) and 120fps (≤8.3ms) frame budget on UI and Raster threads.
-- Mandatory `const` constructors on all immutable widgets.
-- Collection virtualization via `ListView.builder` and `GridView.builder`.
-- Image downsampling with `cacheWidth` and `cacheHeight` to prevent OOM errors.
-- Heavy computations (JSON parsing, cryptography) offloaded to background isolates (`compute`).
-- Mandatory disposal of controllers, listeners, and stream subscriptions in `State.dispose()`.
-- Profiling with Flutter DevTools (Performance, CPU Profiler, Memory snapshots).
-- Reference: [`skills/human-flutter/references/performance.md`](skills/human-flutter/references/performance.md) & [`quality/performance-audit.md`](quality/performance-audit.md).
-
-### I. Human Flutter Platform Engineering
-- Platform detection: `kIsWeb`, `defaultTargetPlatform`, and `Theme.of(context).platform`.
-- Native communication: `MethodChannel`, `EventChannel`, and type-safe `pigeon` code generation.
-- FFI (`dart:ffi`) for high-performance C/C++ interop when justified.
-- Declarative lifecycle monitoring with `AppLifecycleListener`.
-- Desktop window controls via `window_manager` (frameless windows, custom titlebars).
-- Reference: [`skills/human-flutter/references/platform-integration.md`](skills/human-flutter/references/platform-integration.md) & [`engineering/cross-platform.md`](engineering/cross-platform.md).
-
-### J. Human Flutter Product Engineering
-- Production API integration via `Dio` with auth token refresh, retry backoff, and logging.
-- Offline-first storage with Drift, Isar, Hive, and encrypted `FlutterSecureStorage`.
-- Full Firebase integration: `firebase_core`, `firebase_auth`, `cloud_firestore`, `firebase_messaging`, `firebase_crashlytics`.
-- Internationalization (`flutter_localizations`, ARB files) and right-to-left (RTL) layout support.
-- Production release engineering: Android AAB, iOS IPA, Fastlane, code obfuscation, and symbol archiving.
-- Reference: [`skills/human-flutter/references/api-integration.md`](skills/human-flutter/references/api-integration.md), [`database-storage.md`](skills/human-flutter/references/database-storage.md), [`firebase.md`](skills/human-flutter/references/firebase.md), [`build-release.md`](skills/human-flutter/references/build-release.md).
+1. **Permission-First in Bengali**: Seek explicit approval before major architectural, color, state, or dependency changes.
+2. **Human Utility Over AI Decoration**: Never generate boilerplate "AI aesthetics" (unwarranted purple/teal neon glows, gratuitous gradients, uniform cards, arbitrary frosted glass). Every visual element must serve content hierarchy and user task completion.
+3. **Context Discovery Before Code**: Never write Flutter code without inspecting `pubspec.yaml`, existing architecture, state management conventions, and design tokens.
+4. **Foundation First, Screens Second**: Build design tokens and shared component primitives (`AppButton`, `AppCard`, `AppTextField`) before assembling complex views.
+5. **Platform Respect**: Honor platform-native conventions (touch targets, typography scales, gestures, navigation idioms) across Android, iOS, macOS, Windows, Linux, and Web.
+6. **Honest Engineering**: Never report that tests passed, memory was audited, or responsiveness was verified unless the checks were actually executed via `flutter test` and `dart analyze`.
 
 ---
 
-## 5. Mandatory 18-Step Engineering Workflow
+## 8. Complete Reference Library (28 Dedicated Modules)
 
-Every substantial Flutter UI engineering task MUST follow this sequential 18-step workflow:
+The system organizes Flutter engineering into 28 specialized, discoverable reference modules located in `skills/human-flutter/references/`:
+
+| Module | Category | Primary Focus |
+|---|---|---|
+| [`permission-system.md`](skills/human-flutter/references/permission-system.md) | **Permissions** | 7-step Bengali protocol, decision gates, non-assumption |
+| [`project-structure.md`](skills/human-flutter/references/project-structure.md) | **Structure** | Mandatory `lib/core/`, `lib/shared/`, `lib/features/` |
+| [`flutter-architecture.md`](skills/human-flutter/references/flutter-architecture.md) | **Architecture** | UDF, presentation-domain-data separation, Result pattern |
+| [`dart-standards.md`](skills/human-flutter/references/dart-standards.md) | **Code Quality** | Sound null safety, records, patterns, sealed classes |
+| [`ui-design.md`](skills/human-flutter/references/ui-design.md) | **UI/UX Design** | Visual hierarchy, focal anchor, human-centered UI |
+| [`color-intelligence.md`](skills/human-flutter/references/color-intelligence.md) | **Color System** | 3-4 color prompt, 60-30-10 rule, ColorScheme, extensions |
+| [`color-preview.md`](skills/human-flutter/references/color-preview.md) | **Visual Preview**| 12-component visual UI color placement board |
+| [`design-system.md`](skills/human-flutter/references/design-system.md) | **Tokens** | Centralized spacing, radius, elevation, typography |
+| [`shared-components.md`](skills/human-flutter/references/shared-components.md) | **Shared UI** | Reusable widget primitives in `lib/shared/` |
+| [`feature-engineering.md`](skills/human-flutter/references/feature-engineering.md) | **Features** | Feature-first packages, data/domain/presentation |
+| [`state-management.md`](skills/human-flutter/references/state-management.md) | **State** | BLoC, Riverpod, Provider, GetX, permission gate |
+| [`responsive-design.md`](skills/human-flutter/references/responsive-design.md) | **Responsive** | Mobile, Tablet, Desktop, Web, zero overflow tolerance |
+| [`animations.md`](skills/human-flutter/references/animations.md) | **Motion** | Implicit/explicit animations, micro-interactions, 120fps |
+| [`performance.md`](skills/human-flutter/references/performance.md) | **Performance** | Frame budgets, isolates, const optimization, DevTools |
+| [`navigation.md`](skills/human-flutter/references/navigation.md) | **Routing** | Declarative GoRouter, route guards, deep links |
+| [`api-integration.md`](skills/human-flutter/references/api-integration.md) | **Networking** | Dio, retry backoff, auth tokens, JSON serialization |
+| [`database-storage.md`](skills/human-flutter/references/database-storage.md) | **Storage** | Drift, Isar, Hive, FlutterSecureStorage |
+| [`firebase.md`](skills/human-flutter/references/firebase.md) | **Firebase** | Core, Auth, Firestore, Crashlytics, Messaging |
+| [`platform-integration.md`](skills/human-flutter/references/platform-integration.md) | **Platform** | MethodChannel, EventChannel, FFI, lifecycle, permissions |
+| [`accessibility.md`](skills/human-flutter/references/accessibility.md) | **A11y** | WCAG 2.1 AA, touch targets, screen readers, semantics |
+| [`security.md`](skills/human-flutter/references/security.md) | **Security** | Secure storage, cert pinning, obfuscation, integrity |
+| [`testing.md`](skills/human-flutter/references/testing.md) | **Testing** | Unit, widget, integration testing, honest reporting |
+| [`debugging.md`](skills/human-flutter/references/debugging.md) | **Debugging** | 10-step diagnosis, overflow fixing, memory profiling |
+| [`refactoring.md`](skills/human-flutter/references/refactoring.md) | **Refactoring** | Widget tree extraction, technical debt reduction |
+| [`build-release.md`](skills/human-flutter/references/build-release.md) | **Release** | Android AAB, iOS IPA, Fastlane, store deployment |
+| [`design-audit.md`](skills/human-flutter/references/design-audit.md) | **Design Audit** | Visual polish, spacing grid, contrast checklist |
+| [`code-review.md`](skills/human-flutter/references/code-review.md) | **Code Review** | 13 pre-flight pull request quality gates |
+| [`project-audit.md`](skills/human-flutter/references/project-audit.md) | **System Audit** | Health check, dependency review, architectural audit |
+
+---
+
+## 9. Mandatory 18-Step Engineering Workflow
 
 ```mermaid
 flowchart TD
     S1[1. Understand Requirements] --> S2[2. Inspect Flutter Project]
-    S2 --> S3[3. Identify Architecture]
-    S3 --> S4[4. Define User Journey]
-    S4 --> S5[5. Establish Design Direction]
-    S5 --> S6[6. Define Colors & Typography]
+    S2 --> S3[3. Identify Architecture & Decisions]
+    S3 --> S4[4. Bengali Permission Gate]
+    S4 --> S5[5. User Chooses 3-4 Colors]
+    S5 --> S6[6. Visual Color Placement Preview]
     S6 --> S7[7. Establish Design Tokens]
-    S7 --> S8[8. Plan Reusable Components]
+    S7 --> S8[8. Plan Reusable Components in shared/]
     S8 --> S9[9. Define Responsive Behavior]
     S9 --> S10[10. Implement Flutter UI]
     S10 --> S11[11. Connect State & Business Logic]
@@ -183,86 +276,33 @@ flowchart TD
     S17 --> S18[18. Report Completed Work Honestly]
 ```
 
-### Step 1: Understand the Product and User Requirements
-- Analyze prompt constraints, user personas, brand identity, and technical boundaries.
-- Distinguish non-negotiable requirements from flexible design choices.
-- Reference: [Project Discovery Guide](core/project-discovery.md).
-
-### Step 2: Inspect the Existing Flutter Project
-- Inspect `pubspec.yaml`, dependencies, assets, and Flutter SDK constraints.
-- Inspect `analysis_options.yaml` for strict lint rules.
-- Reference: [Project Knowledge](core/project-knowledge.md).
-
-### Step 3: Identify Current Architecture and Coding Conventions
-- Detect state management paradigm (BLoC, Riverpod, Provider).
-- Check routing (`go_router`) and dependency injection patterns.
-- Reference: [Flutter Architecture](skills/human-flutter/references/flutter-architecture.md).
-
-### Step 4: Define Screen Structure and User Journey
-- Map screen information hierarchy, layout wireframes, and navigation flows.
-
-### Step 5: Establish Design Direction
-- Choose between Material 3, Cupertino, or custom branded design. Reject generic AI aesthetics.
-- Reference: [Design Philosophy](design/design-philosophy.md).
-
-### Step 6: Define Color System and Typography
-- Establish light and dark `ColorScheme` palettes, `ThemeExtension` for semantic statuses, and `TextTheme`.
-- Reference: [Color System](skills/human-flutter/references/color-system.md) & [Typography](skills/human-flutter/references/typography.md).
-
-### Step 7: Define Spacing, Sizing, Radius and Design Tokens
-- Apply the 8pt/4pt mathematical spatial grid, corner radii, and elevation levels.
-- Reference: [Spacing Guide](design/spacing.md).
-
-### Step 8: Plan Reusable Components
-- Identify shared widget primitives (`AppButton`, `AppTextField`, `AppCard`) vs feature-private widgets.
-- Reference: [Component Rules](components/shared-component-rules.md).
-
-### Step 9: Define Responsive Behavior
-- Define multi-device layout behavior (Mobile < 600dp, Tablet 600–1023dp, Desktop/Web ≥ 1024dp).
-- Reference: [Responsive Design](skills/human-flutter/references/responsive-design.md).
-
-### Step 10: Implement the Flutter UI
-- Construct declarative widget trees using `const` constructors, semantics, and composition.
-- Reference: [Components Catalog](skills/human-flutter/references/components.md).
-
-### Step 11: Connect State Management and Business Logic
-- Bind BLoC/Cubit, Riverpod, or Notifiers to UI widgets with tightly scoped rebuilds (`buildWhen`, `select`).
-- Reference: [State Management](skills/human-flutter/references/state-management.md).
-
-### Step 12: Handle Loading, Empty, Error and Success States
-- Implement shimmers for loading, clear empty states with CTAs, and actionable error banners.
-- Reference: [Loading States](components/loading-states.md).
-
-### Step 13: Test on Screen Sizes and Platforms
-- Verify responsiveness across mobile (portrait/landscape), tablet, and desktop viewports.
-
-### Step 14: Audit Visual Consistency and Accessibility
-- Check contrast ratios (WCAG 4.5:1), touch targets (min 48x48dp), and semantic labels.
-- Reference: [Design Audit](skills/human-flutter/references/design-audit.md) & [Accessibility](design/accessibility.md).
-
-### Step 15: Profile Performance
-- Check frame budget (16.6ms / 8.3ms), eliminate unnecessary rebuilds, and ensure controller disposal.
-- Reference: [Performance Audit](quality/performance-audit.md).
-
-### Step 16: Refactor Unnecessary or Duplicate Code
-- Decompose monolithic build methods (>200 lines) into private `StatelessWidget`s.
-- Reference: [Refactoring Guide](skills/human-flutter/references/refactoring.md).
-
-### Step 17: Run Flutter Tests and Analyze Results
-- Execute `flutter test` and `dart analyze`. Record actual pass/fail metrics.
-- Reference: [Testing Guide](quality/testing.md).
-
-### Step 18: Report Completed Work Honestly
-- State files modified, components created, test outcomes, and any remaining constraints.
+1. **Understand Product & Requirements**: Analyze prompt constraints, personas, and technical boundaries.
+2. **Inspect Existing Flutter Project**: Inspect `pubspec.yaml`, dependencies, assets, and linter settings.
+3. **Identify Current Architecture**: Detect state management, DI, routing, and database conventions.
+4. **Bengali Permission Gate**: If important architectural decisions are needed, explain in Bengali and wait.
+5. **Mandatory 3–4 Color Selection**: Ask user in Bengali for 3 or 4 primary HEX colors.
+6. **Visual Color Placement Preview**: Render the 12-component visual UI board and obtain approval.
+7. **Establish Design Tokens**: Codify colors, spacing (8pt/4pt), radius, and typography in `lib/core/theme/`.
+8. **Plan Reusable Components in `shared/`**: Identify shared primitives (`AppButton`, `AppCard`) vs feature widgets.
+9. **Define Responsive Behavior**: Define multi-device layout behavior (Mobile < 600dp, Tablet 600–1023dp, Desktop/Web ≥ 1024dp).
+10. **Implement Flutter UI**: Construct declarative widget trees using `const`, semantics, and composition.
+11. **Connect State & Business Logic**: Bind approved state manager with tightly scoped rebuilds.
+12. **Handle All Interaction States**: Pristine, loading (shimmer), empty, error, and success states.
+13. **Test Screen Sizes & Platforms**: Verify responsiveness and prevent `RenderFlex overflow`.
+14. **Audit Visuals & Accessibility**: Check contrast ratios (WCAG 4.5:1), touch targets (min 48x48dp), and semantic labels.
+15. **Profile Performance**: Check frame budget (16.6ms / 8.3ms), eliminate rebuilds, and ensure controller disposal.
+16. **Refactor Redundant Code**: Decompose monolithic build methods (>200 lines) into private `StatelessWidget`s.
+17. **Run Flutter Tests & Analyze**: Execute `flutter test` and `dart analyze`.
+18. **Report Completed Work Honestly**: State files modified, components created, test outcomes, and any remaining constraints.
 
 ---
 
-## 6. Repository Map & Navigation
+## 10. Repository Map & Navigation
 
 | Domain | Directory / File | Key Focus |
 |---|---|---|
 | **Root Context** | [`PROJECT_CONTEXT.md`](PROJECT_CONTEXT.md), [`AI_TASK_STATE.md`](AI_TASK_STATE.md) | Project identity, active task checkpoints, recovery logs |
-| **Canonical Skill** | [`skills/human-flutter/`](skills/human-flutter/SKILL.md) | [Skill Engine](skills/human-flutter/SKILL.md), [26 References](skills/human-flutter/references/) |
+| **Canonical Skill** | [`skills/human-flutter/`](skills/human-flutter/SKILL.md) | [Skill Engine](skills/human-flutter/SKILL.md), [28 References](skills/human-flutter/references/) |
 | **Core Intelligence** | [`core/`](core/) | [Developer Intelligence](core/developer-intelligence.md), [Task Orchestration](core/task-orchestration.md), [Operating Modes](core/operating-modes.md), [Human Interaction](core/human-interaction.md), [Project Knowledge](core/project-knowledge.md), [Git & Change Management](core/git-change-management.md), [Anti-Hallucination](core/anti-hallucination.md), [Recovery Protocol](core/recovery-protocol.md), [Architecture](core/architecture.md), [Folder Structure](core/folder-structure.md) |
 | **Design System** | [`design/`](design/) | [Philosophy](design/design-philosophy.md), [Human Interface Design](design/human-interface-design.md), [Human Rules](design/human-design-rules.md), [Data Visualization](design/data-visualization.md), [Colors](design/color-system.md), [Typography](design/typography.md), [Spacing](design/spacing.md), [Responsive](design/responsive-design.md), [A11y](design/accessibility.md), [Motion](design/animation.md) |
 | **Component Library** | [`components/`](components/) | [Principles](components/component-principles.md), [Shared Component Rubric](components/shared-component-rules.md), [Dashboards](components/dashboards.md), [Buttons](components/buttons.md), [Forms](components/forms.md), [Text Fields](components/text-fields.md), [Typography](components/typography.md), [Cards](components/cards.md), [Navigation](components/navigation.md), [Dialogs](components/dialogs.md), [Loading States](components/loading-states.md), [Component Testing](components/component-testing.md), [Reusable Widgets](components/reusable-widgets.md) |
@@ -273,7 +313,7 @@ flowchart TD
 
 ---
 
-## 7. Agent Compatibility Notice
+## 11. Agent Compatibility Notice
 
 This repository defines standardized instructions consumable across AI development environments:
 - **Google Antigravity**: [`.agents/skills/human-flutter/SKILL.md`](.agents/skills/human-flutter/SKILL.md) & [`.agent/skills/human-flutter/SKILL.md`](.agent/skills/human-flutter/SKILL.md)

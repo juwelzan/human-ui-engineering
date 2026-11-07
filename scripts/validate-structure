@@ -3,7 +3,7 @@
 Human Flutter Engineering — Structural Validator
 Verifies:
 1. Agent entry points properly reference canonical instructions and skills.
-2. Canonical Flutter skill has valid YAML frontmatter and all 26 reference modules.
+2. Canonical Flutter skill has valid YAML frontmatter and all reference modules.
 3. Official Antigravity workspace skill location exists and delegates cleanly.
 """
 
@@ -28,14 +28,43 @@ AGENT_ENTRIES = [
 ]
 
 EXPECTED_REFERENCES = [
-    "ui-design.md", "color-system.md", "typography.md", "components.md",
-    "flutter-architecture.md", "dart-standards.md", "file-structure.md",
-    "responsive-design.md", "animation.md", "performance.md",
-    "state-management.md", "navigation.md", "api-integration.md",
-    "database-storage.md", "firebase.md", "platform-integration.md",
-    "accessibility.md", "security.md", "testing.md", "debugging.md",
-    "refactoring.md", "build-release.md", "design-audit.md",
-    "code-review.md", "project-audit.md", "workflow.md"
+    # Core 28 Reference Modules
+    "permission-system.md",
+    "project-structure.md",
+    "flutter-architecture.md",
+    "dart-standards.md",
+    "ui-design.md",
+    "color-intelligence.md",
+    "color-preview.md",
+    "design-system.md",
+    "shared-components.md",
+    "feature-engineering.md",
+    "state-management.md",
+    "responsive-design.md",
+    "animations.md",
+    "performance.md",
+    "navigation.md",
+    "api-integration.md",
+    "database-storage.md",
+    "firebase.md",
+    "platform-integration.md",
+    "accessibility.md",
+    "security.md",
+    "testing.md",
+    "debugging.md",
+    "refactoring.md",
+    "build-release.md",
+    "design-audit.md",
+    "code-review.md",
+    "project-audit.md",
+
+    # Supplementary & Backward-Compatible Modules
+    "animation.md",
+    "file-structure.md",
+    "color-system.md",
+    "components.md",
+    "typography.md",
+    "workflow.md"
 ]
 
 def main():
@@ -74,21 +103,23 @@ def main():
         else:
             print("  ✓ skills/human-flutter/SKILL.md frontmatter verified (name: human-flutter)")
 
-    # 3. Verify All 26 Reference Modules
-    print("\n[3/3] Verifying 26 Dedicated Flutter Reference Modules...")
+    # 3. Verify Dedicated Flutter Reference Modules
+    print(f"\n[3/3] Verifying {len(EXPECTED_REFERENCES)} Dedicated Flutter Reference Modules...")
     refs_dir = os.path.join(REPO_ROOT, "skills/human-flutter/references")
     if not os.path.exists(refs_dir):
         errors.append("Missing skills/human-flutter/references directory!")
     else:
-        for ref in EXPECTED_REFERENCES:
-            ref_path = os.path.join(refs_dir, ref)
+        for ref_file in EXPECTED_REFERENCES:
+            ref_path = os.path.join(refs_dir, ref_file)
             if not os.path.exists(ref_path):
-                errors.append(f"Missing reference module: skills/human-flutter/references/{ref}")
+                errors.append(f"Missing reference module: {ref_file}")
+            elif os.path.getsize(ref_path) < 50:
+                errors.append(f"Reference module is empty/too small: {ref_file}")
             else:
-                print(f"  ✓ Reference verified: {ref}")
+                print(f"  ✓ Reference verified: {ref_file}")
 
     if errors:
-        print(f"\n❌ STRUCTURAL VALIDATION FAILED with {len(errors)} error(s):")
+        print(f"\n❌ FAILED with {len(errors)} error(s):")
         for err in errors:
             print(f"  - {err}")
         return 1

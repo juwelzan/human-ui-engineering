@@ -1,12 +1,13 @@
 # Human Flutter Engineering
 
-> **Complete Flutter-Only Human UI Engineering Operating System & AI Agent Intelligence**
+> **Permission-First, Human-Centered Flutter & Dart Engineering Operating System & AI Agent Intelligence**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Framework: Flutter Only](https://img.shields.io/badge/Framework-Flutter%20%26%20Dart%20Only-02569B.svg)](AGENTS.md)
+[![Protocol: Permission--First](https://img.shields.io/badge/Protocol-Permission--First%20(Bengali)-059669.svg)](skills/human-flutter/references/permission-system.md)
+[![Architecture: Core--Shared--Features](https://img.shields.io/badge/Architecture-Core%2FShared%2FFeatures-blueviolet.svg)](skills/human-flutter/references/project-structure.md)
 [![A11y: WCAG 2.1 AA](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA-purple.svg)](design/accessibility.md)
 [![Chat Slash Command: /human-flutter](https://img.shields.io/badge/Slash%20Command-%2Fhuman--flutter-orange.svg)](docs/slash-command-guide.md)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ---
 
@@ -14,11 +15,13 @@
 
 **Human Flutter Engineering** is a dedicated, Flutter-only knowledge and instruction system that teaches AI coding agents to think, architect, design, and code like senior human Flutter engineers.
 
-Rather than generating generic "AI aesthetics" (unwarranted purple/teal glows, repetitive card grids, arbitrary glassmorphism, and unmaintainable 800-line monolithic files), this repository instills rigorous engineering standards:
-- **Absolute Flutter-Only Focus**: Strictly and exclusively dedicated to Flutter and Dart. Never suggests, generates, or mixes alternative frontend or cross-platform frameworks.
+Rather than generating generic "AI aesthetics" (unwarranted purple/teal glows, repetitive card grids, arbitrary glassmorphism, and unmaintainable monolithic files), this repository instills rigorous engineering standards:
+
+- **Permission-First in Bengali (Highest Priority)**: Agents never make major architectural, state management, dependency, color, or structural decisions without explaining the options, pros/cons, and recommendations in natural Bengali and waiting for explicit user permission.
+- **Absolute Flutter-Only Focus**: Strictly and exclusively dedicated to Flutter and Dart. Never suggests or generates alternative frontend frameworks.
+- **Mandatory 3-Tier Architecture**: All generated projects strictly follow `lib/core/` (foundations), `lib/shared/` (reusable UI), and `lib/features/` (feature-first modules).
+- **Mandatory 3–4 Color Selection & Visual Preview**: Users choose 3 or 4 primary colors, followed by a mandatory 12-component visual UI color board preview before theme finalization.
 - **Human Utility Over AI Decoration**: Prioritizes content hierarchy, readability, and user task completion.
-- **Foundation-First Architecture**: Establishes design tokens and shared component primitives (`AppButton`, `AppCard`, `AppTextField`) before assembling screens.
-- **Platform Authenticity**: Respects native idioms across Android, iOS, macOS, Windows, Linux, and Flutter Web.
 - **Deterministic Quality**: Enforces strict verification of 120fps performance, accessibility, memory disposal, and responsiveness.
 
 The single source of truth for all agent operations is [`AGENTS.md`](AGENTS.md).
@@ -39,19 +42,19 @@ Developers can invoke Human Flutter Engineering directly from their AI agent's c
 # 1. General Flutter feature engineering (executes the 18-step workflow)
 /human-flutter Create a modern, accessible customer profile screen.
 
-# 2. Plan mode: structured task planning & dependency mapping
+# 2. Plan mode: structured task planning & Bengali permission gates
 /human-flutter plan Architect a 3-step checkout flow with In-App Purchases.
 
-# 3. Build mode: end-to-end full-stack Flutter feature assembly
+# 3. Build mode: end-to-end full-stack Flutter feature assembly in lib/features/
 /human-flutter build Implement offline note syncing with Drift database and BLoC.
 
 # 4. Design mode: UI/UX design, visual hierarchy & layout
 /human-flutter design Establish a clean information architecture for our dashboard.
 
-# 5. Color mode: coherent color palettes, ThemeData & ColorScheme
+# 5. Color mode: 3-4 color prompt, visual placement preview & ThemeData
 /human-flutter color Define a Material 3 ColorScheme with custom ThemeExtension for status colors.
 
-# 6. Component mode: reusable widget primitives & CustomPainter
+# 6. Component mode: reusable widget primitives in lib/shared/
 /human-flutter component Build a theme-aware AppButton with primary, secondary, and destructive variants.
 
 # 7. Responsive mode: multi-breakpoint layouts across mobile, tablet, desktop, web
@@ -115,18 +118,40 @@ This repository provides standardized, lightweight entry points for all major AI
 
 ---
 
-## 4. The 10 Core Flutter Engineering Modules
+## 4. Complete Reference Library (28 Modules)
 
-1. **[Human UI Design Engineering](skills/human-flutter/references/ui-design.md)**: Information architecture, Material 3, Cupertino, custom interfaces, and complete interaction states.
-2. **[Human Color Intelligence](skills/human-flutter/references/color-system.md)**: 60-30-10 palette balance, `ColorScheme`, `ThemeExtension<AppCustomColors>`, and WCAG 2.1 AA contrast.
-3. **[Human Flutter Component Engineering](skills/human-flutter/references/components.md)**: Reusable widget primitives (`AppButton`, `AppCard`, `AppTextField`), `CustomPainter`, and `RenderBox`.
-4. **[Human Flutter Coding Intelligence](skills/human-flutter/references/dart-standards.md)**: Clean Dart 3 standards, records, pattern matching, sealed classes, sound null safety, and UDF.
-5. **[Human Flutter File Structure Engineering](skills/human-flutter/references/file-structure.md)**: Feature-First architecture, clean layer separation, core isolation, and test mirroring.
-6. **[Human Responsive Design Engineering](skills/human-flutter/references/responsive-design.md)**: Multi-platform layouts (Mobile, Tablet, Desktop, Web), `LayoutBuilder`, and zero overflow bugs.
-7. **[Human Flutter Animation Engineering](skills/human-flutter/references/animation.md)**: Implicit/explicit animations, `Hero`, page transitions, and 120fps frame budgets.
-8. **[Human Performance Engineering](skills/human-flutter/references/performance.md)**: `const` optimization, `ListView.builder`, image downsampling, isolates (`compute`), and DevTools profiling.
-9. **[Human Flutter Platform Engineering](skills/human-flutter/references/platform-integration.md)**: `MethodChannel`, `EventChannel`, FFI, permissions, lifecycle, and desktop window management.
-10. **[Human Flutter Product Engineering](skills/human-flutter/references/api-integration.md)**: API integration via Dio, offline databases (Drift, Isar), Firebase, notifications, and store release.
+The system organizes Flutter engineering into 28 specialized, discoverable reference modules located in `skills/human-flutter/references/`:
+
+| Module | Category | Primary Focus |
+|---|---|---|
+| [`permission-system.md`](skills/human-flutter/references/permission-system.md) | **Permissions** | 7-step Bengali protocol, decision gates, non-assumption |
+| [`project-structure.md`](skills/human-flutter/references/project-structure.md) | **Structure** | Mandatory `lib/core/`, `lib/shared/`, `lib/features/` |
+| [`flutter-architecture.md`](skills/human-flutter/references/flutter-architecture.md) | **Architecture** | UDF, presentation-domain-data separation, Result pattern |
+| [`dart-standards.md`](skills/human-flutter/references/dart-standards.md) | **Code Quality** | Sound null safety, records, patterns, sealed classes |
+| [`ui-design.md`](skills/human-flutter/references/ui-design.md) | **UI/UX Design** | Visual hierarchy, focal anchor, human-centered UI |
+| [`color-intelligence.md`](skills/human-flutter/references/color-intelligence.md) | **Color System** | 3-4 color prompt, 60-30-10 rule, ColorScheme, extensions |
+| [`color-preview.md`](skills/human-flutter/references/color-preview.md) | **Visual Preview**| 12-component visual UI color placement board |
+| [`design-system.md`](skills/human-flutter/references/design-system.md) | **Tokens** | Centralized spacing, radius, elevation, typography |
+| [`shared-components.md`](skills/human-flutter/references/shared-components.md) | **Shared UI** | Reusable widget primitives in `lib/shared/` |
+| [`feature-engineering.md`](skills/human-flutter/references/feature-engineering.md) | **Features** | Feature-first packages, data/domain/presentation |
+| [`state-management.md`](skills/human-flutter/references/state-management.md) | **State** | BLoC, Riverpod, Provider, GetX, permission gate |
+| [`responsive-design.md`](skills/human-flutter/references/responsive-design.md) | **Responsive** | Mobile, Tablet, Desktop, Web, zero overflow tolerance |
+| [`animations.md`](skills/human-flutter/references/animations.md) | **Motion** | Implicit/explicit animations, micro-interactions, 120fps |
+| [`performance.md`](skills/human-flutter/references/performance.md) | **Performance** | Frame budgets, isolates, const optimization, DevTools |
+| [`navigation.md`](skills/human-flutter/references/navigation.md) | **Routing** | Declarative GoRouter, route guards, deep links |
+| [`api-integration.md`](skills/human-flutter/references/api-integration.md) | **Networking** | Dio, retry backoff, auth tokens, JSON serialization |
+| [`database-storage.md`](skills/human-flutter/references/database-storage.md) | **Storage** | Drift, Isar, Hive, FlutterSecureStorage |
+| [`firebase.md`](skills/human-flutter/references/firebase.md) | **Firebase** | Core, Auth, Firestore, Crashlytics, Messaging |
+| [`platform-integration.md`](skills/human-flutter/references/platform-integration.md) | **Platform** | MethodChannel, EventChannel, FFI, lifecycle, permissions |
+| [`accessibility.md`](skills/human-flutter/references/accessibility.md) | **A11y** | WCAG 2.1 AA, touch targets, screen readers, semantics |
+| [`security.md`](skills/human-flutter/references/security.md) | **Security** | Secure storage, cert pinning, obfuscation, integrity |
+| [`testing.md`](skills/human-flutter/references/testing.md) | **Testing** | Unit, widget, integration testing, honest reporting |
+| [`debugging.md`](skills/human-flutter/references/debugging.md) | **Debugging** | 10-step diagnosis, overflow fixing, memory profiling |
+| [`refactoring.md`](skills/human-flutter/references/refactoring.md) | **Refactoring** | Widget tree extraction, technical debt reduction |
+| [`build-release.md`](skills/human-flutter/references/build-release.md) | **Release** | Android AAB, iOS IPA, Fastlane, store deployment |
+| [`design-audit.md`](skills/human-flutter/references/design-audit.md) | **Design Audit** | Visual polish, spacing grid, contrast checklist |
+| [`code-review.md`](skills/human-flutter/references/code-review.md) | **Code Review** | 13 pre-flight pull request quality gates |
+| [`project-audit.md`](skills/human-flutter/references/project-audit.md) | **System Audit** | Health check, dependency review, architectural audit |
 
 ---
 
@@ -146,7 +171,7 @@ human-ui-engineering/
 │
 ├── skills/human-flutter/   # Canonical Agent Skill Engine
 │   ├── SKILL.md            # Main skill with YAML frontmatter
-│   └── references/         # 26 modular Flutter engineering reference guides
+│   └── references/         # 28 modular Flutter engineering reference guides
 │
 ├── docs/                   # User guides & matrices
 │   ├── compatibility-matrix.md # Verified agent support matrix

@@ -12,6 +12,7 @@ This directory stores Architecture Decision Records (ADRs) following the lightwe
 |---|---|---|---|---|
 | [0001](0001-record-architecture-decisions.md) | Record Architecture Decisions | 2026-11-07 | **Accepted** | Establish ADR practice for capturing major structural decisions. |
 | [0002](0002-flutter-only-engineering-system.md) | Transform into Complete Flutter-Only Engineering System | 2026-11-07 | **Accepted** | Focus repository exclusively on Flutter & Dart engineering. |
+| [0003](0003-permission-first-decision-system-and-mandatory-structure.md) | Permission-First Bengali Decision System & Mandatory 3-Tier Architecture | 2026-11-07 | **Accepted** | Mandate 7-step Bengali permission gates, `lib/core/`, `lib/shared/`, `lib/features/`, and color previews. |
 
 ---
 

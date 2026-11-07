@@ -1,154 +1,172 @@
-# UI Folder Structure Conventions
+# Flutter Project & Folder Structure Conventions
 
-> Standardized, scalable directory organization patterns for multi-platform UI codebases.
+> **Mandatory Standard Directory Architecture** for production Flutter applications: `lib/core/`, `lib/shared/`, and `lib/features/`.
 
----
+Chaotic folder layouts lead to lost widgets, duplicated state logic, circular imports, and unmaintainable codebases. In the Human Flutter Engineering system, all Flutter projects enforce a strict 3-tier architecture:
 
-## 1. Purpose
-
-Chaotic folder layouts lead to lost components, duplicated code, broken mental models, and circular dependencies. 
-
-This guide defines standard folder structures that balance modular scalability with pragmatic simplicity.
-
----
-
-## 2. Organization Philosophy: Feature-First vs. Layer-First
-
-For small projects (< 5 screens), a **Layer-First** approach is acceptable:
-```text
-src/
-├── components/
-├── screens/
-├── services/
-└── utils/
-```
-
-For production applications (scalable, multi-developer), **Feature-First** is the mandatory standard:
-```text
-src/
-├── core/                  # Cross-cutting utilities, base clients, design tokens
-│   ├── theme/             # Colors, typography, spacing tokens
-│   └── components/        # Universal shared UI primitives (buttons, inputs)
-├── features/              # Self-contained business domains
-│   ├── auth/              # Components, state, services isolated to auth
-│   ├── dashboard/
-│   └── settings/
-└── app/                   # App entrypoint, routing, root providers
-```
-
----
-
-## 3. Co-Location Principle
-
-Keep related assets, tests, and types close to where they are consumed. Rather than scattering files across separate root folders:
-
-```text
-// Highly Recommended: Co-located
-features/profile/
-├── components/
-│   ├── ProfileAvatar.tsx
-│   └── ProfileAvatar.test.tsx
-├── hooks/
-│   └── useProfileData.ts
-├── ProfileScreen.tsx
-├── ProfileScreen.test.tsx
-└── types.ts
-```
-
-```text
-// Discouraged: Dispersed across repo
-src/views/ProfileScreen.tsx
-src/tests/ProfileScreen.test.tsx
-src/hooks/useProfileData.ts
-src/types/profile.ts
-```
-
----
-
-## 4. Framework Reference Implementations
-
-### A. React / Next.js (App Router)
-```text
-src/
-├── app/                        # Next.js App Router routes & layouts
-│   ├── layout.tsx
-│   ├── page.tsx
-│   └── dashboard/
-│       └── page.tsx
-├── components/                 # Global UI primitives (design system)
-│   ├── ui/                     # Primitives (Button, Input, Modal, Badge)
-│   └── feedback/               # Skeletons, ErrorBoundaries
-├── features/                   # Domain features
-│   └── analytics/
-│       ├── components/
-│       ├── hooks/
-│       └── services/
-├── lib/                        # Third-party wrappers (queryClient, supabase)
-└── styles/                     # Tailwind or global CSS tokens
-```
-
-### B. Flutter
 ```text
 lib/
-├── core/
-│   ├── theme/                  # AppColors, AppTypography, AppSpacing
-│   ├── widgets/                # AppButton, AppTextField, AppCard
-│   └── utils/
-├── features/
-│   └── authentication/
-│       ├── data/               # Repositories, DTOs, data sources
-│       ├── domain/             # Entities, use cases
-│       └── presentation/       # Screens, controllers/cubits, feature widgets
-│           ├── controllers/
-│           ├── screens/
-│           └── widgets/
-└── main.dart
+├── core/       # Global foundational infrastructure and configuration
+├── shared/     # Cross-feature reusable widgets, custom painters, and animations
+└── features/   # Independent, feature-first functional modules
 ```
 
-### C. Android (Jetpack Compose)
-```text
-app/src/main/java/com/example/app/
-├── core/
-│   ├── designsystem/           # Theme.kt, Color.kt, Type.kt, Component primitives
-│   └── network/
-├── features/
-│   ├── feed/
-│   │   ├── FeedScreen.kt
-│   │   ├── FeedViewModel.kt
-│   │   └── components/
-│   └── settings/
-└── MainActivity.kt
+---
+
+## 1. Top-Level Architectural Boundaries
+
+```mermaid
+flowchart TD
+    subgraph Core ["lib/core/ (Foundations)"]
+        C1["Config & Environment"]
+        C2["Network & API Clients"]
+        C3["Theme & Design Tokens"]
+        C4["Storage & Global Services"]
+    end
+
+    subgraph Shared ["lib/shared/ (Reusable UI)"]
+        S1["widgets/ (AppButton, AppCard, AppTextField)"]
+        S2["custom/ (painters, shapes, borders)"]
+        S3["animations/ (transitions, micro-interactions)"]
+        S4["layouts/ (responsive scaffolds)"]
+    end
+
+    subgraph Features ["lib/features/ (Feature Modules)"]
+        F1["features/auth/"]
+        F2["features/dashboard/"]
+        F3["features/profile/"]
+    end
+
+    Features --> Core
+    Features --> Shared
+    Shared --> Core
 ```
 
-### D. iOS (SwiftUI)
+- **`features/`** can consume `core/` and `shared/`.
+- **`shared/`** can consume `core/`, but **never** imports `features/`.
+- **`core/`** has zero knowledge of `shared/` or `features/`.
+
+---
+
+## 2. `lib/core/` — Foundational Infrastructure
+
+The `core/` folder hosts application-wide, non-feature foundational infrastructure:
+
 ```text
-App/
-├── Core/
-│   ├── DesignSystem/           # Colors, Fonts, Spacing, Buttons, Cards
-│   └── Networking/
-├── Features/
-│   ├── Checkout/
-│   │   ├── Views/              # CheckoutView.swift, PaymentMethodRow.swift
-│   │   ├── ViewModels/         # CheckoutViewModel.swift
-│   │   └── Models/
-├── Navigation/
-└── AppEntry.swift
+lib/core/
+├── config/             # Environment configs (Env, AppConfig)
+├── constants/          # App constants, API endpoints, asset keys
+├── errors/             # Failure definitions (ServerFailure, CacheFailure)
+├── exceptions/         # System exceptions (NetworkException, ParseException)
+├── extensions/         # Dart extensions on BuildContext, String, DateTime
+├── helpers/            # Reusable helper functions and formatters
+├── initializers/       # Async initialization routines (Firebase, local storage)
+├── network/            # HTTP clients, Dio interceptors, SSL pinning
+├── routing/            # Router configuration (GoRouter, AppRoutes, Guards)
+├── services/           # Global services (Connectivity, Analytics, Permissions)
+├── storage/            # Local storage clients (SecureStorage, SharedPreferences)
+├── theme/              # Centralized Design Tokens
+│   ├── app_colors.dart       # Color tokens, ColorScheme, ThemeExtensions
+│   ├── app_theme.dart        # Light and Dark ThemeData constructors
+│   ├── app_typography.dart   # TextTheme configurations
+│   ├── app_spacing.dart      # 4pt/8pt spatial grid constants
+│   ├── app_radius.dart       # Corner radius constants
+│   └── app_elevation.dart    # Surface elevation and shadow tokens
+├── utils/              # Pure algorithmic utilities and loggers
+└── core.dart           # Barrel export
+```
+
+---
+
+## 3. `lib/shared/` — Reusable UI & Supporting Components
+
+Contains UI widget primitives, custom graphics, animations, and adaptive layouts used across multiple features:
+
+```text
+lib/shared/
+├── widgets/            # Reusable UI primitives
+│   ├── buttons/        # AppButton, AppIconButton
+│   ├── cards/          # AppCard, AppElevatedCard
+│   ├── containers/     # ResponsiveContainer, GlassCard
+│   ├── dialogs/        # ConfirmDialog, InfoDialog
+│   ├── inputs/         # AppTextField, DropdownField
+│   ├── indicators/     # StatusBadge, StepIndicator
+│   ├── loaders/        # ShimmerBox, SkeletonLoader
+│   ├── navigation/     # AppNavigationBar, AdaptiveNavRail
+│   ├── app_bars/       # CustomAppBar, CollapsibleAppBar
+│   ├── avatars/        # UserAvatar, GroupAvatar
+│   ├── badges/         # CountBadge, DotBadge
+│   ├── dividers/       # SectionDivider, LabeledDivider
+│   ├── menus/          # ContextMenu, DropdownMenu
+│   ├── sheets/         # ModalBottomSheet, DragHandleSheet
+│   └── widgets.dart
+│
+├── custom/             # Custom rendering and drawing
+│   ├── painters/       # CustomPainter implementations
+│   ├── shapes/         # CustomShapeBorder, ClipPaths
+│   ├── borders/        # DashedBorder, GradientBorder
+│   └── effects/        # ShadowDecorations, GlassMorphism
+│
+├── animations/         # Reusable animations
+│   ├── transitions/    # SharedAxisTransition, PageTransitions
+│   ├── implicit/       # AnimatedPressScale, AnimatedVisibility
+│   └── explicit/       # ShimmerAnimation, PulseAnimation
+│
+├── layouts/            # Adaptive structural scaffolds
+│   ├── responsive/     # ResponsiveLayoutBuilder, AdaptiveGrid
+│   └── adaptive/       # AdaptivePlatformScaffold
+│
+└── shared.dart         # Universal shared barrel export
+```
+
+---
+
+## 4. `lib/features/` — Feature-First Modules
+
+All application features live inside `lib/features/`. Each feature manages its own data, domain, and presentation:
+
+```text
+lib/features/
+├── authentication/
+│   ├── data/                   # Data Access Layer
+│   │   ├── datasources/        # Remote API endpoints, local cache
+│   │   ├── models/             # DTOs, JSON serialization
+│   │   └── repositories/       # Repository implementations
+│   │
+│   ├── domain/                 # Core Business Logic Layer
+│   │   ├── entities/           # Pure Dart business models (@immutable)
+│   │   ├── repositories/       # Abstract repository interfaces
+│   │   └── usecases/           # Single-responsibility use cases
+│   │
+│   ├── presentation/           # Presentation Layer
+│   │   ├── screens/            # Full-screen views (or pages/)
+│   │   ├── pages/              # Composite multi-tab pages
+│   │   ├── widgets/            # Feature-private reusable widgets
+│   │   ├── components/         # Micro-components scoped to this feature
+│   │   └── state/              # State management (BLoC, Cubit, Notifier)
+│   │
+│   ├── authentication.dart     # Public feature interface
+│   └── README.md
+│
+├── dashboard/
+├── settings/
+└── profile/
 ```
 
 ---
 
 ## 5. Directory Anti-Patterns
 
-1. **The Junk Drawer (`utils/` or `helpers/` with 50 files)**: Dumping random unrelated helper functions in a single folder. Group by concern (e.g. `formatting/`, `validation/`, `date/`).
-2. **Infinite Nesting**: Nesting folders 7-8 levels deep (`features/auth/presentation/views/components/buttons/primary/...`). Aim for a maximum depth of 3-4 levels within a feature.
-3. **Duplicate Shared Folders**: Having both `components/`, `widgets/`, `elements/`, and `common/` at the root level. Pick one unified name (typically `components/` or `core/designsystem/`).
+1. **Junk Drawer `utils/`**: Never dump dozens of random helper functions into a single file. Group by concern (`formatting/`, `validation/`, `date/`).
+2. **Infinite Nesting**: Avoid nesting directories deeper than 4 levels within a feature.
+3. **Cross-Feature Widget Leaks**: Never import private widgets from `features/other_feature/presentation/widgets/`. Promote shared widgets to `lib/shared/widgets/`.
+4. **Scattered Hardcoded Tokens**: Never define colors, paddings, or font sizes inline inside widgets. Always reference `Theme.of(context)` and `core/theme/`.
 
 ---
 
 ## 6. Related Documentation
 
 - Master Instructions: [AGENTS.md](../AGENTS.md)
-- Project Discovery: [project-discovery.md](project-discovery.md)
-- UI Architecture: [architecture.md](architecture.md)
-- Development Workflow: [development-workflow.md](development-workflow.md)
-
+- Project Structure Reference: [../skills/human-flutter/references/project-structure.md](../skills/human-flutter/references/project-structure.md)
+- Shared Components Reference: [../skills/human-flutter/references/shared-components.md](../skills/human-flutter/references/shared-components.md)
+- Feature Engineering Reference: [../skills/human-flutter/references/feature-engineering.md](../skills/human-flutter/references/feature-engineering.md)
