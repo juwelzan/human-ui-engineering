@@ -1,46 +1,49 @@
-# Chat Slash Command Guide: `/human-ui`
+# Chat Slash Command Guide: `/human-flutter`
 
-> **Comprehensive Command Manual for Invoking Human UI Engineering Across AI Coding Agents**
+> **Comprehensive Command Manual for Invoking Human Flutter Engineering Across AI Coding Agents**
 
 ---
 
 ## 1. Overview
 
-The `/human-ui` slash command provides direct access to the entire Human UI Engineering system from your agent's chat box.
+The `/human-flutter` slash command (or its alias `/human-ui`) provides direct access to the entire Human Flutter Engineering system from your agent's chat box.
 
 ```text
-/human-ui [subcommand?] [task_description]
+/human-flutter [subcommand?] [task_description]
 ```
 
 When invoked, the skill:
-1. Identifies the requested mode (`plan`, `build`, `design`, `architect`, `debug`, etc.).
-2. Inspects your project to identify the framework, design tokens, architecture, and dependencies.
-3. Loads only the relevant modular reference documents.
-4. Executes the task using professional software engineering standards.
-5. Verifies the result against the 13 quality gates and reports exact telemetry.
+1. Identifies the requested mode (`plan`, `build`, `design`, `color`, `component`, `responsive`, `animation`, `performance`, `platform`, `product`, `audit`, `debug`, `refactor`, `test`, `review`, `release`, `recover`, `status`).
+2. Inspects your Flutter project (`pubspec.yaml`, dependencies, architecture).
+3. Loads only the relevant modular Flutter reference documents from `skills/human-flutter/references/`.
+4. Executes the task using professional Flutter/Dart engineering standards.
+5. Verifies the result with `flutter test` and `dart analyze` and reports exact telemetry.
 
 ---
 
-## 2. Complete 16-Command Mode Catalog
+## 2. Complete Command Mode Catalog
 
 | Mode | Invocation Syntax | Purpose & Action Taken |
 |---|---|---|
-| **General** | `/human-ui [task]` | Full 14-step workflow: discovery, design tokens, shared primitives, view assembly, verification. |
-| **Plan** | `/human-ui plan [task]` | Read-only task decomposition, dependency resolution, risk analysis, and ordered milestones. |
-| **Build** | `/human-ui build [task]` | End-to-end full-stack feature assembly, models/schemas, business logic, views, and testing. |
-| **Design** | `/human-ui design [task]` | UI/UX visual hierarchy, 8pt spatial grid, typography scales, semantic status tokens, WCAG AA contrast. |
-| **Architect** | `/human-ui architect [task]` | System architecture evaluation, boundary isolation, and Architecture Decision Record (ADR) drafting. |
-| **Audit** | `/human-ui audit [scope]` | Comprehensive UI review, visual polish, layout overflow, accessibility, and performance audit. |
-| **Debug** | `/human-ui debug [issue]` | Scientific 10-step root-cause diagnosis, execution path tracing, and smallest safe fix with tests. |
-| **Refactor** | `/human-ui refactor [scope]` | Safe, behavior-preserving code extraction, decomposing giant files, zero functional regression. |
-| **Test** | `/human-ui test [scope]` | Multi-tier test authoring (Unit, Component, Integration, API, E2E) with honest status reporting. |
-| **Review** | `/human-ui review [scope]` | Code review against the 13 pre-flight quality gates, security vulnerabilities, and git cleanliness. |
-| **Security** | `/human-ui security [scope]` | Threat modeling, injection/XSS audits, parameterized query verification, and auth token hygiene. |
-| **Performance** | `/human-ui performance [scope]`| 16.6ms frame budget profiling, list virtualization, query optimization, and memory leak disposal. |
-| **Docs** | `/human-ui docs [scope]` | API documentation, docstrings, OpenAPI contracts, and `PROJECT_CONTEXT.md` updates. |
-| **Release** | `/human-ui release [ver?]` | Pre-flight release verification, semantic versioning, zero-downtime DB migrations, and changelog. |
-| **Recovery** | `/human-ui recover` | Inspects `AI_TASK_STATE.md` and git telemetry to resume interrupted workflows without restarting. |
-| **Status** | `/human-ui status` | Displays active task checkpoint, progress, milestone checklist, and known blockers. |
+| **General** | `/human-flutter [task]` | Full 18-step workflow: discovery, design tokens, shared widgets, layout, state binding, test. |
+| **Plan** | `/human-flutter plan [task]` | Read-only task decomposition, dependency mapping, state modeling, and risk analysis. |
+| **Build** | `/human-flutter build [task]` | End-to-end full-stack Flutter feature assembly (models, state holders, UI widgets, tests). |
+| **Design** | `/human-flutter design [task]` | UI/UX visual hierarchy, 8pt spatial grid, typography scales, Material 3 / Cupertino styling. |
+| **Color** | `/human-flutter color [task]` | Coherent 60-30-10 color palettes, `ColorScheme`, `ThemeExtension<AppCustomColors>`, WCAG AA. |
+| **Component** | `/human-flutter component [task]` | Reusable widget primitives (`AppButton`, `AppCard`, `AppTextField`), `CustomPainter`, `RenderBox`. |
+| **Responsive** | `/human-flutter responsive [task]`| Multi-screen layouts (Mobile, Tablet, Desktop, Web) with `LayoutBuilder` and zero overflows. |
+| **Animation** | `/human-flutter animation [task]` | Meaningful, 60/120fps animations, `Hero`, `go_router` page transitions, and reduced motion. |
+| **Performance** | `/human-flutter performance` | Frame budget (16.6ms/8.3ms), `const` optimization, `ListView.builder`, image downsampling. |
+| **Platform** | `/human-flutter platform [task]` | `MethodChannel`, `EventChannel`, FFI, native permissions, lifecycle, and desktop window controls. |
+| **Product** | `/human-flutter product [task]` | Auth, offline databases (Drift, Isar), Firebase, notifications, payments, and l10n. |
+| **Audit** | `/human-flutter audit [scope]` | Comprehensive UI review, visual polish, layout overflow, accessibility, and rebuild audit. |
+| **Debug** | `/human-flutter debug [issue]` | Scientific 10-step root-cause diagnosis (RenderFlex overflows, memory leaks, state crashes). |
+| **Refactor** | `/human-flutter refactor [scope]` | Safe widget extraction, decomposing monolithic build methods (<200 lines), zero regressions. |
+| **Test** | `/human-flutter test [scope]` | Multi-tier test authoring (Unit, Widget, Golden, Integration) with honest reporting. |
+| **Review** | `/human-flutter review [scope]` | Pre-flight PR review against the 13 quality gates, analyzer cleanliness, and test pass rates. |
+| **Release** | `/human-flutter release [scope]` | Android App Bundle (AAB), iOS IPA, code obfuscation, signing, and store readiness. |
+| **Recovery** | `/human-flutter recover` | Inspects `AI_TASK_STATE.md` and git telemetry to resume interrupted workflows without restarting. |
+| **Status** | `/human-flutter status` | Displays active task checkpoint, progress, milestone checklist, and known blockers. |
 
 ---
 
@@ -48,35 +51,35 @@ When invoked, the skill:
 
 ```text
 # 1. Plan a multi-screen checkout flow without modifying code
-/human-ui plan Architect a 3-step payment wizard with Stripe integration.
+/human-flutter plan Architect a 3-step payment wizard with In-App Purchase and BLoC.
 
 # 2. Build full-stack feature with database models and UI
-/human-ui build Create tenant invite management with Prisma schema and React modal.
+/human-flutter build Create offline task sync with Drift database, repository, and custom list tile.
 
 # 3. Design accessible tokens and spacing
-/human-ui design Establish an 8pt spatial grid and semantic status colors for dark mode.
+/human-flutter design Establish an 8pt spatial grid and semantic status colors for dark mode.
 
-# 4. Draft an Architecture Decision Record (ADR)
-/human-ui architect Evaluate PostgreSQL vs MongoDB for user activity telemetry.
+# 4. Create a reusable widget primitive
+/human-flutter component Build a theme-aware AppButton with primary, secondary, and destructive variants.
 
 # 5. Scientific Root-Cause Debugging
-/human-ui debug The mobile keyboard is obscuring the form submit button in iOS Safari.
+/human-flutter debug Resolve "A RenderFlex overflowed by 38 pixels on the bottom" when keyboard appears.
 
-# 6. Security Vulnerability Audit
-/human-ui security Audit our auth session handling and search for IDOR vulnerabilities.
+# 6. Animation Engineering
+/human-flutter animation Add a smooth shared-element Hero transition between card and detail view.
 
 # 7. Frame Drop & Memory Leak Optimization
-/human-ui performance Eliminate scroll jank in our 5,000-item customer data table.
+/human-flutter performance Eliminate scroll jank in our 5,000-item customer list using ListView.builder.
 
 # 8. Resume Interrupted Work
-/human-ui recover
+/human-flutter recover
 ```
 
 ---
 
 ## 4. Related Documentation
 
-- Main Skill: [../skills/human-ui/SKILL.md](../skills/human-ui/SKILL.md)
+- Main Skill: [../skills/human-flutter/SKILL.md](../skills/human-flutter/SKILL.md)
 - Compatibility Matrix: [compatibility-matrix.md](compatibility-matrix.md)
 - Installation Guide: [installation-guide.md](installation-guide.md)
 - Master Instructions: [../AGENTS.md](../AGENTS.md)

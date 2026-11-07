@@ -1,31 +1,31 @@
-# Project Context: Human UI Engineering
+# Project Context: Human Flutter Engineering
 
-> **Universal AI Agent Context & Instruction System for Professional Software Engineering**
+> **Complete Flutter-Only Human UI Engineering Operating System & AI Agent Intelligence**
 
-- **Project Name**: Human UI Engineering
+- **Project Name**: Human Flutter Engineering
 - **Repository**: `juwelzan/human-ui-engineering`
-- **Domain**: AI Agent Engineering Systems, Software Architecture & UI/UX Discipline
-- **Target Audience**: AI coding agents (Google Antigravity, Claude Code, Cursor, Copilot, Windsurf, Gemini) & Human Software Engineers
-- **Target Platforms**: Multi-platform (Web, Mobile, Desktop, Cloud Backend)
-- **Primary Tech Stack**: Markdown knowledge architecture, Agent Skills Standard, Python validation suite
+- **Domain**: Flutter & Dart AI Engineering Systems, Mobile/Desktop/Web UI Architecture & UI/UX Discipline
+- **Target Audience**: AI coding agents (Google Antigravity, Gemini, Claude Code, Cursor, Copilot, Windsurf) & Human Flutter Engineers
+- **Target Platforms**: Multi-platform via Flutter (Android, iOS, macOS, Windows, Linux, Flutter Web)
+- **Primary Tech Stack**: Flutter SDK, Dart 3, Agent Skills Standard, Python validation suite
 
 ---
 
 ## 1. High-Level System Architecture
 
-Human UI Engineering is a universal, framework-agnostic AI software engineering operating system. It decouples high-level software engineering fundamentals (in `core/`, `design/`, `engineering/`, `quality/`) from strictly isolated, framework-specific implementation guides (in `frameworks/`).
+Human Flutter Engineering is a dedicated, Flutter-only AI software engineering system. It focuses exclusively on professional Flutter and Dart development, providing deep engineering intelligence across UI design, color harmony, reusable widget primitives, Dart coding standards, file structure, responsive layout, animations, performance, platform channels, and product lifecycle.
 
-The single source of truth for all agent operations is [`AGENTS.md`](AGENTS.md). The canonical chat-box skill engine is [`skills/human-ui/SKILL.md`](skills/human-ui/SKILL.md), supported by lightweight adapters across all major agent environments.
+The single source of truth for all agent operations is [`AGENTS.md`](AGENTS.md). The canonical chat-box skill engine is [`skills/human-flutter/SKILL.md`](skills/human-flutter/SKILL.md), supported by lightweight adapters across all major agent environments.
 
 ---
 
 ## 2. Core Technical Invariants & Rules
 
-- **Universal Core Decoupling**: Universal modules must never assume a single framework (e.g., never mandate React hooks or Flutter widgets inside `core/`).
-- **Framework Isolation**: Each framework module in `frameworks/` is completely self-contained. A framework module never imposes rules on another.
-- **Evidence-Based Engineering**: 5-tier evidence hierarchy; zero hallucination; honest reporting of test outcomes (PASSED, FAILED, SKIPPED, BLOCKED, NOT APPLICABLE).
+- **Absolute Flutter-Only Rule**: Flutter and Dart are the only supported application development framework. Never switch to or recommend React, Next.js, Vue, Angular, React Native, or standalone Kotlin/Swift architectures. Native code is allowed ONLY when platform channels or OS APIs require it.
+- **18-Step Human Design-to-Code Workflow**: All non-trivial UI engineering follows the 18-step lifecycle from requirements and project inspection through responsive layout, state binding, performance profiling, and testing.
+- **Evidence-Based Engineering**: 5-tier evidence hierarchy; zero hallucination; honest reporting of test outcomes (`flutter test`, `dart analyze`).
 - **Autonomous Recovery**: Session interruptions are resumed via [`AI_TASK_STATE.md`](AI_TASK_STATE.md) and [`core/recovery-protocol.md`](core/recovery-protocol.md) without restarting completed work.
-- **Automated Validation**: All markdown files and internal relative links must validate cleanly via `python3 scripts/validate.py`.
+- **Automated Validation**: All documentation files, internal relative links, and Flutter-only structural isolation must validate cleanly via `python3 scripts/validate.py`.
 
 ---
 
@@ -37,46 +37,47 @@ human-ui-engineering/
 ├── PROJECT_CONTEXT.md      # Stable system identity and invariants
 ├── AI_TASK_STATE.md        # Active task checkpoint and recovery state
 ├── CHANGELOG.md            # Release milestones
-├── core/                   # Universal engineering intelligence and orchestration
-├── design/                 # Human-centered UI/UX design tokens and laws
-├── components/             # Reusable shared component engineering primitives
-├── engineering/            # Clean code, security, async safety, performance
-├── frameworks/             # 13 isolated framework modules (Web, Mobile, Desktop, Backend, DB)
-├── quality/                # Testing, a11y, regression prevention, quality gates
-├── workflows/              # Step-by-step actionable execution cycles
+├── core/                   # Flutter engineering intelligence and orchestration
+├── design/                 # Human-centered UI/UX design tokens, colors & typography
+├── components/             # Reusable shared widget engineering primitives
+├── engineering/            # Clean Dart code, security, async safety, performance
+├── quality/                # Testing pyramid, a11y, regression prevention, quality gates
+├── workflows/              # Step-by-step actionable Flutter execution cycles
 ├── templates/              # Fillable engineering templates (ADRs, task state, bug reports)
 ├── docs/                   # Guides, matrices, and docs/adr/ (Architecture Decision Records)
 ├── scripts/                # Automated validation suite (validate-docs, validate-links, etc.)
-└── skills/human-ui/        # Canonical Agent Skills engine
+└── skills/human-flutter/   # Canonical Agent Skills engine (26 reference modules)
 ```
 
 ---
 
 ## 4. Key Agent Slash Commands
 
-- `/human-ui` — General feature implementation
-- `/human-ui plan` — Structured task planning and risk analysis
-- `/human-ui build` — End-to-end full stack development
-- `/human-ui design` — UI/UX design system and token specification
-- `/human-ui architect` — System architecture design and ADR authoring
-- `/human-ui audit` — Code, performance, security, and accessibility review
-- `/human-ui debug` — Scientific 10-step root-cause diagnosis and repair
-- `/human-ui refactor` — Safe, behavior-preserving refactoring
-- `/human-ui test` — Multi-tier test authoring and verification
-- `/human-ui review` — PR review against pre-flight release checklist
-- `/human-ui security` — Threat analysis, input sanitization, and auth review
-- `/human-ui performance` — Profiling, frame budget, and memory leak analysis
-- `/human-ui docs` — Documentation and API contract generation
-- `/human-ui release` — Pre-flight release checks and migration plans
-- `/human-ui recover` — Context restoration from `AI_TASK_STATE.md`
-- `/human-ui status` — Report active task milestone and progress
+- `/human-flutter` (or alias `/human-ui`) — General Flutter feature implementation
+- `/human-flutter plan` — Structured task planning and risk analysis
+- `/human-flutter build` — End-to-end full-stack Flutter feature development
+- `/human-flutter design` — UI/UX design system and token specification
+- `/human-flutter color` — Coherent color palette, ThemeData, and ColorScheme
+- `/human-flutter component` — Reusable widget primitive engineering
+- `/human-flutter responsive` — Multi-breakpoint layouts (Mobile, Tablet, Desktop, Web)
+- `/human-flutter animation` — 60/120fps animations and micro-interactions
+- `/human-flutter performance` — Frame budget, rebuild reduction, and DevTools
+- `/human-flutter platform` — MethodChannel, EventChannel, FFI, and permissions
+- `/human-flutter product` — Auth, offline storage, Firebase, and payments
+- `/human-flutter audit` — Visual, accessibility, and performance review
+- `/human-flutter debug` — Scientific 10-step root-cause diagnosis (RenderFlex, leaks)
+- `/human-flutter refactor` — Safe widget extraction and state decoupling
+- `/human-flutter test` — Multi-tier test authoring and verification
+- `/human-flutter review` — PR review against pre-flight release checklist
+- `/human-flutter release` — Store release preparation, signing, and obfuscation
+- `/human-flutter recover` — Context restoration from `AI_TASK_STATE.md`
+- `/human-flutter status` — Report active task milestone and progress
 
 ---
 
 ## 5. Verification Commands
 
 ```bash
-# Run full automated validation suite (docs, links, structure)
+# Run full automated validation suite (docs, links, structure, flutter-only)
 python3 scripts/validate.py
 ```
-

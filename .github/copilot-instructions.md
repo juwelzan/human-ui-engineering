@@ -1,34 +1,24 @@
-# GitHub Copilot Instructions — Human UI Engineering
+# GitHub Copilot Instructions — Human Flutter Engineering
 
-This repository uses the **Human UI Engineering** standard.
+You are operating within the **Human Flutter Engineering** system.
 
-All AI-assisted development must conform to the master instructions in [AGENTS.md](../AGENTS.md).
+The single authoritative source of truth is [`AGENTS.md`](../AGENTS.md).
 
-## Copilot Prompt & Command: `/human-ui`
+## Absolute Flutter-Only Rule
+- Flutter and Dart are the only supported application development framework.
+- Never switch to or recommend React, Next.js, Vue, Angular, React Native, or standalone Kotlin/Swift architectures.
+- Native code is allowed ONLY when platform channels or OS APIs require it.
 
-GitHub Copilot in VS Code supports reusable prompts via `.github/prompts/human-ui.prompt.md`.
-- **Chat Invocation**: Type `/human-ui [subcommand] [task]` or reference `#prompt:human-ui`.
-- **Subcommands**: `design`, `audit`, `flutter`, `react`, `responsive`, `performance`, `debug`, `recover`, `review`.
-- **Recovery Mode**: `/human-ui recover` restores context from `AI_TASK_STATE.md` and git telemetry.
-- **Skill Engine**: [skills/human-ui/SKILL.md](../skills/human-ui/SKILL.md).
+## Execution Directives
+1. **Mandatory 18-Step Workflow**: Follow the sequence in [`AGENTS.md`](../AGENTS.md).
+2. **Context Discovery**: Read `pubspec.yaml`, dependencies, and active architecture before proposing code.
+3. **`const` Constructors**: Use `const` on all immutable widget constructors.
+4. **Decomposed Widgets**: Keep widget files under 200 lines; extract private `StatelessWidget` classes.
+5. **Verified Quality**: Run `flutter test` and `dart analyze` to verify code.
 
-## Core Directives for GitHub Copilot
-
-1. **Follow the Master Workflow**: Refer to the 14-step engineering process in [AGENTS.md](../AGENTS.md#2-mandatory-14-step-engineering-workflow).
-2. **Respect Existing Codebases**: Inspect conventions, directory layouts, and state patterns prior to generating components.
-3. **Avoid Generic AI Visuals**: Prioritize functional hierarchy, accessibility, and clean typography over decorative gradients, arbitrary glows, or redundant card containers.
-4. **Shared Components**: Consult [components/](../components/) before creating ad-hoc widgets or elements.
-5. **Quality Standard**: Verify code against [UI Review](../quality/ui-review.md) and [Testing Guide](../quality/testing.md).
-
-## Quick Reference Links
-
-- Main Skill Engine: [skills/human-ui/](../skills/human-ui/SKILL.md)
-- Core Methodology: [core/](../core/)
-- Design Tokens & Systems: [design/](../design/)
-- Shared Component Specs: [components/](../components/)
-- Engineering Standards: [engineering/](../engineering/)
-- Framework-Specific Guides: [frameworks/](../frameworks/)
-- Quality Audits: [quality/](../quality/)
-
-> [!NOTE]
-> Copilot auto-loads repository instructions located at `.github/copilot-instructions.md`.
+## Key Directory Links
+- [Canonical Skill](../skills/human-flutter/SKILL.md)
+- [Design Specifications](../design/)
+- [Component Primitives](../components/)
+- [Engineering Standards](../engineering/)
+- [Quality Gates](../quality/)

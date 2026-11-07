@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.0.0] - 2026-11-07
+
+### Major Transformation: Complete Flutter-Only Human UI Engineering System
+
+#### Changed & Transformed
+- **Absolute Flutter-Only Focus**: Transformed repository from a multi-framework software engineering system into an exclusive, specialized **Flutter & Dart Human UI Engineering System**. Removed all generic web (React, Next.js, Vue, Angular), non-Flutter mobile (React Native), and unrelated backend frameworks.
+- **Canonical Skill Architecture**:
+  - Restructured canonical skill to `skills/human-flutter/` (`SKILL.md`) with 26 dedicated, in-depth Flutter engineering reference modules:
+    - `ui-design.md`, `color-system.md`, `typography.md`, `components.md`, `flutter-architecture.md`, `dart-standards.md`, `file-structure.md`, `responsive-design.md`, `animation.md`, `performance.md`, `state-management.md`, `navigation.md`, `api-integration.md`, `database-storage.md`, `firebase.md`, `platform-integration.md`, `accessibility.md`, `security.md`, `testing.md`, `debugging.md`, `refactoring.md`, `build-release.md`, `design-audit.md`, `code-review.md`, `project-audit.md`, `workflow.md`.
+- **10 Core Flutter Engineering Intelligence Modules**:
+  - **Human UI Design Engineering**: Content hierarchy, Material 3 & Cupertino adaptive design, micro-interactions, complete states (pristine, shimmer, empty, error, success).
+  - **Human Color Intelligence**: 60-30-10 palette rules, `ColorScheme`, `ThemeExtension<AppCustomColors>`, and WCAG 2.1 AA contrast.
+  - **Human Flutter Component Engineering**: Theme-aware widget primitives (`AppButton`, `AppCard`, `AppTextField`), `CustomPainter`, and `RenderBox`.
+  - **Human Flutter Coding Intelligence**: Dart 3 standards, records, pattern matching, sealed classes, sound null safety, and UDF.
+  - **Human Flutter File Structure Engineering**: Feature-First architecture, clean layer separation, core isolation, and test mirroring.
+  - **Human Responsive Design Engineering**: Multi-platform layouts across phones, tablets, desktop, and web with zero layout overflows.
+  - **Human Flutter Animation Engineering**: Implicit and explicit animations, `Hero`, `go_router` page transitions, and 120fps frame budgets.
+  - **Human Performance Engineering**: `const` optimization, `ListView.builder`, image downsampling, isolates (`compute`), and DevTools profiling.
+  - **Human Flutter Platform Engineering**: `MethodChannel`, `EventChannel`, FFI, permissions, lifecycle, and desktop window management.
+  - **Human Flutter Product Engineering**: Production API integration via `Dio`, offline storage (Drift, Isar), Firebase, and app store releases.
+- **Mandatory 18-Step Human Design-to-Code Workflow**:
+  - Implemented the full 18-step sequential engineering lifecycle from requirements and project inspection through responsive layout, state binding, performance profiling, and testing.
+- **Chat Slash Command Update**:
+  - Canonical command `/human-flutter [subcommand] [task]` with backward compatibility for `/human-ui`.
+- **Google Antigravity & Agent Adapters**:
+  - Added official Antigravity workspace skill at `.agents/skills/human-flutter/SKILL.md`.
+  - Added fallback adapter at `.agent/skills/human-flutter/SKILL.md`.
+  - Added Cursor rules (`.cursor/rules/human-flutter.mdc`), Claude Code commands (`.claude/commands/human-flutter.md`), Copilot instructions (`.github/copilot-instructions.md`, `.github/prompts/human-flutter.prompt.md`), and Windsurf rules & workflows (`.windsurf/rules/human-flutter.md`, `.windsurf/workflows/human-flutter.md`).
+- **Automated Validation Suite**:
+  - Removed obsolete `frameworks/` directory and old `skills/human-ui/`.
+  - Added `scripts/validate-flutter-only` enforcing zero non-Flutter framework leakage.
+  - Updated `scripts/validate-docs`, `scripts/validate-links`, and `scripts/validate-structure`.
+
+---
+
 ## [3.0.0] - 2026-11-07
 
 ### Ultimate Upgrade: Universal AI Software Engineering Operating System

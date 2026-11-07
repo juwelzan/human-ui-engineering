@@ -1,0 +1,33 @@
+---
+description: Human Flutter Engineering rules for building production-grade Flutter user interfaces.
+globs: **/*.dart, **/pubspec.yaml
+---
+
+# Human Flutter Engineering — Cursor Rules
+
+This workspace implements the **Human Flutter Engineering** system.
+
+The single authoritative source of truth is [AGENTS.md](../../AGENTS.md).
+
+## Absolute Flutter-Only Rule
+- Flutter and Dart are the only supported application development framework.
+- Never switch to or recommend React, Next.js, Vue, Angular, React Native, or standalone Kotlin/Swift architectures.
+- Native code is allowed ONLY when platform channels or OS APIs require it.
+
+## Chat Command: `/human-flutter` (or `/human-ui`)
+- Supported modes: `plan`, `build`, `design`, `color`, `component`, `responsive`, `animation`, `performance`, `platform`, `product`, `audit`, `debug`, `refactor`, `test`, `review`, `release`, `recover`, `status`.
+- Canonical Skill: [skills/human-flutter/SKILL.md](../../skills/human-flutter/SKILL.md)
+
+## Core Guidelines
+1. **Follow the 18-Step Workflow**: Always understand requirements and inspect the existing Flutter project before writing code.
+2. **`const` Constructors**: Mark all immutable widgets with `const`.
+3. **Widget Granularity**: Decompose monolithic `build()` methods into private `StatelessWidget`s (<200 lines).
+4. **Zero Layout Overflows**: Prevent `RenderFlex` overflows with `Flexible`, `Expanded`, `SingleChildScrollView`.
+5. **Verified Testing**: Run `flutter test` and `dart analyze` before claiming completion.
+
+## Documentation Index
+- [Canonical Skill](../../skills/human-flutter/SKILL.md)
+- [Design Specifications](../../design/)
+- [Component Primitives](../../components/)
+- [Engineering Standards](../../engineering/)
+- [Quality Gates](../../quality/)

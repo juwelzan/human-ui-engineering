@@ -1,86 +1,97 @@
-# Human UI Engineering
+# Human Flutter Engineering
 
-> **Universal AI Agent Context & Instruction System for Production UI Engineering**
+> **Complete Flutter-Only Human UI Engineering Operating System & AI Agent Intelligence**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Framework Agnostic](https://img.shields.io/badge/Framework-Agnostic-green.svg)](frameworks/framework-selection.md)
+[![Framework: Flutter Only](https://img.shields.io/badge/Framework-Flutter%20%26%20Dart%20Only-02569B.svg)](AGENTS.md)
 [![A11y: WCAG 2.1 AA](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA-purple.svg)](design/accessibility.md)
-[![Chat Slash Command: /human-ui](https://img.shields.io/badge/Slash%20Command-%2Fhuman--ui-orange.svg)](docs/slash-command-guide.md)
+[![Chat Slash Command: /human-flutter](https://img.shields.io/badge/Slash%20Command-%2Fhuman--flutter-orange.svg)](docs/slash-command-guide.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ---
 
-## 1. What is Human UI Engineering?
+## 1. What is Human Flutter Engineering?
 
-**Human UI Engineering** is an open, framework-neutral knowledge and instruction system that teaches AI coding agents to think, architect, design, and code like senior human UI engineers.
+**Human Flutter Engineering** is a dedicated, Flutter-only knowledge and instruction system that teaches AI coding agents to think, architect, design, and code like senior human Flutter engineers.
 
 Rather than generating generic "AI aesthetics" (unwarranted purple/teal glows, repetitive card grids, arbitrary glassmorphism, and unmaintainable 800-line monolithic files), this repository instills rigorous engineering standards:
-- **Human Utility Over AI Decoration**: Prioritizes content hierarchy, readability, and task completion.
-- **Foundation-First Architecture**: Establishes design tokens and shared component primitives before building screens.
-- **Platform Authenticity**: Respects native idioms across Web, iOS, Android, and Desktop.
-- **Deterministic Quality**: Enforces strict verification of performance, accessibility, memory disposal, and responsiveness.
+- **Absolute Flutter-Only Focus**: Strictly and exclusively dedicated to Flutter and Dart. Never suggests, generates, or mixes alternative frontend or cross-platform frameworks.
+- **Human Utility Over AI Decoration**: Prioritizes content hierarchy, readability, and user task completion.
+- **Foundation-First Architecture**: Establishes design tokens and shared component primitives (`AppButton`, `AppCard`, `AppTextField`) before assembling screens.
+- **Platform Authenticity**: Respects native idioms across Android, iOS, macOS, Windows, Linux, and Flutter Web.
+- **Deterministic Quality**: Enforces strict verification of 120fps performance, accessibility, memory disposal, and responsiveness.
 
 The single source of truth for all agent operations is [`AGENTS.md`](AGENTS.md).
 
 ---
 
-## 2. Direct Chat Slash Command: `/human-ui`
+## 2. Direct Chat Slash Command: `/human-flutter`
 
-Developers can invoke Human UI Engineering directly from their AI agent's chat input:
+Developers can invoke Human Flutter Engineering directly from their AI agent's chat input:
 
 ```text
-/human-ui [subcommand?] [task_description]
+/human-flutter [subcommand?] [task_description]
 ```
+*(The alias `/human-ui` is also supported).*
 
 ### Example Invocations
 ```text
-# 1. General feature implementation (auto-detects framework)
-/human-ui Create a modern, accessible customer profile screen.
+# 1. General Flutter feature engineering (executes the 18-step workflow)
+/human-flutter Create a modern, accessible customer profile screen.
 
-# 2. Plan mode: structured decomposition & risk analysis (read-only)
-/human-ui plan Architect a 3-step checkout flow with Stripe payment integration.
+# 2. Plan mode: structured task planning & dependency mapping
+/human-flutter plan Architect a 3-step checkout flow with In-App Purchases.
 
-# 3. Build mode: full-stack feature assembly (models, APIs, UI)
-/human-ui build Create tenant invite management with Prisma schema and React modal.
+# 3. Build mode: end-to-end full-stack Flutter feature assembly
+/human-flutter build Implement offline note syncing with Drift database and BLoC.
 
-# 4. Design mode: design tokens, spatial grid, typography
-/human-ui design Establish an 8pt spatial grid and semantic status colors.
+# 4. Design mode: UI/UX design, visual hierarchy & layout
+/human-flutter design Establish a clean information architecture for our dashboard.
 
-# 5. Architect mode: system architecture & ADR drafting
-/human-ui architect Evaluate PostgreSQL vs MongoDB for user activity telemetry.
+# 5. Color mode: coherent color palettes, ThemeData & ColorScheme
+/human-flutter color Define a Material 3 ColorScheme with custom ThemeExtension for status colors.
 
-# 6. Audit mode: full UI polish & performance audit
-/human-ui audit src/features/checkout
+# 6. Component mode: reusable widget primitives & CustomPainter
+/human-flutter component Build a theme-aware AppButton with primary, secondary, and destructive variants.
 
-# 7. Debug mode: scientific 10-step root-cause diagnosis & smallest safe fix
-/human-ui debug The mobile keyboard is obscuring our form submit button.
+# 7. Responsive mode: multi-breakpoint layouts across mobile, tablet, desktop, web
+/human-flutter responsive Adapt our data table to stack cleanly on mobile viewports.
 
-# 8. Refactor mode: safe behavior-preserving code extraction
-/human-ui refactor Decompose giant 600-line OrderDashboard into focused primitives.
+# 8. Animation mode: meaningful, 60/120fps animations & micro-interactions
+/human-flutter animation Add a smooth shared-element Hero transition between card and detail view.
 
-# 9. Test mode: multi-tier test authoring & honest reporting
-/human-ui test Add unit and component tests for BillingSummary with 100% path coverage.
+# 9. Performance mode: frame budget, const optimization & DevTools profiling
+/human-flutter performance Eliminate jank and memory leaks during infinite list scrolling.
 
-# 10. Review mode: pre-flight PR review against the 13 quality gates
-/human-ui review Audit our recent PR changes before merging.
+# 10. Platform mode: MethodChannel, EventChannel, FFI & native permissions
+/human-flutter platform Implement native biometric authentication via local_auth.
 
-# 11. Security mode: vulnerability audit & auth hardening
-/human-ui security Audit our auth session handling and search for IDOR vulnerabilities.
+# 11. Product mode: Auth, offline storage, Firebase & internationalization
+/human-flutter product Configure Firebase Crashlytics with uncaught FlutterError handlers.
 
-# 12. Performance mode: 16.6ms frame budget & memory disposal
-/human-ui performance Eliminate jank and memory leaks during infinite list scrolling.
+# 12. Audit mode: visual polish, contrast, a11y & layout audit
+/human-flutter audit lib/features/checkout
 
-# 13. Docs mode: technical docs, docstrings & context maintenance
-/human-ui docs Update OpenAPI schemas and PROJECT_CONTEXT.md.
+# 13. Debug mode: scientific 10-step root-cause diagnosis
+/human-flutter debug Resolve "A RenderFlex overflowed by 38 pixels on the bottom".
 
-# 14. Release mode: semantic versioning, zero-downtime migrations & changelog
-/human-ui release Prepare v3.0.0 release candidate and verify database migrations.
+# 14. Refactor mode: safe widget extraction & state decoupling
+/human-flutter refactor Decompose giant 600-line OrderDashboard into focused private StatelessWidget classes.
 
-# 15. Recovery Mode: resume interrupted work without restarting
-/human-ui recover
+# 15. Test mode: unit, widget, and integration test authoring
+/human-flutter test Add widget tests for BillingSummary asserting loading, empty, and success states.
 
-# 16. Status Mode: inspect active task state and blockers
-/human-ui status
+# 16. Review mode: pre-flight PR review against the 13 quality gates
+/human-flutter review Audit our recent PR changes before merging.
+
+# 17. Release mode: AAB/IPA release preparation, signing & obfuscation
+/human-flutter release Prepare Android App Bundle with code obfuscation and debug symbols.
+
+# 18. Recovery Mode: resume interrupted work without restarting
+/human-flutter recover
+
+# 19. Status Mode: inspect active task state and blockers
+/human-flutter status
 ```
 
 👉 Read the full [Chat Slash Command Guide](docs/slash-command-guide.md) and [Compatibility Matrix](docs/compatibility-matrix.md).
@@ -93,38 +104,29 @@ This repository provides standardized, lightweight entry points for all major AI
 
 | Agent / Tool | Entry File | Chat Invocation Syntax | Autocomplete | Auto-Activation | Notes |
 |---|---|---|---|---|---|
-| **Google Antigravity** | [`.agents/skills/human-ui/`](.agents/skills/human-ui/SKILL.md) | `/human-ui [task]` | **YES** | **YES** | Native skill integration |
-| **Claude Code** | [`.claude/commands/human-ui.md`](.claude/commands/human-ui.md) | `/human-ui [task]` | **YES** | **YES** | CLI slash command |
-| **VS Code GitHub Copilot** | [`.github/prompts/human-ui.prompt.md`](.github/prompts/human-ui.prompt.md) | `/human-ui [task]` | **YES** | **YES** | Reusable prompt file |
-| **Cursor** | [`.cursor/rules/human-ui.mdc`](.cursor/rules/human-ui.mdc) | `/human-ui [task]` or `@human-ui` | **YES** | **YES** | Rules & symbol picker |
-| **Windsurf** | [`.windsurf/workflows/human-ui.md`](.windsurf/workflows/human-ui.md) | `/human-ui [task]` | **YES** | **YES** | Cascade workflow |
-| **Gemini CLI** | [`skills/human-ui/SKILL.md`](skills/human-ui/SKILL.md) | `/human-ui [task]` | **YES** | **YES** | Agent Skills standard |
-| **Android Studio Gemini** | [`.agent/rules/human-ui.md`](.agent/rules/human-ui.md) | `/human-ui [task]` | Limited | **YES** | Workspace context |
-| **Codex / Assistants** | Prompt injection | `/human-ui [task]` | N/A | Manual | System prompt instructions |
+| **Google Antigravity** | [`.agents/skills/human-flutter/`](.agents/skills/human-flutter/SKILL.md) | `/human-flutter [task]` | **YES** | **YES** | Native workspace skill integration |
+| **Claude Code** | [`.claude/commands/human-flutter.md`](.claude/commands/human-flutter.md) | `/human-flutter [task]` | **YES** | **YES** | CLI slash command |
+| **Gemini CLI / IDE** | [`GEMINI.md`](GEMINI.md) | `/human-flutter [task]` | **YES** | **YES** | Agent Skills standard |
+| **Cursor** | [`.cursor/rules/human-flutter.mdc`](.cursor/rules/human-flutter.mdc) | `/human-flutter [task]` or `@human-flutter` | **YES** | **YES** | Rules & symbol picker |
+| **VS Code Copilot** | [`.github/prompts/human-flutter.prompt.md`](.github/prompts/human-flutter.prompt.md) | `/human-flutter [task]` | **YES** | **YES** | Reusable prompt file |
+| **Windsurf** | [`.windsurf/workflows/human-flutter.md`](.windsurf/workflows/human-flutter.md) | `/human-flutter [task]` | **YES** | **YES** | Cascade workflow |
 
 👉 Read the complete [Compatibility Matrix](docs/compatibility-matrix.md) and [Installation Guide](docs/installation-guide.md).
 
 ---
 
-## 4. Supported Frameworks
+## 4. The 10 Core Flutter Engineering Modules
 
-Universal principles apply across all technologies, with specialized, strictly isolated implementation guides in [`frameworks/`](frameworks/README.md):
-
-- **[Flutter](frameworks/flutter.md)**: Clean architecture, widget granularity, `const` optimization, BLoC/Riverpod, semantics.
-- **[React](frameworks/react.md)**: Functional composition, custom hooks, strategic memoization, virtualized lists.
-- **[Next.js](frameworks/nextjs.md)**: App Router, React Server Components (RSC) vs Client boundaries, Streaming, Core Web Vitals.
-- **[Vue](frameworks/vue.md)**: Vue 3 Composition API, `<script setup lang="ts">`, Pinia state management, Nuxt 3.
-- **[Angular](frameworks/angular.md)**: Angular 17+ Standalone Components, Signals, modern control flow (`@if`/`@for`).
-- **[Native Android](frameworks/native-android.md)**: Jetpack Compose, ViewModel, Material 3, Coroutines, WindowSizeClass.
-- **[Native iOS](frameworks/native-ios.md)**: SwiftUI, Swift 6, Observation macro, SF Symbols, Apple HIG.
-- **[Modern Web](frameworks/web.md)**: Semantic HTML5, CSS Container Queries, native `<dialog>` and Popovers, Web Components.
-- **[React Native](frameworks/react-native.md)**: Expo, New Architecture (Fabric/TurboModules), FlashList, Safe Areas.
-- **[Desktop Development](frameworks/desktop.md)**: Electron, Tauri, Flutter Desktop, Frameless window dragging, system shortcuts, secure IPC.
-- **[Backend Development](frameworks/backend.md)**: Node.js, Python, Go, Java, Rust; 3-tier architecture, concurrency, worker queues.
-- **[API Development](frameworks/api.md)**: REST, GraphQL, gRPC, WebSockets; OpenAPI schemas, cursor pagination, idempotency.
-- **[Database Engineering](frameworks/database.md)**: PostgreSQL, MySQL, SQLite, MongoDB, Redis; zero-downtime expand/contract migrations.
-- **[Framework Selection Matrix](frameworks/framework-selection.md)**: Objective criteria and decision heuristics for choosing the right stack.
-- **[Framework Isolation Standards](frameworks/README.md)**: Boundaries ensuring framework rules never cross-contaminate.
+1. **[Human UI Design Engineering](skills/human-flutter/references/ui-design.md)**: Information architecture, Material 3, Cupertino, custom interfaces, and complete interaction states.
+2. **[Human Color Intelligence](skills/human-flutter/references/color-system.md)**: 60-30-10 palette balance, `ColorScheme`, `ThemeExtension<AppCustomColors>`, and WCAG 2.1 AA contrast.
+3. **[Human Flutter Component Engineering](skills/human-flutter/references/components.md)**: Reusable widget primitives (`AppButton`, `AppCard`, `AppTextField`), `CustomPainter`, and `RenderBox`.
+4. **[Human Flutter Coding Intelligence](skills/human-flutter/references/dart-standards.md)**: Clean Dart 3 standards, records, pattern matching, sealed classes, sound null safety, and UDF.
+5. **[Human Flutter File Structure Engineering](skills/human-flutter/references/file-structure.md)**: Feature-First architecture, clean layer separation, core isolation, and test mirroring.
+6. **[Human Responsive Design Engineering](skills/human-flutter/references/responsive-design.md)**: Multi-platform layouts (Mobile, Tablet, Desktop, Web), `LayoutBuilder`, and zero overflow bugs.
+7. **[Human Flutter Animation Engineering](skills/human-flutter/references/animation.md)**: Implicit/explicit animations, `Hero`, page transitions, and 120fps frame budgets.
+8. **[Human Performance Engineering](skills/human-flutter/references/performance.md)**: `const` optimization, `ListView.builder`, image downsampling, isolates (`compute`), and DevTools profiling.
+9. **[Human Flutter Platform Engineering](skills/human-flutter/references/platform-integration.md)**: `MethodChannel`, `EventChannel`, FFI, permissions, lifecycle, and desktop window management.
+10. **[Human Flutter Product Engineering](skills/human-flutter/references/api-integration.md)**: API integration via Dio, offline databases (Drift, Isar), Firebase, notifications, and store release.
 
 ---
 
@@ -139,230 +141,58 @@ human-ui-engineering/
 ├── CHANGELOG.md            # Version release milestones & roadmap
 ├── CLAUDE.md               # Claude Code entry point
 ├── GEMINI.md               # Gemini agent entry point
-├── CONTRIBUTING.md         # Contribution standards
+├── CONTRIBUTING.md         # Contribution standards (Flutter-only policy)
 ├── LICENSE                 # MIT License
 │
-├── skills/human-ui/        # Canonical Agent Skill Engine
+├── skills/human-flutter/   # Canonical Agent Skill Engine
 │   ├── SKILL.md            # Main skill with YAML frontmatter
-│   └── references/         # 17 modular reference guides (flutter, react, recovery, backend, api, etc.)
+│   └── references/         # 26 modular Flutter engineering reference guides
 │
 ├── docs/                   # User guides & matrices
 │   ├── compatibility-matrix.md # Verified agent support matrix
-│   ├── slash-command-guide.md  # Detailed 16-mode /human-ui command manual
+│   ├── slash-command-guide.md  # Detailed /human-flutter command manual
 │   ├── installation-guide.md   # Step-by-step installation instructions
 │   └── adr/                # Architecture Decision Records (ADRs)
-│       ├── README.md       # ADR catalog and writing guide
-│       ├── template.md     # Standardized ADR template
-│       └── 0001-record-architecture-decisions.md # Foundational ADR
 │
 ├── .github/                # GitHub-specific instructions
 │   ├── copilot-instructions.md
-│   ├── prompts/human-ui.prompt.md # Reusable Copilot prompt
+│   ├── prompts/human-flutter.prompt.md
 │   └── workflows/validate.yml  # GitHub Actions CI validator
 │
 ├── .cursor/                # Cursor IDE configuration
-│   ├── rules/human-ui.mdc  # Cursor rules
-│   └── skills/human-ui/    # Cursor skill adapter
+│   ├── rules/human-flutter.mdc
+│   └── skills/human-flutter/
 │
 ├── .agents/                # Google Antigravity & Agent OS (Canonical)
-│   ├── rules/human-ui.md   # Agent workspace rules
-│   └── skills/human-ui/    # Canonical Antigravity slash command skill
+│   ├── rules/human-flutter.md
+│   └── skills/human-flutter/
 │
-├── .agent/                 # Agent configuration (Legacy / CLI fallback)
-│   ├── rules/human-ui.md   # Agent workspace rules
-│   └── skills/human-ui/    # Agent skill adapter
+├── .agent/                 # Agent configuration (Fallback)
+│   ├── rules/human-flutter.md
+│   └── skills/human-flutter/
 │
 ├── .claude/commands/       # Claude Code slash commands
-│   └── human-ui.md         # /human-ui command definition
+│   └── human-flutter.md
 │
 ├── .windsurf/              # Windsurf Cascade configuration
-│   ├── rules/human-ui.md   # Cascade rules
-│   └── workflows/human-ui.md# Cascade workflow
+│   ├── rules/human-flutter.md
+│   └── workflows/human-flutter.md
 │
-├── core/                   # Universal engineering intelligence & orchestration
-│   ├── developer-intelligence.md # Evidence-based decision-making & 5 truth tiers
-│   ├── task-orchestration.md # 10-stage task orchestration & proportional planning
-│   ├── operating-modes.md  # Ask, Plan, Developer, Review, Autonomous, Recovery modes
-│   ├── human-interaction.md# Professional communication, honest progress & blockers
-│   ├── project-knowledge.md# Persistent knowledge architecture (PROJECT_CONTEXT, ADRs)
-│   ├── git-change-management.md # Safe change boundaries, diff review & rollback safety
-│   ├── agent-behavior.md   # Eliminating AI tropes; human engineer mindset
-│   ├── anti-hallucination.md # 5-tier evidence classification & pre-action verification
-│   ├── recovery-protocol.md # 6-step autonomous recovery sequence & blocker reporting
-│   ├── checkpoint-management.md # Checkpoint rules, state tracking & hygiene
-│   ├── project-discovery.md# Evidence-based pre-flight codebase discovery
-│   ├── architecture.md     # 3-tier presentation architecture & UDF
-│   ├── engineering-workflow.md # 6-stage universal engineering lifecycle
-│   ├── change-control.md   # Blast radius assessment & backward-compatible changes
-│   ├── folder-structure.md # Feature-First directory conventions
-│   ├── development-workflow.md # Task execution cycle & step transitions
-│   └── multi-agent.md      # Multi-agent collaboration & single-agent fallback
-│
-├── design/                 # Human-centered UI design system
-│   ├── design-philosophy.md# Purpose of UI, content-first design
-│   ├── human-design-rules.md# Strict visual Do's and Don'ts
-│   ├── human-interface-design.md # Information architecture, cognitive laws & visual rhythm
-│   ├── data-visualization.md # Chart selection, data-ink ratio & accessible telemetry
-│   ├── color-system.md     # 60-30-10 rule, functional tokens, dark mode
-│   ├── typography.md       # Typographic scale, measure, line-heights
-│   ├── spacing.md          # 8pt/4pt mathematical spatial grid
-│   ├── responsive-design.md# 5-tier breakpoint system & touch targets
-│   ├── accessibility.md    # WCAG 2.1 AA, keyboard focus, screen readers
-│   └── animation.md        # Functional motion tokens, reduced motion
-│
-├── components/             # Reusable shared component engineering
-│   ├── component-principles.md # Component boundaries, composition & 7 interactive states
-│   ├── shared-component-rules.md # 6-question qualification rubric
-│   ├── dashboards.md       # KPI metric cards, grid layouts & anti-card fatigue
-│   ├── buttons.md          # Hierarchy, sizes, 6 interactive states
-│   ├── forms.md            # Form control catalog, validation heuristics & multi-step wizards
-│   ├── text-fields.md      # Labels, error states, mobile keyboards
-│   ├── typography.md       # Polymorphic text primitives, line clamping
-│   ├── cards.md            # Compound card patterns; anti-card fatigue
-│   ├── navigation.md       # Headers, sidebars, bottom bars, tabs
-│   ├── dialogs.md          # Focus trapping, escape dismissal, sheets
-│   ├── loading-states.md   # Skeletons, shimmers, spinners, optimistic UI
-│   ├── component-testing.md# 5-stage component test suite & resilient role selectors
-│   └── reusable-widgets.md # Badges, avatars, tooltips, list tiles
-│
-├── engineering/            # Full-stack production engineering standards
-│   ├── code-standards.md   # Readability, maintainability & 11 anti-pattern defenses
-│   ├── debugging-engine.md # Scientific 10-step root-cause diagnosis & repair
-│   ├── clean-code.md       # Modularity, naming rules, 200-line guideline
-│   ├── devops-release.md   # Environments, CI/CD, semantic release & safe DB migrations
-│   ├── architecture-patterns.md # MVVM, MVI/Redux, BLoC, Custom Hooks
-│   ├── state-management.md # 4 state tiers, placement heuristics
-│   ├── error-handling.md   # Error boundaries, actionable user messages
-│   ├── async-operations.md # Async lifecycle safety, AbortController & debouncing
-│   ├── performance.md      # 16.6ms frame budget, virtualization, caching & battery
-│   ├── memory-management.md# Disposing listeners, timers, controllers
-│   ├── security.md         # Full-stack security, auth, XSS, IDOR & secrets
-│   └── cross-platform.md   # Platform idioms, safe areas, RTL/i18n
-│
-├── quality/                # Quality assurance & pre-flight gates
-│   ├── testing-strategy.md # Testing pyramid, proportional selection & honest status
-│   ├── engineering-quality-gates.md # 13-point pre-delivery verification standard
-│   ├── testing.md          # Testing pyramid, resilient selectors, honesty
-│   ├── ui-review.md        # Visual polish & spacing checklist
-│   ├── accessibility-audit.md # Exhaustive WCAG 2.1 AA audit checklist across all modalities
-│   ├── performance-audit.md# Profiling frames, memory leaks, assets
-│   ├── bug-prevention.md   # Top 10 recurring UI bugs & defenses
-│   ├── regression-prevention.md # 4-dimension regression prevention protocol & gates
-│   └── release-checklist.md# 8-point pre-flight release gate
-│
-├── frameworks/             # 13 strictly isolated framework modules
-│   ├── README.md           # Framework isolation rules & monorepo boundaries
-│   ├── framework-selection.md # 13-framework decision tree & heuristics
-│   ├── flutter.md          # Flutter / Dart: Widget hierarchy, const, BLoC/Riverpod
-│   ├── react.md            # React: Hooks, memoization, virtualization, clean state
-│   ├── nextjs.md           # Next.js: RSC, App Router, Suspense, streaming
-│   ├── vue.md              # Vue 3: Script setup, Composition API, Pinia, Nuxt 3
-│   ├── angular.md          # Angular 17+: Signals, Standalone Components, control flow
-│   ├── native-android.md   # Android: Jetpack Compose, ViewModel, Coroutines
-│   ├── native-ios.md       # iOS: SwiftUI, Swift 6, Observation, HIG
-│   ├── web.md              # Modern Web: Semantic HTML5, CSS Container Queries
-│   ├── react-native.md     # React Native: Expo, Fabric/TurboModules, FlashList
-│   ├── desktop.md          # Desktop: Electron, Tauri, Flutter Desktop, native IPC
-│   ├── backend.md          # Backend: Node.js, Python, Go, Java, Rust; 3-tier architecture
-│   ├── api.md              # API: REST, GraphQL, gRPC, WebSockets; OpenAPI, pagination
-│   └── database.md         # Database: PostgreSQL, MySQL, SQLite, Mongo, Redis; migrations
-│
-├── workflows/              # Actionable step-by-step execution guides
-│   ├── project-discovery.md# Codebase mapping & monorepo package isolation
-│   ├── new-project.md      # Bootstrapping from scratch
-│   ├── new-feature.md      # End-to-end multi-screen feature implementation
-│   ├── build.md            # End-to-end full-stack feature build
-│   ├── new-page.md         # Building a verified screen
-│   ├── shared-component.md # Extracting reusable primitives
-│   ├── redesign.md         # Safe modernization without regressions
-│   ├── refactoring.md      # Safe refactoring sequence & extraction checkpoints
-│   ├── debugging.md        # Scientific 10-stage defect isolation & repair loop
-│   ├── performance-optimization.md # Profiling, bottleneck isolation & metrics
-│   ├── performance-fix.md  # Quick repair of visual jank and frame drops
-│   ├── recovery.md         # Autonomous recovery from interrupted tasks
-│   ├── release.md          # Pre-flight release verification & deployment
-│   └── security-audit.md   # Vulnerability scan, auth review & remediation
-│
-├── templates/              # Standardized fillable markdown templates
-│   ├── project-brief.md    # Discovery summary
-│   ├── project-context.md  # Standard template for PROJECT_CONTEXT.md
-│   ├── architecture-plan.md# Technical proposal
-│   ├── design-system.md    # Design token spec
-│   ├── task-state.md       # Fillable checkpoint state for AI_TASK_STATE.md
-│   ├── bug-report.md       # Fillable UI bug report & root-cause analysis template
-│   ├── quality-report.md   # QA & verification audit
-│   ├── adr.md              # Canonical template for Architecture Decision Records
-│   └── test-plan.md        # Structured test plan template
-│
-└── scripts/                # Automated repository validation suite
-    ├── validate-docs       # Checks required architecture files exist & populated
-    ├── validate-links      # Validates all internal relative markdown links
-    ├── validate-structure  # Validates agent entry points & 13 framework modules
-    └── validate.py         # Master runner coordinating all validators
-```
-│   ├── bug-report.md       # Fillable UI bug report & root-cause analysis template
-│   └── quality-report.md   # QA & verification audit
-│
-└── scripts/                # Automated repository validation suite
-    ├── validate-docs       # Checks required architecture files exist & populated
-    ├── validate-links      # Validates all internal relative markdown links
-    ├── validate-structure  # Validates agent entry points & 10 framework modules
-    └── validate.py         # Master runner coordinating all validators
+├── core/                   # Flutter engineering intelligence & orchestration
+├── design/                 # Human-centered UI design system, colors & typography
+├── components/             # Reusable shared widget component engineering
+├── engineering/            # Production Flutter engineering standards & clean code
+├── quality/                # Quality assurance, testing pyramid & pre-flight gates
+├── workflows/              # Step-by-step Flutter execution workflows
+├── templates/              # Fillable engineering templates (ADRs, task state, bug reports)
+└── scripts/                # Automated validation suite (docs, links, structure, flutter-only)
 ```
 
 ---
 
-## 6. How to Install & Use in Your Projects
-
-### Method A: Git Submodule (Recommended for Teams)
-```bash
-git submodule add https://github.com/juwelzan/human-ui-engineering.git .human-ui
-```
-Then copy adapters from `.human-ui` to your agent directories. See [Installation Guide](docs/installation-guide.md).
-
-### Method B: Global Installation (All Projects)
-Clone/copy into `~/.gemini/config/skills/human-ui` or `.claude/commands/` for machine-wide availability.
-
----
-
-## 7. The Mandatory 14-Step Workflow
-
-Every AI agent operating under this framework executes this sequential loop:
-
-```mermaid
-flowchart TD
-    S1[1. Discover Project] --> S2[2. Understand Requirements]
-    S2 --> S3[3. Inspect Existing Codebase]
-    S3 --> S4[4. Identify Tech & Conventions]
-    S4 --> S5[5. Propose Architecture]
-    S5 --> S6{6. Material Change?}
-    S6 -- Yes --> S6A[Seek User Approval] --> S7[7. Establish Design System]
-    S6 -- No --> S7
-    S7 --> S8[8. Identify Shared Components]
-    S8 --> S9[9. Build Shared Foundations]
-    S9 --> S10[10. Implement Requested UI]
-    S10 --> S11[11. Test & Review]
-    S11 --> S12[12. Audit Performance & A11y]
-    S12 --> S13[13. Fix Verified Issues]
-    S13 --> S14[14. Report Exact Completion]
-```
-
-See [`AGENTS.md`](AGENTS.md) for full phase details.
-
----
-
-## 8. Automated Validation
-
-Validate repository integrity and verify that all relative internal links resolve cleanly:
+## 6. Verification Commands
 
 ```bash
+# Run full automated validation suite (docs, links, structure, flutter-only)
 python3 scripts/validate.py
 ```
-
----
-
-## 9. Contributing & License
-
-Contributions that expand framework coverage, refine accessibility guidelines, or enhance quality checklists are warmly welcomed. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting a pull request.
-
-Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.

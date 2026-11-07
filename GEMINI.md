@@ -1,33 +1,36 @@
-# Gemini Agent Instructions — Human UI Engineering
+# Gemini Agent Instructions — Human Flutter Engineering
 
-This repository implements the **Human UI Engineering** framework for high-fidelity, human-grade user interface engineering.
+This repository implements the **Human Flutter Engineering** system for high-fidelity, human-grade Flutter & Dart UI engineering.
 
 The authoritative single source of truth is [AGENTS.md](AGENTS.md).
 
-## Chat Slash Command: `/human-ui`
+## Absolute Flutter-Only Rule
 
-Gemini CLI and Antigravity discover skills in `.agents/skills/human-ui/SKILL.md`, `skills/human-ui/SKILL.md`, or globally in `~/.gemini/config/skills/human-ui/SKILL.md`.
-- **Command Syntax**: `/human-ui [subcommand] [task]`
-- **Subcommands**: `design`, `audit`, `flutter`, `react`, `responsive`, `performance`, `debug`, `recover`, `review`.
-- **Recovery Mode**: `/human-ui recover` restores context from `AI_TASK_STATE.md` and git telemetry.
-- **Skill Engine**: [skills/human-ui/SKILL.md](skills/human-ui/SKILL.md).
+Flutter and Dart are the only supported application development framework. Never switch to or recommend alternative frameworks.
+
+## Chat Slash Command: `/human-flutter` (or `/human-ui`)
+
+Gemini CLI and Antigravity discover skills in `.agents/skills/human-flutter/SKILL.md`, `.agent/skills/human-flutter/SKILL.md`, or canonical `skills/human-flutter/SKILL.md`.
+- **Command Syntax**: `/human-flutter [subcommand] [task]` (or `/human-ui [subcommand] [task]`)
+- **Subcommands**: `plan`, `build`, `design`, `color`, `component`, `responsive`, `animation`, `performance`, `platform`, `product`, `audit`, `debug`, `refactor`, `test`, `review`, `release`, `recover`, `status`.
+- **Recovery Mode**: `/human-flutter recover` restores context from `AI_TASK_STATE.md` and git telemetry.
+- **Skill Engine**: [skills/human-flutter/SKILL.md](skills/human-flutter/SKILL.md).
 
 ## Operational Rules for Gemini
 
-- **Mandatory Workflow**: Follow the 14-step engineering process in [AGENTS.md](AGENTS.md#2-mandatory-14-step-engineering-workflow).
-- **Discovery**: Thoroughly inspect manifests, project structure, design tokens, and state management conventions before proposing code.
+- **Mandatory 18-Step Workflow**: Follow the engineering process in [AGENTS.md](AGENTS.md).
+- **Discovery**: Thoroughly inspect `pubspec.yaml`, project structure, design tokens, and state management conventions before proposing code.
 - **Pragmatic Design**: Emulate senior human UI engineers. Reject cliché AI styling (e.g., purple/cyan glows, uniform cards, purposeless glassmorphism). Ground decisions in [Human Design Rules](design/human-design-rules.md).
-- **Modularity & Reusability**: Ensure shared primitives in [components/](components/) are utilized and maintained without creating leaky abstractions.
-- **Verification**: Run tests, static analysis, and verify contrast and accessibility before claiming completion.
+- **Modularity & Reusability**: Ensure shared primitives in [components/](components/) are utilized and maintained with `const` support.
+- **Verification**: Run `flutter test` and `dart analyze`, and verify contrast and accessibility before claiming completion.
 
 ## Documentation Index
 
-- **Main Skill Engine**: [skills/human-ui/](skills/human-ui/SKILL.md)
+- **Main Skill Engine**: [skills/human-flutter/](skills/human-flutter/SKILL.md)
 - **Core Guidelines**: [core/](core/)
 - **Design Specifications**: [design/](design/)
 - **Component Patterns**: [components/](components/)
 - **Engineering Standards**: [engineering/](engineering/)
-- **Framework Guides**: [frameworks/](frameworks/)
 - **Quality & Checklists**: [quality/](quality/)
 - **Execution Workflows**: [workflows/](workflows/)
 - **Templates**: [templates/](templates/)
